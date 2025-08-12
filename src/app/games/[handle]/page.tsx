@@ -61,7 +61,90 @@ async function getGame(handle: string) {
             ],
             images: []
         },
-        // ... other games
+        'codenames': {
+            id: 3,
+            name: 'Codenames',
+            price: 19.99,
+            description: 'A clever team-based word game where spymasters give one-word clues to help their teammates identify their agents.',
+            longDescription: 'Two rival spymasters know the secret identities of 25 agents. Their teammates know the agents only by their CODENAMES. In Codenames, two teams compete to see who can make contact with all of their agents first.',
+            players: '2-8 players',
+            playtime: '15 minutes',
+            age: '14+',
+            category: 'Party',
+            inStock: true,
+            rating: 4.6,
+            reviews: 156,
+            features: [
+                'Perfect for parties and large groups',
+                'Unlimited replayability with word combinations',
+                'Encourages creative thinking',
+                'Quick setup and gameplay'
+            ],
+            images: []
+        },
+        'wingspan': {
+            id: 4,
+            name: 'Wingspan',
+            price: 59.99,
+            description: 'A competitive, medium-weight, card-driven, engine-building board game about birds.',
+            longDescription: 'You are bird enthusiasts—researchers, bird watchers, ornithologists, and collectors—seeking to discover and attract the best birds to your network of wildlife preserves.',
+            players: '1-5 players',
+            playtime: '40-70 minutes',
+            age: '10+',
+            category: 'Strategy',
+            inStock: true,
+            rating: 4.9,
+            reviews: 203,
+            features: [
+                'Stunning bird artwork and components',
+                'Engine-building mechanics',
+                'Solo play mode included',
+                'Educational bird facts'
+            ],
+            images: []
+        },
+        'azul': {
+            id: 5,
+            name: 'Azul',
+            price: 34.99,
+            description: 'A tile-placement game where players compete to create the most beautiful wall.',
+            longDescription: 'Introduced by the Moors, azulejos (originally white and blue ceramic tiles) were fully embraced by the Portuguese when their king Manuel I was mesmerized by the stunning beauty of these tiles.',
+            players: '2-4 players',
+            playtime: '30-45 minutes',
+            age: '8+',
+            category: 'Family',
+            inStock: true,
+            rating: 4.8,
+            reviews: 178,
+            features: [
+                'Beautiful tactile tiles',
+                'Simple rules, deep strategy',
+                'Multiple ways to score points',
+                'Great for all skill levels'
+            ],
+            images: []
+        },
+        'exploding-kittens': {
+            id: 6,
+            name: 'Exploding Kittens',
+            price: 19.99,
+            description: 'A card game for people who are into kittens and explosions and laser beams and sometimes goats.',
+            longDescription: 'Exploding Kittens is a kitty-powered version of Russian Roulette. Players take turns drawing cards until someone draws an exploding kitten and loses the game.',
+            players: '2-5 players',
+            playtime: '15 minutes',
+            age: '7+',
+            category: 'Party',
+            inStock: false,
+            rating: 4.3,
+            reviews: 342,
+            features: [
+                'Hilarious artwork by The Oatmeal',
+                'Quick and easy gameplay',
+                'Perfect party game',
+                'Lots of laughs guaranteed'
+            ],
+            images: []
+        }
     };
 
     return games[handle as keyof typeof games] || null;
