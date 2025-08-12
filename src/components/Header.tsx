@@ -2,35 +2,74 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+    Menu,
+    X,
+    ShoppingCart,
+    Home,
+    Gamepad2,
+    Heart,
+    HelpCircle,
+    Shield,
+    Sparkles
+} from 'lucide-react';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="bg-warm-cream shadow-sm border-b border-sage-green/30">
+        <header className="bg-warm-cream shadow-lg border-b-2 border-sage-green/40 sticky top-0 z-50 backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
-                    <Link href="/" className="text-2xl font-bold text-amber-700">
-                        Robin Perkins Boardgames
+                    {/* Enhanced Logo with Icon */}
+                    <Link href="/" className="flex items-center space-x-2 group">
+                        <div className="bg-amber-700 p-2 rounded-lg transform group-hover:scale-110 transition-transform duration-200 shadow-md">
+                            <Gamepad2 className="w-6 h-6 text-warm-cream" />
+                        </div>
+                        <div>
+                            <span className="text-xl font-bold text-amber-700 group-hover:text-amber-800 transition-colors">
+                                Robin Perkins
+                            </span>
+                            <div className="text-sm text-deep-brown/70 -mt-1">Boardgames</div>
+                        </div>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden md:flex space-x-8">
-                        <Link href="/" className="text-deep-brown hover:text-amber-700 transition-colors">
-                            Home
+                    {/* Desktop Navigation with Icons */}
+                    <nav className="hidden md:flex space-x-6">
+                        <Link
+                            href="/"
+                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
+                        >
+                            <Home className="w-4 h-4 group-hover:animate-pulse" />
+                            <span>Home</span>
                         </Link>
-                        <Link href="/games" className="text-deep-brown hover:text-amber-700 transition-colors">
-                            Games
+                        <Link
+                            href="/games"
+                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
+                        >
+                            <Gamepad2 className="w-4 h-4 group-hover:animate-pulse" />
+                            <span>Games</span>
                         </Link>
-                        <Link href="/about" className="text-deep-brown hover:text-amber-700 transition-colors">
-                            About & Contact
+                        <Link
+                            href="/about"
+                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
+                        >
+                            <Heart className="w-4 h-4 group-hover:animate-pulse" />
+                            <span>About & Contact</span>
                         </Link>
-                        <Link href="/faq" className="text-deep-brown hover:text-amber-700 transition-colors">
-                            FAQ
+                        <Link
+                            href="/faq"
+                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
+                        >
+                            <HelpCircle className="w-4 h-4 group-hover:animate-pulse" />
+                            <span>FAQ</span>
                         </Link>
-                        <Link href="/policies" className="text-deep-brown hover:text-amber-700 transition-colors">
-                            Policies
+                        <Link
+                            href="/policies"
+                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
+                        >
+                            <Shield className="w-4 h-4 group-hover:animate-pulse" />
+                            <span>Policies</span>
                         </Link>
                     </nav>
 
@@ -38,64 +77,71 @@ export default function Header() {
                     <div className="flex items-center space-x-4">
                         <Link
                             href="/cart"
-                            className="text-deep-brown hover:text-amber-700 transition-colors flex items-center"
+                            className="relative group flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105"
                         >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h7" />
-                            </svg>
-                            <span className="ml-1 hidden sm:inline">Cart</span>
+                            <div className="relative">
+                                <ShoppingCart className="w-6 h-6 group-hover:animate-bounce" />
+                                {/* Cart badge */}
+                                <span className="absolute -top-2 -right-2 bg-amber-700 text-warm-cream text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                                    2
+                                </span>
+                            </div>
+                            <span className="hidden sm:inline">Cart</span>
                         </Link>
 
                         {/* Mobile menu button */}
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="md:hidden text-deep-brown hover:text-amber-700"
+                            className="md:hidden text-deep-brown hover:text-amber-700 p-2 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                         >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
+                {/* Enhanced Mobile Navigation */}
                 {isMenuOpen && (
-                    <nav className="md:hidden py-4 border-t border-sage-green/30">
-                        <div className="flex flex-col space-y-2">
+                    <nav className="md:hidden py-4 border-t border-sage-green/30 bg-white/90 backdrop-blur-sm rounded-b-lg shadow-lg">
+                        <div className="flex flex-col space-y-3">
                             <Link
                                 href="/"
-                                className="text-deep-brown hover:text-amber-700 py-2"
+                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Home
+                                <Home className="w-5 h-5" />
+                                <span>Home</span>
                             </Link>
                             <Link
                                 href="/games"
-                                className="text-deep-brown hover:text-amber-700 py-2"
+                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Games
+                                <Gamepad2 className="w-5 h-5" />
+                                <span>Games</span>
                             </Link>
                             <Link
                                 href="/about"
-                                className="text-deep-brown hover:text-amber-700 py-2"
+                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                About & Contact
+                                <Heart className="w-5 h-5" />
+                                <span>About & Contact</span>
                             </Link>
                             <Link
                                 href="/faq"
-                                className="text-deep-brown hover:text-amber-700 py-2"
+                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                FAQ
+                                <HelpCircle className="w-5 h-5" />
+                                <span>FAQ</span>
                             </Link>
                             <Link
                                 href="/policies"
-                                className="text-deep-brown hover:text-amber-700 py-2"
+                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Policies
+                                <Shield className="w-5 h-5" />
+                                <span>Policies</span>
                             </Link>
                         </div>
                     </nav>
@@ -103,4 +149,4 @@ export default function Header() {
             </div>
         </header>
     );
-} 
+}
