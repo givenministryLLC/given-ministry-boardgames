@@ -40,10 +40,10 @@ export default function GamesPage() {
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="border border-sage-green/50 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-amber-600"
+                        className="border border-sage-green/50 rounded px-3 py-2 bg-white text-deep-brown focus:outline-none focus:ring-2 focus:ring-amber-600"
                     >
                         {categories.map(cat => (
-                            <option key={cat} value={cat}>
+                            <option key={cat} value={cat} className="text-deep-brown">
                                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
                             </option>
                         ))}
@@ -55,10 +55,10 @@ export default function GamesPage() {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="border border-sage-green/50 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-amber-600"
+                        className="border border-sage-green/50 rounded px-3 py-2 bg-white text-deep-brown focus:outline-none focus:ring-2 focus:ring-amber-600"
                     >
-                        <option value="name">Name</option>
-                        <option value="price">Price</option>
+                        <option value="name" className="text-deep-brown">Name</option>
+                        <option value="price" className="text-deep-brown">Price</option>
                     </select>
                 </div>
             </div>

@@ -67,23 +67,23 @@ export default function FAQPage() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-            <h1 className="text-4xl font-bold mb-8">Frequently Asked Questions</h1>
+        <div className="max-w-4xl mx-auto px-4 py-8 bg-warm-cream min-h-screen">
+            <h1 className="text-4xl font-bold mb-8 text-deep-brown">Frequently Asked Questions</h1>
 
-            <p className="text-gray-700 mb-8">
-                Can't find the answer you're looking for? <a href="/about" className="text-blue-600 hover:text-blue-700">Contact us</a> and we'll be happy to help!
+            <p className="text-deep-brown/80 mb-8">
+                Can't find the answer you're looking for? <a href="/about" className="text-amber-700 hover:text-amber-800 underline">Contact us</a> and we'll be happy to help!
             </p>
 
             <div className="space-y-4">
                 {faqs.map((faq) => (
-                    <div key={faq.id} className="border border-gray-200 rounded-lg">
+                    <div key={faq.id} className="border border-sage-green/30 rounded-lg bg-white shadow-md">
                         <button
                             onClick={() => toggleItem(faq.id)}
-                            className="w-full text-left p-6 hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
+                            className="w-full text-left p-6 hover:bg-sage-green/5 focus:outline-none focus:bg-sage-green/5"
                         >
                             <div className="flex justify-between items-center">
-                                <h3 className="font-semibold text-lg">{faq.question}</h3>
-                                <span className="text-2xl">
+                                <h3 className="font-semibold text-lg text-deep-brown">{faq.question}</h3>
+                                <span className="text-2xl text-amber-700">
                                     {openItems.includes(faq.id) ? '−' : '+'}
                                 </span>
                             </div>
@@ -91,21 +91,21 @@ export default function FAQPage() {
 
                         {openItems.includes(faq.id) && (
                             <div className="px-6 pb-6">
-                                <p className="text-gray-700">{faq.answer}</p>
+                                <p className="text-deep-brown/80">{faq.answer}</p>
                             </div>
                         )}
                     </div>
                 ))}
             </div>
 
-            <div className="mt-12 p-6 bg-blue-50 rounded-lg">
-                <h2 className="text-xl font-semibold mb-2">Still have questions?</h2>
-                <p className="text-gray-700 mb-4">
+            <div className="mt-12 p-6 bg-white rounded-lg shadow-md border border-sage-green/20">
+                <h2 className="text-xl font-semibold mb-2 text-deep-brown">Still have questions?</h2>
+                <p className="text-deep-brown/80 mb-4">
                     Our customer service team is here to help! Reach out to us and we'll get back to you as soon as possible.
                 </p>
                 <a
                     href="/about"
-                    className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition-colors"
+                    className="bg-amber-700 text-warm-cream px-6 py-2 rounded font-semibold hover:bg-amber-800 transition-colors"
                 >
                     Contact Us
                 </a>
