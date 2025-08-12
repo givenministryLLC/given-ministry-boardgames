@@ -95,20 +95,20 @@ export default async function GameDetailPage({
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto px-4 py-8 bg-warm-cream min-h-screen">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Game Image */}
                 <div>
-                    <div className="bg-gray-200 h-96 rounded-lg mb-4"></div>
+                    <div className="bg-sage-green/20 h-96 rounded-lg mb-4 border border-sage-green/30"></div>
                 </div>
 
                 {/* Game Details */}
-                <div>
-                    <h1 className="text-4xl font-bold mb-4">{game.name}</h1>
-                    <p className="text-2xl font-bold text-blue-600 mb-6">${game.price}</p>
+                <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <h1 className="text-4xl font-bold mb-4 text-deep-brown">{game.name}</h1>
+                    <p className="text-2xl font-bold text-gold mb-6">${game.price}</p>
 
-                    <div className="mb-6">
-                        <h3 className="font-semibold mb-2">Game Details:</h3>
+                    <div className="mb-6 bg-sage-green/10 p-4 rounded-lg">
+                        <h3 className="font-semibold mb-2 text-deep-brown">Game Details:</h3>
                         <ul className="text-gray-600 space-y-1">
                             <li><strong>Players:</strong> {game.players}</li>
                             <li><strong>Play time:</strong> {game.playtime}</li>
@@ -117,12 +117,12 @@ export default async function GameDetailPage({
                         </ul>
                     </div>
 
-                    <p className="text-gray-700 mb-8">{game.description}</p>
+                    <p className="text-gray-700 mb-8 leading-relaxed">{game.description}</p>
 
                     {/* Buy Button */}
                     <div className="mb-6">
                         {game.inStock ? (
-                            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors w-full md:w-auto">
+                            <button className="bg-amber-700 text-warm-cream px-8 py-3 rounded-lg font-semibold hover:bg-amber-800 transition-colors w-full md:w-auto shadow-lg">
                                 Add to Cart - ${game.price}
                             </button>
                         ) : (
@@ -132,11 +132,11 @@ export default async function GameDetailPage({
                         )}
                     </div>
 
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm">
                         {game.inStock ? (
-                            <p>✅ In stock and ready to ship</p>
+                            <p className="text-sage-green font-medium">✅ In stock and ready to ship</p>
                         ) : (
-                            <p>❌ Currently out of stock</p>
+                            <p className="text-red-600">❌ Currently out of stock</p>
                         )}
                     </div>
                 </div>

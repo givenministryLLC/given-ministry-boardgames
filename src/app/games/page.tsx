@@ -30,17 +30,17 @@ export default function GamesPage() {
     });
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8">
-            <h1 className="text-4xl font-bold mb-8">Board Games</h1>
+        <div className="max-w-7xl mx-auto px-4 py-8 bg-warm-cream min-h-screen">
+            <h1 className="text-4xl font-bold mb-8 text-deep-brown">Board Games</h1>
 
             {/* Filters */}
             <div className="flex flex-wrap gap-4 mb-8">
                 <div>
-                    <label className="block text-sm font-medium mb-2">Category:</label>
+                    <label className="block text-sm font-medium mb-2 text-deep-brown">Category:</label>
                     <select
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="border rounded px-3 py-2"
+                        className="border border-sage-green/50 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-amber-600"
                     >
                         {categories.map(cat => (
                             <option key={cat} value={cat}>
@@ -51,11 +51,11 @@ export default function GamesPage() {
                 </div>
 
                 <div>
-                    <label className="block text-sm font-medium mb-2">Sort by:</label>
+                    <label className="block text-sm font-medium mb-2 text-deep-brown">Sort by:</label>
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="border rounded px-3 py-2"
+                        className="border border-sage-green/50 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-amber-600"
                     >
                         <option value="name">Name</option>
                         <option value="price">Price</option>
@@ -67,11 +67,11 @@ export default function GamesPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {sortedGames.map((game) => (
                     <Link key={game.id} href={`/games/${game.handle}`}>
-                        <div className="border rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
-                            <div className="bg-gray-200 h-40 rounded mb-4"></div>
-                            <h3 className="font-semibold mb-2">{game.name}</h3>
-                            <p className="text-sm text-gray-600 mb-2 capitalize">{game.category}</p>
-                            <p className="text-lg font-bold text-blue-600">${game.price}</p>
+                        <div className="border border-sage-green/30 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer bg-white">
+                            <div className="bg-sage-green/20 h-40 rounded mb-4"></div>
+                            <h3 className="font-semibold mb-2 text-deep-brown">{game.name}</h3>
+                            <p className="text-sm text-amber-700 mb-2 capitalize">{game.category}</p>
+                            <p className="text-lg font-bold text-gold">${game.price}</p>
                         </div>
                     </Link>
                 ))}
