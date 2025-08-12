@@ -115,130 +115,132 @@ export default function FAQPage() {
     });
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-8 bg-warm-cream min-h-screen">
-            {/* Enhanced Header */}
-            <div className="text-center mb-12">
-                <div className="bg-amber-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <HelpCircle className="w-8 h-8 text-warm-cream" />
-                </div>
-                <h1 className="text-4xl font-bold mb-4 text-deep-brown">Frequently Asked Questions</h1>
-                <p className="text-deep-brown/80 max-w-2xl mx-auto">
-                    Find answers to common questions about our games, shipping, returns, and more.
-                    Can't find what you're looking for? <a href="/about" className="text-amber-700 hover:text-amber-800 underline font-medium">Contact us</a> and we'll be happy to help!
-                </p>
-            </div>
-
-            {/* Search and Filter */}
-            <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20 mb-8">
-                <div className="flex flex-col md:flex-row gap-4">
-                    {/* Search */}
-                    <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-deep-brown/40" />
-                        <input
-                            type="text"
-                            placeholder="Search questions..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 border border-sage-green/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-transparent text-deep-brown"
-                        />
+        <div className="bg-warm-cream min-h-screen">
+            <div className="max-w-4xl mx-auto px-4 py-8">
+                {/* Enhanced Header */}
+                <div className="text-center mb-12">
+                    <div className="bg-amber-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <HelpCircle className="w-8 h-8 text-warm-cream" />
                     </div>
-
-                    {/* Category Filter */}
-                    <select
-                        value={selectedCategory}
-                        onChange={(e) => setSelectedCategory(e.target.value)}
-                        className="px-4 py-3 border border-sage-green/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-deep-brown bg-white min-w-[150px]"
-                    >
-                        {categories.map(category => (
-                            <option key={category.value} value={category.value}>
-                                {category.label}
-                            </option>
-                        ))}
-                    </select>
+                    <h1 className="text-4xl font-bold mb-4 text-deep-brown">Frequently Asked Questions</h1>
+                    <p className="text-deep-brown/80 max-w-2xl mx-auto">
+                        Find answers to common questions about our games, shipping, returns, and more.
+                        Can't find what you're looking for? <a href="/about" className="text-amber-700 hover:text-amber-800 underline font-medium">Contact us</a> and we'll be happy to help!
+                    </p>
                 </div>
-            </div>
 
-            {/* FAQ Items */}
-            <div className="space-y-4 mb-12">
-                {filteredFaqs.map((faq) => {
-                    const IconComponent = faq.icon;
-                    return (
-                        <div key={faq.id} className="bg-white border border-sage-green/30 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                            <button
-                                onClick={() => toggleItem(faq.id)}
-                                className="w-full text-left p-6 hover:bg-sage-green/5 focus:outline-none focus:bg-sage-green/5 rounded-xl transition-colors"
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div className="flex items-start space-x-4 flex-1">
-                                        <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
-                                            <IconComponent className="w-5 h-5 text-amber-700" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <div className="flex items-center space-x-2 mb-1">
-                                                <span className="text-xs bg-sage-green/20 text-sage-green px-2 py-1 rounded-full font-medium">
-                                                    {faq.category}
-                                                </span>
-                                            </div>
-                                            <h3 className="font-semibold text-lg text-deep-brown">{faq.question}</h3>
-                                        </div>
-                                    </div>
-                                    <div className="ml-4 flex-shrink-0">
-                                        {openItems.includes(faq.id) ?
-                                            <ChevronUp className="w-6 h-6 text-amber-700" /> :
-                                            <ChevronDown className="w-6 h-6 text-amber-700" />
-                                        }
-                                    </div>
-                                </div>
-                            </button>
-
-                            {openItems.includes(faq.id) && (
-                                <div className="px-6 pb-6">
-                                    <div className="ml-16 pt-2 border-t border-sage-green/20">
-                                        <p className="text-deep-brown/80 leading-relaxed mt-4">{faq.answer}</p>
-                                    </div>
-                                </div>
-                            )}
+                {/* Search and Filter */}
+                <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20 mb-8">
+                    <div className="flex flex-col md:flex-row gap-4">
+                        {/* Search */}
+                        <div className="relative flex-1">
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-deep-brown/40" />
+                            <input
+                                type="text"
+                                placeholder="Search questions..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full pl-10 pr-4 py-3 border border-sage-green/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-transparent text-deep-brown"
+                            />
                         </div>
-                    );
-                })}
-            </div>
 
-            {/* No Results */}
-            {filteredFaqs.length === 0 && (
-                <div className="text-center py-12">
-                    <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Search className="w-12 h-12 text-sage-green" />
+                        {/* Category Filter */}
+                        <select
+                            value={selectedCategory}
+                            onChange={(e) => setSelectedCategory(e.target.value)}
+                            className="px-4 py-3 border border-sage-green/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 text-deep-brown bg-white min-w-[150px]"
+                        >
+                            {categories.map(category => (
+                                <option key={category.value} value={category.value}>
+                                    {category.label}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                    <h3 className="text-xl font-semibold text-deep-brown mb-2">No questions found</h3>
-                    <p className="text-deep-brown/60 mb-4">Try adjusting your search or filter</p>
-                    <button
-                        onClick={() => {
-                            setSearchTerm('');
-                            setSelectedCategory('all');
-                        }}
-                        className="bg-amber-700 text-warm-cream px-6 py-2 rounded-lg font-medium hover:bg-amber-800 transition-colors"
-                    >
-                        Clear Filters
-                    </button>
                 </div>
-            )}
 
-            {/* Contact CTA */}
-            <div className="bg-gradient-to-r from-amber-700 to-amber-800 p-8 rounded-xl text-warm-cream text-center">
-                <div className="flex justify-center mb-4">
-                    <MessageCircle className="w-12 h-12" />
+                {/* FAQ Items */}
+                <div className="space-y-4 mb-12">
+                    {filteredFaqs.map((faq) => {
+                        const IconComponent = faq.icon;
+                        return (
+                            <div key={faq.id} className="bg-white border border-sage-green/30 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                                <button
+                                    onClick={() => toggleItem(faq.id)}
+                                    className="w-full text-left p-6 hover:bg-sage-green/5 focus:outline-none focus:bg-sage-green/5 rounded-xl transition-colors"
+                                >
+                                    <div className="flex justify-between items-start">
+                                        <div className="flex items-start space-x-4 flex-1">
+                                            <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
+                                                <IconComponent className="w-5 h-5 text-amber-700" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="flex items-center space-x-2 mb-1">
+                                                    <span className="text-xs bg-sage-green/20 text-sage-green px-2 py-1 rounded-full font-medium">
+                                                        {faq.category}
+                                                    </span>
+                                                </div>
+                                                <h3 className="font-semibold text-lg text-deep-brown">{faq.question}</h3>
+                                            </div>
+                                        </div>
+                                        <div className="ml-4 flex-shrink-0">
+                                            {openItems.includes(faq.id) ?
+                                                <ChevronUp className="w-6 h-6 text-amber-700" /> :
+                                                <ChevronDown className="w-6 h-6 text-amber-700" />
+                                            }
+                                        </div>
+                                    </div>
+                                </button>
+
+                                {openItems.includes(faq.id) && (
+                                    <div className="px-6 pb-6">
+                                        <div className="ml-16 pt-2 border-t border-sage-green/20">
+                                            <p className="text-deep-brown/80 leading-relaxed mt-4">{faq.answer}</p>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
-                <h2 className="text-2xl font-bold mb-2">Still have questions?</h2>
-                <p className="mb-6 text-warm-cream/90">
-                    Our customer service team is here to help! Reach out to us and we'll get back to you as soon as possible.
-                </p>
-                <a
-                    href="/about"
-                    className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors shadow-lg hover:shadow-xl"
-                >
-                    <MessageCircle className="w-5 h-5" />
-                    <span>Contact Us</span>
-                </a>
+
+                {/* No Results */}
+                {filteredFaqs.length === 0 && (
+                    <div className="text-center py-12">
+                        <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Search className="w-12 h-12 text-sage-green" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-deep-brown mb-2">No questions found</h3>
+                        <p className="text-deep-brown/60 mb-4">Try adjusting your search or filter</p>
+                        <button
+                            onClick={() => {
+                                setSearchTerm('');
+                                setSelectedCategory('all');
+                            }}
+                            className="bg-amber-700 text-warm-cream px-6 py-2 rounded-lg font-medium hover:bg-amber-800 transition-colors"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
+                )}
+
+                {/* Contact CTA */}
+                <div className="bg-gradient-to-r from-amber-700 to-amber-800 p-8 rounded-xl text-warm-cream text-center">
+                    <div className="flex justify-center mb-4">
+                        <MessageCircle className="w-12 h-12" />
+                    </div>
+                    <h2 className="text-2xl font-bold mb-2">Still have questions?</h2>
+                    <p className="mb-6 text-warm-cream/90">
+                        Our customer service team is here to help! Reach out to us and we'll get back to you as soon as possible.
+                    </p>
+                    <a
+                        href="/about"
+                        className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors shadow-lg hover:shadow-xl"
+                    >
+                        <MessageCircle className="w-5 h-5" />
+                        <span>Contact Us</span>
+                    </a>
+                </div>
             </div>
         </div >
     );

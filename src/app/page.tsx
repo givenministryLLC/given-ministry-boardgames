@@ -14,7 +14,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-warm-cream">
       {/* Enhanced Hero Section with Gradient and Animation */}
       <section className="relative bg-gradient-to-br from-amber-700 via-yellow-800 to-amber-900 text-warm-cream py-20 overflow-hidden">
         {/* Animated background elements */}
@@ -47,40 +47,42 @@ export default function Home() {
       </section>
 
       {/* Enhanced Featured Games */}
-      <section className="py-16 max-w-7xl mx-auto px-4 bg-warm-cream">
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <Star className="w-8 h-8 text-amber-700" />
-          </div>
-          <h2 className="text-4xl font-bold text-deep-brown mb-4">Featured Games</h2>
-          <p className="text-deep-brown/70 max-w-2xl mx-auto">
-            Hand-picked favorites that bring families and friends together for unforgettable game nights
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((game) => (
-            <div key={game} className="group border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 bg-white hover:-translate-y-2">
-              <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 h-48 rounded-lg mb-4 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-2 right-2 bg-amber-700 text-warm-cream px-2 py-1 rounded-full text-xs font-medium">
-                  NEW
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 mb-2">
-                <Award className="w-4 h-4 text-amber-700" />
-                <h3 className="text-xl font-semibold text-deep-brown">Featured Game {game}</h3>
-              </div>
-              <p className="text-gray-600 mb-4">Amazing strategy game for 2-4 players that brings excitement to every game night</p>
-              <div className="flex items-center justify-between">
-                <p className="text-2xl font-bold text-gold">$49.99</p>
-                <div className="flex items-center space-x-1 text-amber-700">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-              </div>
+      <section className="py-16 bg-warm-cream">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-4">
+              <Star className="w-8 h-8 text-amber-700" />
             </div>
-          ))}
+            <h2 className="text-4xl font-bold text-deep-brown mb-4">Featured Games</h2>
+            <p className="text-deep-brown/70 max-w-2xl mx-auto">
+              Hand-picked favorites that bring families and friends together for unforgettable game nights
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((game) => (
+              <div key={game} className="group border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 bg-white hover:-translate-y-2">
+                <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 h-48 rounded-lg mb-4 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute top-2 right-2 bg-amber-700 text-warm-cream px-2 py-1 rounded-full text-xs font-medium">
+                    NEW
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2 mb-2">
+                  <Award className="w-4 h-4 text-amber-700" />
+                  <h3 className="text-xl font-semibold text-deep-brown">Featured Game {game}</h3>
+                </div>
+                <p className="text-gray-600 mb-4">Amazing strategy game for 2-4 players that brings excitement to every game night</p>
+                <div className="flex items-center justify-between">
+                  <p className="text-2xl font-bold text-gold">$49.99</p>
+                  <div className="flex items-center space-x-1 text-amber-700">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
