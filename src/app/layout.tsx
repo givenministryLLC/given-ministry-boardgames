@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Robin Perkins Boardgames - Premium Board Games for Everyone",
+  title: "Given Ministry LLC",
   description: "Discover amazing board games for every occasion. Strategy games, family games, party games and more. Fast shipping and expert recommendations.",
 };
 

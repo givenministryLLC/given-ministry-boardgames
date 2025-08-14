@@ -442,7 +442,7 @@ export default function PoliciesPage() {
                             <div className="bg-sage-green/10 p-4 rounded-lg">
                                 <p className="text-deep-brown/80">
                                     If you have any questions about these policies or your personal information, please
-                                    contact us at <span className="font-medium text-amber-700">hello@robinperkinsboardgames.com</span>.
+                                    contact us at <span className="font-medium text-amber-700">hello@givenministry.com</span>.
                                 </p>
                             </div>
                         </div>

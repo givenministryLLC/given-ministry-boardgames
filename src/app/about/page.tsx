@@ -68,7 +68,7 @@ export default function AboutPage() {
                             <Heart className="w-12 h-12 text-gold" />
                         </div>
                     </div>
-                    <h1 className="text-5xl font-bold mb-6">About Robin Perkins Boardgames</h1>
+                    <h1 className="text-5xl font-bold mb-6">About Given Ministry LLC</h1>
                     <p className="text-xl text-warm-cream/90 max-w-3xl mx-auto">
                         Where families and friends come together through the timeless joy of board gaming
                     </p>
@@ -88,7 +88,7 @@ export default function AboutPage() {
                             </div>
                             <div className="prose prose-lg max-w-none text-deep-brown/80 space-y-4">
                                 <p>
-                                    Welcome to Robin Perkins Boardgames, where we believe that the best memories are made around
+                                    Welcome to Given Ministry LLC, where we believe that the best memories are made around
                                     a table with friends and family. Founded with a passion for bringing people together through
                                     the joy of gaming, we carefully curate an exceptional selection of board games for every
                                     type of player.
@@ -228,7 +228,7 @@ export default function AboutPage() {
                                     <div>
                                         <h4 className="font-semibold text-deep-brown mb-1">Email</h4>
                                         <p className="text-amber-700 hover:text-amber-800 transition-colors">
-                                            hello@robinperkinsboardgames.com
+                                            <span>hello@givenministry.com</span>
                                         </p>
                                         <p className="text-sm text-deep-brown/60 mt-1">
                                             We typically respond within 24 hours

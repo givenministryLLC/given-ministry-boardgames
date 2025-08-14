@@ -1,4 +1,5 @@
-# Robin Perkins Boardgame Storefront
+```md
+# Given Ministry LLC Boardgame Storefront
 
 A warm, Christian-inspired Next.js e-commerce website for an online board game store built with App Router, TypeScript, and Tailwind CSS.
 
@@ -89,7 +90,7 @@ SHOPIFY_STOREFRONT_TOKEN=your-storefront-access-token
 ```bash
 # Clone and install
 git clone [your-repo-url]
-cd robin-perkins-boardgame-storefront
+cd given-ministry-boardgame-storefront
 npm install
 
 # Run development server
@@ -184,3 +185,4 @@ For development questions or business requirements, refer to the contact informa
 **Status:** ✅ Frontend Complete - Ready for Shopify Integration  
 **Last Updated:** [Current Date]  
 **Version:** 0.2.0 (Frontend MVP Complete)
+```

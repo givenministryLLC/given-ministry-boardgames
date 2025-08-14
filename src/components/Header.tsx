@@ -28,9 +28,9 @@ export default function Header() {
                         </div>
                         <div>
                             <span className="text-xl font-bold text-amber-700 group-hover:text-amber-800 transition-colors">
-                                Robin Perkins
+                                Given Ministry
                             </span>
-                            <div className="text-sm text-deep-brown/70 -mt-1">Boardgames</div>
+                            <div className="text-sm text-deep-brown/70 -mt-1">LLC</div>
                         </div>
                     </Link>
 

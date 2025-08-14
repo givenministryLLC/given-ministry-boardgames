@@ -22,7 +22,7 @@ export default function Footer() {
                             <div className="bg-amber-700 p-2 rounded-lg">
                                 <Gamepad2 className="w-6 h-6 text-warm-cream" />
                             </div>
-                            <h3 className="text-lg font-semibold text-gold">Robin Perkins Boardgames</h3>
+                            <h3 className="text-lg font-semibold text-gold">Given Ministry LLC</h3>
                         </div>
                         <p className="text-warm-cream/80 mb-4">
                             Your trusted source for amazing board games. Bringing families and friends together through the joy of gaming.
@@ -30,7 +30,7 @@ export default function Footer() {
                         <div className="space-y-2">
                             <div className="flex items-center space-x-2 text-warm-cream/80">
                                 <Mail className="w-4 h-4 text-gold" />
-                                <span>hello@robinperkinsboardgames.com</span>
+                                <span>hello@givenministry.com</span>
                             </div>
                             <div className="flex items-center space-x-2 text-warm-cream/80">
                                 <Phone className="w-4 h-4 text-gold" />
@@ -133,7 +133,7 @@ export default function Footer() {
                 <div className="border-t border-amber-700/50 mt-8 pt-8 text-center text-warm-cream/70">
                     <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-2">
                         <Heart className="w-4 h-4 text-gold" />
-                        <p>&copy; {new Date().getFullYear()} Robin Perkins Boardgames. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} Given Ministry LLC. All rights reserved.</p>
                         <Heart className="w-4 h-4 text-gold" />
                     </div>
                 </div>

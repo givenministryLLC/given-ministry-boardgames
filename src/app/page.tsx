@@ -31,7 +31,7 @@ export default function Home() {
             </div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Welcome to Robin Perkins Boardgames
+            Welcome to Given Ministry LLC
           </h1>
           <p className="text-xl mb-8 text-warm-cream/90 max-w-2xl mx-auto">
             Discover amazing board games for every occasion and bring your family together
