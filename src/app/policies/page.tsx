@@ -110,21 +110,13 @@ export default function PoliciesPage() {
                         <h2 className="text-3xl font-bold text-deep-brown">Shipping</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div className="bg-sage-green/10 p-6 rounded-xl text-center">
                             <div className="bg-sage-green w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
                                 <Clock className="w-6 h-6 text-warm-cream" />
                             </div>
                             <h3 className="font-semibold text-deep-brown mb-2">Fast Processing</h3>
                             <p className="text-deep-brown/80 text-sm">Ships within 1-2 business days</p>
-                        </div>
-
-                        <div className="bg-amber-50 p-6 rounded-xl text-center border-2 border-amber-300">
-                            <div className="bg-amber-700 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <Heart className="w-6 h-6 text-warm-cream" />
-                            </div>
-                            <h3 className="font-semibold text-deep-brown mb-2">Free Shipping</h3>
-                            <p className="text-amber-700 text-sm font-medium">Orders $50+</p>
                         </div>
 
                         <div className="bg-sage-green/10 p-6 rounded-xl text-center">
@@ -141,7 +133,7 @@ export default function PoliciesPage() {
                         <div className="space-y-2 text-sm text-deep-brown/80">
                             <p>• We ship within the United States only</p>
                             <p>• You'll receive tracking information via email</p>
-                            <p>• Standard shipping is $9.99 (free on orders $50+)</p>
+                            <p>• Standard shipping is $9.99</p>
                             <p>• We package games carefully to prevent damage</p>
                         </div>
                     </div>

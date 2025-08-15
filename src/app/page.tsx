@@ -267,7 +267,7 @@ export default function Home() {
                 <Truck className="w-8 h-8 text-amber-700 group-hover:text-warm-cream transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-amber-700">Fast & Careful Shipping</h3>
-              <p className="text-gray-600">We ship quickly and package with care. Free shipping on orders over $50!</p>
+              <p className="text-gray-600">We ship quickly and package with care to ensure your games arrive safely.</p>
             </div>
 
             <div className="group bg-sage-green/5 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
@@ -430,8 +430,8 @@ export default function Home() {
               <div className="flex justify-center mb-2">
                 <Truck className="w-8 h-8 text-sage-green group-hover:scale-110 transition-transform" />
               </div>
-              <div className="text-2xl font-bold text-deep-brown">Free</div>
-              <div className="text-sm text-deep-brown/70">Shipping $50+</div>
+              <div className="text-2xl font-bold text-deep-brown">Fast</div>
+              <div className="text-sm text-deep-brown/70">Shipping</div>
             </div>
             <div className="group">
               <div className="flex justify-center mb-2">

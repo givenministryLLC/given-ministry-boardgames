@@ -50,7 +50,7 @@ export default function CartPage() {
     };
 
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = subtotal > 50 ? 0 : 9.99;
+    const shipping = 9.99; // Fixed shipping cost
     const total = subtotal + shipping;
 
     const handleCheckout = () => {
@@ -200,24 +200,8 @@ export default function CartPage() {
                                 </div>
                                 <div className="flex justify-between text-deep-brown">
                                     <span>Shipping:</span>
-                                    <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+                                    <span>${shipping.toFixed(2)}</span>
                                 </div>
-                                {shipping > 0 && (
-                                    <div className="bg-amber-50 p-3 rounded-lg">
-                                        <p className="text-sm text-amber-700 flex items-center space-x-2">
-                                            <Truck className="w-4 h-4" />
-                                            <span>Add ${(50 - subtotal).toFixed(2)} more for free shipping!</span>
-                                        </p>
-                                    </div>
-                                )}
-                                {shipping === 0 && (
-                                    <div className="bg-sage-green/10 p-3 rounded-lg">
-                                        <p className="text-sm text-sage-green flex items-center space-x-2">
-                                            <CheckCircle className="w-4 h-4" />
-                                            <span>You qualify for free shipping!</span>
-                                        </p>
-                                    </div>
-                                )}
                                 <div className="border-t border-sage-green/30 pt-3">
                                     <div className="flex justify-between font-bold text-lg text-deep-brown">
                                         <span>Total:</span>

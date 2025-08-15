@@ -5,7 +5,6 @@ import {
     Clock,
     Tag,
     Shield,
-    Truck,
     Heart,
     Share2,
     Plus,
@@ -295,8 +294,8 @@ export default async function GameDetailPage({
                                 <span className="text-sm">Secure checkout</span>
                             </div>
                             <div className="flex items-center space-x-2 text-deep-brown/70">
-                                <Truck className="w-5 h-5 text-sage-green" />
-                                <span className="text-sm">Free shipping $50+</span>
+                                <CheckCircle className="w-5 h-5 text-sage-green" />
+                                <span className="text-sm">30-day returns</span>
                             </div>
                         </div>
                     </div>
