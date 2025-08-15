@@ -51,13 +51,6 @@ export default function Header() {
                             <span>Games</span>
                         </Link>
                         <Link
-                            href="/about"
-                            className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
-                        >
-                            <Heart className="w-4 h-4 group-hover:animate-pulse" />
-                            <span>About & Contact</span>
-                        </Link>
-                        <Link
                             href="/faq"
                             className="flex items-center space-x-2 text-deep-brown hover:text-amber-700 transition-all duration-200 hover:scale-105 group"
                         >
