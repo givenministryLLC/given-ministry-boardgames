@@ -8,10 +8,8 @@ import {
     ShoppingCart,
     Home,
     Gamepad2,
-    Heart,
     HelpCircle,
-    Shield,
-    Sparkles
+    Shield
 } from 'lucide-react';
 
 export default function Header() {
@@ -111,14 +109,6 @@ export default function Header() {
                             >
                                 <Gamepad2 className="w-5 h-5" />
                                 <span>Games</span>
-                            </Link>
-                            <Link
-                                href="/about"
-                                className="flex items-center space-x-3 text-deep-brown hover:text-amber-700 py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <Heart className="w-5 h-5" />
-                                <span>About & Contact</span>
                             </Link>
                             <Link
                                 href="/faq"
