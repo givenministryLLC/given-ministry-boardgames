@@ -22,6 +22,7 @@ interface ShopifyProductDetail {
     title: string;
     handle: string;
     description: string | null;
+    descriptionHtml: string | null;
     priceRange: {
         minVariantPrice: {
             amount: string;
