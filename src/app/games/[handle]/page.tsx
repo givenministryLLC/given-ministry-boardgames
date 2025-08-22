@@ -272,7 +272,9 @@ export default function GameDetailPage({
                                                 const createData = await createResponse.json();
                                                 if (createData.success) {
                                                     cartId = createData.cart.id;
-                                                    localStorage.setItem('shopify-cart-id', cartId);
+                                                    if (cartId) {
+                                                        localStorage.setItem('shopify-cart-id', cartId);
+                                                    }
                                                 }
                                             }
 
