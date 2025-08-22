@@ -40,7 +40,9 @@ export const games: Game[] = [
             "Suitable for family learning and classroom use",
             "Teaches important lessons about courage and perseverance"
         ],
-        images: []
+        images: [
+            "/images/games/freedoms_journey/freedoms_journey_gameboard.webp"
+        ]
     },
     {
         id: 2,
@@ -66,7 +68,9 @@ export const games: Game[] = [
             "Encourages personal relationship with God",
             "Perfect for Christian families and church groups"
         ],
-        images: []
+        images: [
+            "/images/games/holiness_or_you/holiness_or_you_gameboard.webp",
+        ]
     },
     {
         id: 3,
@@ -93,7 +97,12 @@ export const games: Game[] = [
             "Teaches about living truthfully and avoiding hidden sins",
             "Perfect for youth groups and family game nights"
         ],
-        images: []
+        images: [
+            "/images/games/hidden/hidden_gameboard.webp",
+            "/images/games/hidden/hidden_card.webp",
+            "/images/games/hidden/weapon_cards_collage.webp",
+            "/images/games/hidden/character_cards_collage.webp",
+        ]
     }
 ];
 

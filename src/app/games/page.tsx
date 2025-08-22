@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     Filter,
     SortAsc,
@@ -141,8 +142,19 @@ export default function GamesPage() {
                         {sortedGames.map((game) => (
                             <Link key={game.id} href={`/games/${game.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                                    {/* Game Image Placeholder */}
-                                    <div className="relative bg-gradient-to-br from-sage-green/20 to-amber-100 h-40 rounded-lg mb-4 overflow-hidden">
+                                    {/* Game Image */}
+                                    <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
+                                        {game.images.length > 0 ? (
+                                            <Image
+                                                src={game.images[0]}
+                                                alt={game.name}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                         {game.isNew && (
                                             <div className="absolute top-2 right-2 bg-amber-700 text-warm-cream px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
@@ -195,13 +207,24 @@ export default function GamesPage() {
                         ))}
                     </div>
                 ) : (
-                    // List View - similar structure but horizontal layout
+                    // List View
                     <div className="space-y-4">
                         {sortedGames.map((game) => (
                             <Link key={game.id} href={`/games/${game.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center space-x-6">
-                                        <div className="relative bg-gradient-to-br from-sage-green/20 to-amber-100 w-24 h-24 rounded-lg flex-shrink-0">
+                                        <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
+                                            {game.images.length > 0 ? (
+                                                <Image
+                                                    src={game.images[0]}
+                                                    alt={game.name}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="96px"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                            )}
                                             {game.isNew && (
                                                 <div className="absolute -top-1 -right-1 bg-amber-700 text-warm-cream p-1 rounded-full">
                                                     <Sparkles className="w-3 h-3" />

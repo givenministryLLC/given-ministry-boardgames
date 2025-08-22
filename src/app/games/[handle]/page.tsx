@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 import {
     Star,
     Users,
@@ -36,9 +37,21 @@ export default async function GameDetailPage({
         <div className="bg-warm-cream min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Enhanced Game Image */}
+                    {/* Enhanced Game Images */}
                     <div className="space-y-4">
-                        <div className="relative bg-gradient-to-br from-sage-green/20 to-amber-100 h-96 rounded-xl mb-4 border border-sage-green/30 overflow-hidden group">
+                        <div className="relative h-96 rounded-xl mb-4 border border-sage-green/30 overflow-hidden group">
+                            {game.images.length > 0 ? (
+                                <Image
+                                    src={game.images[0]}
+                                    alt={game.name}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                            ) : (
+                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                            )}
                             <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent"></div>
                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
                                 <Star className="w-4 h-4 fill-current text-amber-600" />
@@ -50,12 +63,22 @@ export default async function GameDetailPage({
                             </button>
                         </div>
 
-                        {/* Thumbnail gallery placeholder */}
-                        <div className="grid grid-cols-4 gap-2">
-                            {[1, 2, 3, 4].map((i) => (
-                                <div key={i} className="bg-sage-green/20 h-20 rounded-lg border border-sage-green/30 hover:border-amber-700 transition-colors cursor-pointer"></div>
-                            ))}
-                        </div>
+                        {/* Thumbnail gallery */}
+                        {game.images.length > 1 && (
+                            <div className="grid grid-cols-4 gap-2">
+                                {game.images.slice(0, 4).map((image, index) => (
+                                    <div key={index} className="relative h-20 rounded-lg border border-sage-green/30 hover:border-amber-700 transition-colors cursor-pointer overflow-hidden">
+                                        <Image
+                                            src={image}
+                                            alt={`${game.name} - View ${index + 1}`}
+                                            fill
+                                            className="object-cover"
+                                            sizes="80px"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Enhanced Game Details */}
