@@ -13,8 +13,10 @@ import {
     Tag,
     Search,
     Sparkles,
-    Award
+    Award,
+    BookOpen
 } from 'lucide-react';
+import { games, categories } from '@/data/games';
 
 export default function GamesPage() {
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -22,87 +24,13 @@ export default function GamesPage() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Enhanced placeholder data - will be replaced with Shopify API
-    const games = [
-        {
-            id: 1,
-            name: 'Settlers of Catan',
-            price: 49.99,
-            category: 'strategy',
-            handle: 'settlers-of-catan',
-            players: '3-4',
-            playtime: '60-90 min',
-            rating: 4.8,
-            isNew: false,
-            description: 'Build settlements and trade resources in this classic strategy game'
-        },
-        {
-            id: 2,
-            name: 'Ticket to Ride',
-            price: 39.99,
-            category: 'family',
-            handle: 'ticket-to-ride',
-            players: '2-5',
-            playtime: '30-60 min',
-            rating: 4.7,
-            isNew: true,
-            description: 'Cross-country train adventure connecting cities across America'
-        },
-        {
-            id: 3,
-            name: 'Codenames',
-            price: 19.99,
-            category: 'party',
-            handle: 'codenames',
-            players: '2-8',
-            playtime: '15 min',
-            rating: 4.9,
-            isNew: false,
-            description: 'Clever team-based word game for spymasters and agents'
-        },
-        {
-            id: 4,
-            name: 'Wingspan',
-            price: 59.99,
-            category: 'strategy',
-            handle: 'wingspan',
-            players: '1-5',
-            playtime: '40-70 min',
-            rating: 4.8,
-            isNew: true,
-            description: 'Beautiful engine-building game about birds and their habitats'
-        },
-        {
-            id: 5,
-            name: 'Azul',
-            price: 34.99,
-            category: 'family',
-            handle: 'azul',
-            players: '2-4',
-            playtime: '30-45 min',
-            rating: 4.6,
-            isNew: false,
-            description: 'Tile-placement game creating beautiful mosaic patterns'
-        },
-        {
-            id: 6,
-            name: 'Exploding Kittens',
-            price: 19.99,
-            category: 'party',
-            handle: 'exploding-kittens',
-            players: '2-5',
-            playtime: '15 min',
-            rating: 4.4,
-            isNew: false,
-            description: 'Hilarious card game about kittens, explosions, and tactical mayhem'
-        },
-    ];
-
-    const categories = [
+    // Update categories to include educational with icon
+    const categoriesWithIcons = [
         { value: 'all', label: 'All Games', icon: Grid3X3 },
         { value: 'strategy', label: 'Strategy', icon: Filter },
         { value: 'family', label: 'Family', icon: Users },
-        { value: 'party', label: 'Party', icon: Sparkles }
+        { value: 'party', label: 'Party', icon: Sparkles },
+        { value: 'educational', label: 'Educational', icon: BookOpen }
     ];
 
     const filteredGames = games.filter(game => {
@@ -154,7 +82,7 @@ export default function GamesPage() {
 
                         {/* Category Filters */}
                         <div className="flex flex-wrap gap-2">
-                            {categories.map(category => {
+                            {categoriesWithIcons.map(category => {
                                 const IconComponent = category.icon;
                                 return (
                                     <button
@@ -267,7 +195,7 @@ export default function GamesPage() {
                         ))}
                     </div>
                 ) : (
-                    // List View
+                    // List View - similar structure but horizontal layout
                     <div className="space-y-4">
                         {sortedGames.map((game) => (
                             <Link key={game.id} href={`/games/${game.handle}`}>
@@ -298,7 +226,7 @@ export default function GamesPage() {
                                                 <div className="flex items-center space-x-6 text-sm text-deep-brown/60">
                                                     <div className="flex items-center space-x-1">
                                                         <Users className="w-4 h-4" />
-                                                        <span>{game.players} players</span>
+                                                        <span>{game.players}</span>
                                                     </div>
                                                     <div className="flex items-center space-x-1">
                                                         <Clock className="w-4 h-4" />
