@@ -25,13 +25,10 @@ export default function GamesPage() {
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Update categories to include educational with icon
     const categoriesWithIcons = [
         { value: 'all', label: 'All Games', icon: Grid3X3 },
-        { value: 'strategy', label: 'Strategy', icon: Filter },
-        { value: 'family', label: 'Family', icon: Users },
-        { value: 'party', label: 'Party', icon: Sparkles },
-        { value: 'educational', label: 'Educational', icon: BookOpen }
+        { value: 'educational', label: 'Educational', icon: BookOpen },
+        { value: 'strategy', label: 'Strategy', icon: Filter }
     ];
 
     const filteredGames = games.filter(game => {

@@ -137,9 +137,6 @@ export default function GameDetailPage({
                                 <span className="font-medium text-deep-brown">{game.rating}</span>
                                 <span className="text-deep-brown/60">({game.reviews})</span>
                             </div>
-                            <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors z-10">
-                                <Heart className="w-5 h-5 text-deep-brown hover:text-red-500 transition-colors" />
-                            </button>
                         </div>
 
                         {/* Enhanced Thumbnail gallery */}

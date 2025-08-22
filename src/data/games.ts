@@ -29,7 +29,7 @@ export const games: Game[] = [
         age: "8+",
         rating: 4.8,
         reviews: 47,
-        isNew: true,
+        isNew: false,
         inStock: true,
         description: "An educational board game that teaches about the Underground Railroad and the journey to freedom.",
         longDescription: "Freedom's Journey is a powerful educational board game that takes players through the harrowing experience of escaping slavery via the Underground Railroad. Players start at a plantation and must make critical decisions, answer historical questions, and navigate challenges to reach freedom. This game combines learning with engaging gameplay to teach important American history.",
@@ -55,7 +55,7 @@ export const games: Game[] = [
         age: "8+",
         rating: 4.9,
         reviews: 32,
-        isNew: true,
+        isNew: false,
         inStock: true,
         description: "A Christian-based board game that encourages building a personal relationship with God through biblical teachings.",
         longDescription: "Holiness or You is a faith-building board game designed to help players develop a deeper relationship with God. Based on biblical principles of salvation, justification, and sanctification, players journey through spiritual growth while learning about the armor of God. The game incorporates Bible cards, decision-making, and spiritual challenges that encourage reflection on Christian values and biblical knowledge.",
@@ -83,7 +83,7 @@ export const games: Game[] = [
         age: "10+",
         rating: 4.7,
         reviews: 28,
-        isNew: true,
+        isNew: false,
         inStock: true,
         description: "A Christian mystery game based on Galatians 5:19 where players solve mysteries while learning about biblical teachings on hidden sins.",
         longDescription: "Hidden is a unique Christian-themed mystery game that combines the excitement of detective work with biblical teachings. Based on Galatians 5:19 and the principle that 'what is done in secret will come to light,' players navigate through different rooms including the Children's Church, Library, Baptismal Pool, and more while solving mysteries. The game teaches about the works of the flesh and encourages players to live in the light of God's truth.",
@@ -108,8 +108,6 @@ export const games: Game[] = [
 
 export const categories = [
     { value: 'all', label: 'All Games' },
-    { value: 'strategy', label: 'Strategy' },
-    { value: 'family', label: 'Family' },
-    { value: 'party', label: 'Party' },
-    { value: 'educational', label: 'Educational' }
+    { value: 'educational', label: 'Educational' },
+    { value: 'strategy', label: 'Strategy' }
 ];
