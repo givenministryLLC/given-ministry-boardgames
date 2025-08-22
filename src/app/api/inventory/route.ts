@@ -1,6 +1,41 @@
 // src/app/api/inventory/route.ts
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 
+// Define interfaces for type safety
+interface ShopifyVariant {
+    node: {
+        id: string;
+        availableForSale: boolean;
+        quantityAvailable: number;
+    };
+}
+
+interface ShopifyProduct {
+    node: {
+        id: string;
+        title: string;
+        handle: string;
+        description: string;
+        priceRange: {
+            minVariantPrice: {
+                amount: string;
+                currencyCode: string;
+            };
+        };
+        variants: {
+            edges: ShopifyVariant[];
+        };
+    };
+}
+
+interface ShopifyProductsResponse {
+    data: {
+        products: {
+            edges: ShopifyProduct[];
+        };
+    };
+}
+
 export async function GET() {
     try {
         const client = createStorefrontApiClient({
@@ -39,12 +74,12 @@ export async function GET() {
             }
         `;
 
-        const result = await client.request(query);
+        const result = await client.request(query) as ShopifyProductsResponse;
 
         return Response.json({
             success: true,
             productCount: result.data.products.edges.length,
-            products: result.data.products.edges.map((edge: any) => ({
+            products: result.data.products.edges.map((edge: ShopifyProduct) => ({
                 id: edge.node.id,
                 title: edge.node.title,
                 handle: edge.node.handle,
@@ -55,9 +90,10 @@ export async function GET() {
             }))
         });
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         return Response.json({
             success: false,
-            error: error.message
+            error: errorMessage
         }, { status: 500 });
     }
 }

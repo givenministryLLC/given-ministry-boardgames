@@ -1,6 +1,47 @@
 // src/app/api/product/[handle]/route.ts
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 
+// Define interfaces for type safety
+interface ShopifyImage {
+    node: {
+        url: string;
+        altText: string | null;
+    };
+}
+
+interface ShopifyVariant {
+    node: {
+        id: string;
+        availableForSale: boolean;
+        quantityAvailable: number;
+    };
+}
+
+interface ShopifyProductDetail {
+    id: string;
+    title: string;
+    handle: string;
+    description: string | null;
+    priceRange: {
+        minVariantPrice: {
+            amount: string;
+            currencyCode: string;
+        };
+    };
+    images: {
+        edges: ShopifyImage[];
+    };
+    variants: {
+        edges: ShopifyVariant[];
+    };
+}
+
+interface ShopifyProductResponse {
+    data: {
+        product: ShopifyProductDetail | null;
+    };
+}
+
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ handle: string }> }
@@ -50,7 +91,7 @@ export async function GET(
 
         const result = await client.request(query, {
             variables: { handle }
-        });
+        }) as ShopifyProductResponse;
 
         if (!result.data.product) {
             return Response.json({
@@ -73,16 +114,17 @@ export async function GET(
                 inStock: product.variants.edges[0]?.node.availableForSale || false,
                 quantity: product.variants.edges[0]?.node.quantityAvailable || 0,
                 variantId: product.variants.edges[0]?.node.id || '',
-                images: product.images.edges.map((edge: any) => ({
+                images: product.images.edges.map((edge: ShopifyImage) => ({
                     url: edge.node.url,
                     alt: edge.node.altText || product.title
                 }))
             }
         });
     } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         return Response.json({
             success: false,
-            error: error.message
+            error: errorMessage
         }, { status: 500 });
     }
 }
