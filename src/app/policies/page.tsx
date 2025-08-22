@@ -197,7 +197,7 @@ export default function PoliciesPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                            href="mailto:hello@givenministry.com"
+                            href="mailto:robinperkins1125@gmail.com"
                             className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
                         >
                             <Mail className="w-5 h-5" />

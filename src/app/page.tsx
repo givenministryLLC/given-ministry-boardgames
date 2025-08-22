@@ -312,7 +312,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Email</h4>
                     <p className="text-amber-700 hover:text-amber-800 transition-colors">
-                      <a href="mailto:hello@givenministry.com">hello@givenministry.com</a>
+                      <a href="mailto:robinperkins1125@gmail.com">robinperkins1125@gmail.com</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
                       We typically respond within 24 hours
@@ -379,7 +379,7 @@ export default function Home() {
                     We'll help you find the perfect game!
                   </p>
                   <a
-                    href="mailto:hello@givenministry.com?subject=Game Recommendation Request"
+                    href="mailto:robinperkins1125@gmail.com?subject=Game Recommendation Request"
                     className="inline-flex items-center space-x-2 bg-amber-700 text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-amber-800 transition-colors"
                   >
                     <Mail className="w-4 h-4" />
@@ -394,7 +394,7 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
-                      href="mailto:hello@givenministry.com"
+                      href="mailto:robinperkins1125@gmail.com"
                       className="inline-flex items-center justify-center space-x-2 bg-sage-green text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green/80 transition-colors"
                     >
                       <Mail className="w-4 h-4" />
