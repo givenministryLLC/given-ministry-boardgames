@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     Plus,
     Minus,
@@ -12,51 +13,165 @@ import {
     Shield,
     Gift,
     Tag,
-    CheckCircle
+    CheckCircle,
+    Loader2
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
+interface CartLine {
+    id: string;
+    quantity: number;
+    merchandise: {
+        id: string;
+        title: string;
+        product: {
+            title: string;
+            handle: string;
+        };
+        price: {
+            amount: string;
+            currencyCode: string;
+        };
+        image?: {
+            url: string;
+            altText: string;
+        };
+    };
+    estimatedCost: {
+        totalAmount: {
+            amount: string;
+            currencyCode: string;
+        };
+    };
+}
+
+interface ShopifyCart {
+    id: string;
+    checkoutUrl: string;
+    totalQuantity: number;
+    estimatedCost: {
+        totalAmount: {
+            amount: string;
+            currencyCode: string;
+        };
+    };
+    lines: {
+        edges: Array<{
+            node: CartLine;
+        }>;
+    };
+}
+
 export default function CartPage() {
-    const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: 'Settlers of Catan',
-            price: 49.99,
-            quantity: 1,
-            handle: 'settlers-of-catan',
-            category: 'Strategy'
-        },
-        {
-            id: 2,
-            name: 'Ticket to Ride',
-            price: 39.99,
-            quantity: 2,
-            handle: 'ticket-to-ride',
-            category: 'Family'
-        }
-    ]);
+    const [cart, setCart] = useState<ShopifyCart | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [updating, setUpdating] = useState<string | null>(null);
 
-    const [promoCode, setPromoCode] = useState('');
+    // Get or create cart on mount
+    useEffect(() => {
+        initializeCart();
+    }, []);
 
-    const updateQuantity = (id: number, newQuantity: number) => {
-        if (newQuantity === 0) {
-            setCartItems(items => items.filter(item => item.id !== id));
-        } else {
-            setCartItems(items =>
-                items.map(item =>
-                    item.id === id ? { ...item, quantity: newQuantity } : item
-                )
-            );
+    const initializeCart = async () => {
+        try {
+            // Check if we have a cart ID in localStorage
+            const existingCartId = localStorage.getItem('shopify-cart-id');
+
+            if (existingCartId) {
+                // Try to fetch existing cart
+                const response = await fetch('/api/cart/get', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cartId: existingCartId })
+                });
+
+                const data = await response.json();
+                if (data.success && data.cart) {
+                    setCart(data.cart);
+                    setLoading(false);
+                    return;
+                }
+            }
+
+            // Create new cart if no existing cart found
+            const response = await fetch('/api/cart/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                setCart(data.cart);
+                localStorage.setItem('shopify-cart-id', data.cart.id);
+            }
+        } catch (error) {
+            console.error('Error initializing cart:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
-    const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = companyConfig.policies.standardShipping;
-    const total = subtotal + shipping;
+    const updateQuantity = async (lineId: string, newQuantity: number) => {
+        if (!cart) return;
+
+        setUpdating(lineId);
+        try {
+            if (newQuantity === 0) {
+                // Remove item
+                const response = await fetch('/api/cart/remove', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cartId: cart.id, lineIds: [lineId] })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    setCart(data.cart);
+                }
+            } else {
+                // Update quantity
+                const response = await fetch('/api/cart/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cartId: cart.id,
+                        lines: [{ id: lineId, quantity: newQuantity }]
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    setCart(data.cart);
+                }
+            }
+        } catch (error) {
+            console.error('Error updating cart:', error);
+        } finally {
+            setUpdating(null);
+        }
+    };
 
     const handleCheckout = () => {
-        alert('Redirecting to Shopify checkout...');
+        if (cart?.checkoutUrl) {
+            window.location.href = cart.checkoutUrl;
+        }
     };
+
+    if (loading) {
+        return (
+            <div className="bg-warm-cream min-h-screen">
+                <div className="max-w-4xl mx-auto px-4 py-8 text-center">
+                    <div className="flex items-center justify-center py-20">
+                        <Loader2 className="w-8 h-8 animate-spin text-amber-700" />
+                        <span className="ml-2 text-deep-brown">Loading cart...</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const cartItems = cart?.lines.edges || [];
 
     if (cartItems.length === 0) {
         return (
@@ -81,6 +196,10 @@ export default function CartPage() {
         );
     }
 
+    const subtotal = parseFloat(cart?.estimatedCost.totalAmount.amount || '0');
+    const shipping = companyConfig.policies.standardShipping;
+    const total = subtotal + shipping;
+
     return (
         <div className="bg-warm-cream min-h-screen">
             <div className="max-w-6xl mx-auto px-4 py-8">
@@ -91,29 +210,36 @@ export default function CartPage() {
                     </div>
                     <div>
                         <h1 className="text-4xl font-bold text-deep-brown">Your Cart</h1>
-                        <p className="text-deep-brown/70">{cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} in your cart</p>
+                        <p className="text-deep-brown/70">{cart?.totalQuantity || 0} {cart?.totalQuantity === 1 ? 'item' : 'items'} in your cart</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Cart Items */}
                     <div className="lg:col-span-2 space-y-4">
-                        {cartItems.map((item) => (
+                        {cartItems.map(({ node: item }) => (
                             <div key={item.id} className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20 hover:shadow-xl transition-shadow">
                                 <div className="flex items-center gap-6">
-                                    <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 w-24 h-24 rounded-lg border border-sage-green/30 flex-shrink-0"></div>
+                                    <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 w-24 h-24 rounded-lg border border-sage-green/30 flex-shrink-0 overflow-hidden">
+                                        {item.merchandise.image ? (
+                                            <Image
+                                                src={item.merchandise.image.url}
+                                                alt={item.merchandise.image.altText || item.merchandise.product.title}
+                                                width={96}
+                                                height={96}
+                                                className="object-cover w-full h-full"
+                                            />
+                                        ) : null}
+                                    </div>
 
                                     <div className="flex-1 min-w-0">
-                                        <Link href={`/games/${item.handle}`} className="group">
+                                        <Link href={`/games/${item.merchandise.product.handle}`} className="group">
                                             <h3 className="font-semibold text-lg text-deep-brown group-hover:text-amber-700 transition-colors mb-1">
-                                                {item.name}
+                                                {item.merchandise.product.title}
                                             </h3>
                                         </Link>
                                         <div className="flex items-center space-x-3 text-sm text-deep-brown/60 mb-3">
-                                            <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs font-medium">
-                                                {item.category}
-                                            </span>
-                                            <span>${item.price.toFixed(2)} each</span>
+                                            <span>${item.merchandise.price.amount} each</span>
                                         </div>
 
                                         <div className="flex items-center justify-between">
@@ -121,8 +247,13 @@ export default function CartPage() {
                                                 <button
                                                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                                     className="p-2 hover:bg-sage-green/10 transition-colors rounded-l-lg"
+                                                    disabled={updating === item.id}
                                                 >
-                                                    <Minus className="w-4 h-4 text-deep-brown" />
+                                                    {updating === item.id ? (
+                                                        <Loader2 className="w-4 h-4 animate-spin text-deep-brown" />
+                                                    ) : (
+                                                        <Minus className="w-4 h-4 text-deep-brown" />
+                                                    )}
                                                 </button>
                                                 <span className="px-4 py-2 text-deep-brown font-medium min-w-[3rem] text-center">
                                                     {item.quantity}
@@ -130,6 +261,7 @@ export default function CartPage() {
                                                 <button
                                                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                                     className="p-2 hover:bg-sage-green/10 transition-colors rounded-r-lg"
+                                                    disabled={updating === item.id}
                                                 >
                                                     <Plus className="w-4 h-4 text-deep-brown" />
                                                 </button>
@@ -137,11 +269,12 @@ export default function CartPage() {
 
                                             <div className="text-right">
                                                 <div className="font-bold text-xl text-gold">
-                                                    ${(item.price * item.quantity).toFixed(2)}
+                                                    ${item.estimatedCost.totalAmount.amount}
                                                 </div>
                                                 <button
                                                     onClick={() => updateQuantity(item.id, 0)}
                                                     className="flex items-center space-x-1 text-red-600 hover:text-red-800 transition-colors text-sm mt-1"
+                                                    disabled={updating === item.id}
                                                 >
                                                     <Trash2 className="w-3 h-3" />
                                                     <span>Remove</span>
@@ -165,29 +298,8 @@ export default function CartPage() {
                         </div>
                     </div>
 
-                    {/* Enhanced Order Summary */}
+                    {/* Order Summary */}
                     <div className="space-y-6">
-                        {/* Promo Code */}
-                        <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20">
-                            <h3 className="font-semibold text-deep-brown mb-4 flex items-center space-x-2">
-                                <Tag className="w-5 h-5 text-amber-700" />
-                                <span>Promo Code</span>
-                            </h3>
-                            <div className="flex">
-                                <input
-                                    type="text"
-                                    placeholder="Enter code"
-                                    value={promoCode}
-                                    onChange={(e) => setPromoCode(e.target.value)}
-                                    className="flex-1 px-3 py-2 border border-sage-green/30 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-transparent text-deep-brown"
-                                />
-                                <button className="bg-amber-700 text-warm-cream px-4 py-2 rounded-r-lg hover:bg-amber-800 transition-colors font-medium">
-                                    Apply
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Order Summary */}
                         <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20">
                             <h3 className="font-semibold text-deep-brown mb-4 flex items-center space-x-2">
                                 <Gift className="w-5 h-5 text-amber-700" />
@@ -196,7 +308,7 @@ export default function CartPage() {
 
                             <div className="space-y-3 mb-6">
                                 <div className="flex justify-between text-deep-brown">
-                                    <span>Subtotal ({cartItems.reduce((sum, item) => sum + item.quantity, 0)} items):</span>
+                                    <span>Subtotal ({cart?.totalQuantity} items):</span>
                                     <span>${subtotal.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between text-deep-brown">

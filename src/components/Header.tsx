@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     Menu,
     X,
@@ -15,6 +15,53 @@ import { companyConfig } from '@/config/company';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [cartCount, setCartCount] = useState(0);
+
+    // Get cart count on mount and when cart changes
+    useEffect(() => {
+        const getCartCount = async () => {
+            try {
+                const cartId = localStorage.getItem('shopify-cart-id');
+                if (!cartId) {
+                    setCartCount(0);
+                    return;
+                }
+
+                const response = await fetch('/api/cart/get', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cartId })
+                });
+
+                const data = await response.json();
+                if (data.success && data.cart) {
+                    setCartCount(data.cart.totalQuantity || 0);
+                } else {
+                    setCartCount(0);
+                }
+            } catch (error) {
+                console.error('Error getting cart count:', error);
+                setCartCount(0);
+            }
+        };
+
+        getCartCount();
+
+        // Listen for storage changes (when cart is updated in other tabs/components)
+        const handleStorageChange = () => {
+            getCartCount();
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        // Custom event for cart updates within the same tab
+        window.addEventListener('cartUpdated', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('cartUpdated', handleStorageChange);
+        };
+    }, []);
 
     return (
         <header className="bg-warm-cream shadow-lg border-b-2 border-sage-green/40 sticky top-0 z-50 backdrop-blur-sm">
@@ -73,10 +120,12 @@ export default function Header() {
                         >
                             <div className="relative">
                                 <ShoppingCart className="w-6 h-6 group-hover:animate-bounce" />
-                                {/* Cart badge */}
-                                <span className="absolute -top-2 -right-2 bg-amber-700 text-warm-cream text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
-                                    2
-                                </span>
+                                {/* Dynamic cart badge */}
+                                {cartCount > 0 && (
+                                    <span className="absolute -top-2 -right-2 bg-amber-700 text-warm-cream text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                                        {cartCount > 99 ? '99+' : cartCount}
+                                    </span>
+                                )}
                             </div>
                             <span className="hidden sm:inline">Cart</span>
                         </Link>

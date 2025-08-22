@@ -258,9 +258,47 @@ export default function GameDetailPage({
                             {product.inStock ? (
                                 <button
                                     className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
-                                    onClick={() => {
-                                        // TODO: Add to cart functionality
-                                        alert(`Added ${quantity} x ${product.title} to cart!`);
+                                    onClick={async () => {
+                                        try {
+                                            // Get or create cart
+                                            let cartId = localStorage.getItem('shopify-cart-id');
+
+                                            if (!cartId) {
+                                                const createResponse = await fetch('/api/cart/create', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({})
+                                                });
+                                                const createData = await createResponse.json();
+                                                if (createData.success) {
+                                                    cartId = createData.cart.id;
+                                                    localStorage.setItem('shopify-cart-id', cartId);
+                                                }
+                                            }
+
+                                            if (cartId) {
+                                                const response = await fetch('/api/cart/add', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({
+                                                        cartId,
+                                                        variantId: product.variantId,
+                                                        quantity
+                                                    })
+                                                });
+
+                                                const data = await response.json();
+                                                if (data.success) {
+                                                    // Redirect to cart page
+                                                    window.location.href = '/cart';
+                                                } else {
+                                                    alert('Error adding to cart');
+                                                }
+                                            }
+                                        } catch (error) {
+                                            console.error('Error adding to cart:', error);
+                                            alert('Error adding to cart');
+                                        }
                                     }}
                                 >
                                     <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
