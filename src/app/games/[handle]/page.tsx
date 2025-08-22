@@ -17,13 +17,24 @@ import {
     Award,
     CheckCircle,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    Loader2
 } from 'lucide-react';
-import { games } from '@/data/games';
 
-// Move this outside the component
-function getGame(handle: string) {
-    return games.find(game => game.handle === handle) || null;
+interface ShopifyProduct {
+    id: string;
+    title: string;
+    handle: string;
+    description: string;
+    price: string;
+    currency: string;
+    inStock: boolean;
+    quantity: number;
+    variantId: string;
+    images: Array<{
+        url: string;
+        alt: string;
+    }>;
 }
 
 export default function GameDetailPage({
@@ -32,6 +43,9 @@ export default function GameDetailPage({
     params: Promise<{ handle: string }>;
 }) {
     const [handle, setHandle] = useState<string>('');
+    const [product, setProduct] = useState<ShopifyProduct | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
 
@@ -39,36 +53,61 @@ export default function GameDetailPage({
         params.then(p => setHandle(p.handle));
     }, [params]);
 
-    if (!handle) return <div>Loading...</div>;
+    useEffect(() => {
+        if (!handle) return;
 
-    const game = getGame(handle);
+        async function fetchProduct() {
+            try {
+                const response = await fetch(`/api/product/${handle}`);
+                const data = await response.json();
 
-    if (!game) {
+                if (data.success) {
+                    setProduct(data.product);
+                } else {
+                    setError(data.error);
+                }
+            } catch (err) {
+                setError('Failed to load product');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchProduct();
+    }, [handle]);
+
+    if (loading) {
+        return (
+            <div className="bg-warm-cream min-h-screen">
+                <div className="max-w-7xl mx-auto px-4 py-8">
+                    <div className="flex items-center justify-center py-20">
+                        <Loader2 className="w-8 h-8 animate-spin text-amber-700" />
+                        <span className="ml-2 text-deep-brown">Loading game...</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !product) {
         notFound();
     }
 
-    const hasMultipleImages = game.images.length > 1;
+    const hasMultipleImages = product.images.length > 1;
 
     const nextImage = () => {
-        console.log('Next image clicked'); // Debug log
-        setCurrentImageIndex((prev) => {
-            const next = prev === game.images.length - 1 ? 0 : prev + 1;
-            console.log('Current:', prev, 'Next:', next); // Debug log
-            return next;
-        });
+        setCurrentImageIndex((prev) =>
+            prev === product.images.length - 1 ? 0 : prev + 1
+        );
     };
 
     const prevImage = () => {
-        console.log('Previous image clicked'); // Debug log
-        setCurrentImageIndex((prev) => {
-            const next = prev === 0 ? game.images.length - 1 : prev - 1;
-            console.log('Current:', prev, 'Next:', next); // Debug log
-            return next;
-        });
+        setCurrentImageIndex((prev) =>
+            prev === 0 ? product.images.length - 1 : prev - 1
+        );
     };
 
     const goToImage = (index: number) => {
-        console.log('Go to image:', index); // Debug log
         setCurrentImageIndex(index);
     };
 
@@ -79,11 +118,11 @@ export default function GameDetailPage({
                     {/* Enhanced Game Images with Navigation */}
                     <div className="space-y-4">
                         <div className="relative h-96 rounded-xl mb-4 border border-sage-green/30 overflow-hidden group">
-                            {game.images.length > 0 ? (
+                            {product.images.length > 0 ? (
                                 <>
                                     <Image
-                                        src={game.images[currentImageIndex]}
-                                        alt={`${game.name} - Image ${currentImageIndex + 1}`}
+                                        src={product.images[currentImageIndex].url}
+                                        alt={product.images[currentImageIndex].alt}
                                         fill
                                         className="object-cover transition-opacity duration-300"
                                         priority
@@ -123,7 +162,7 @@ export default function GameDetailPage({
                                     {/* Image Counter */}
                                     {hasMultipleImages && (
                                         <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm z-10">
-                                            {currentImageIndex + 1} of {game.images.length}
+                                            {currentImageIndex + 1} of {product.images.length}
                                         </div>
                                     )}
                                 </>
@@ -133,16 +172,17 @@ export default function GameDetailPage({
 
                             <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent pointer-events-none"></div>
                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1 z-10">
-                                <Star className="w-4 h-4 fill-current text-amber-600" />
-                                <span className="font-medium text-deep-brown">{game.rating}</span>
-                                <span className="text-deep-brown/60">({game.reviews})</span>
+                                <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                <span className="font-medium text-deep-brown">
+                                    {product.inStock ? 'In Stock' : 'Out of Stock'}
+                                </span>
                             </div>
                         </div>
 
                         {/* Enhanced Thumbnail gallery */}
                         {hasMultipleImages && (
                             <div className="grid grid-cols-4 gap-2">
-                                {game.images.map((image, index) => (
+                                {product.images.map((image, index) => (
                                     <button
                                         key={index}
                                         onClick={() => goToImage(index)}
@@ -152,8 +192,8 @@ export default function GameDetailPage({
                                             }`}
                                     >
                                         <Image
-                                            src={image}
-                                            alt={`${game.name} - Thumbnail ${index + 1}`}
+                                            src={image.url}
+                                            alt={image.alt}
                                             fill
                                             className="object-cover"
                                             sizes="80px"
@@ -170,56 +210,26 @@ export default function GameDetailPage({
                     {/* Enhanced Game Details */}
                     <div className="space-y-6">
                         <div>
-                            <div className="flex items-center space-x-2 mb-2">
-                                <span className="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium capitalize">
-                                    {game.category}
-                                </span>
-                                <div className="flex items-center space-x-1 text-amber-700">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className={`w-4 h-4 ${i < Math.floor(game.rating) ? 'fill-current' : 'text-gray-300'}`} />
-                                    ))}
+                            <h1 className="text-4xl font-bold mb-4 text-deep-brown">{product.title}</h1>
+                            <p className="text-3xl font-bold text-gold mb-6">${product.price}</p>
+                        </div>
+
+                        {/* Product Description */}
+                        <div className="space-y-4">
+                            <p className="text-deep-brown leading-relaxed">{product.description}</p>
+                        </div>
+
+                        {/* Stock Info */}
+                        <div className="bg-white p-4 rounded-lg border border-sage-green/20">
+                            <div className="flex items-center justify-between">
+                                <span className="text-lg font-semibold text-deep-brown">Availability:</span>
+                                <div className="flex items-center space-x-2">
+                                    <span className={`w-3 h-3 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                    <span className={`font-medium ${product.inStock ? 'text-green-700' : 'text-red-700'}`}>
+                                        {product.inStock ? `${product.quantity} in stock` : 'Out of stock'}
+                                    </span>
                                 </div>
                             </div>
-
-                            <h1 className="text-4xl font-bold mb-4 text-deep-brown">{game.name}</h1>
-                            <p className="text-3xl font-bold text-gold mb-6">${game.price}</p>
-                        </div>
-
-                        {/* Game Stats */}
-                        <div className="grid grid-cols-3 gap-4 p-4 bg-white rounded-lg border border-sage-green/20">
-                            <div className="text-center">
-                                <Users className="w-6 h-6 text-amber-700 mx-auto mb-1" />
-                                <div className="text-sm font-medium text-deep-brown">{game.players}</div>
-                            </div>
-                            <div className="text-center">
-                                <Clock className="w-6 h-6 text-amber-700 mx-auto mb-1" />
-                                <div className="text-sm font-medium text-deep-brown">{game.playtime}</div>
-                            </div>
-                            <div className="text-center">
-                                <Award className="w-6 h-6 text-amber-700 mx-auto mb-1" />
-                                <div className="text-sm font-medium text-deep-brown">Age {game.age}</div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-4">
-                            <p className="text-deep-brown leading-relaxed">{game.description}</p>
-                            <p className="text-deep-brown/80 leading-relaxed">{game.longDescription}</p>
-                        </div>
-
-                        {/* Features */}
-                        <div className="space-y-3">
-                            <h3 className="font-semibold text-deep-brown flex items-center space-x-2">
-                                <CheckCircle className="w-5 h-5 text-sage-green" />
-                                <span>Game Features</span>
-                            </h3>
-                            <ul className="space-y-2">
-                                {game.features.map((feature, index) => (
-                                    <li key={index} className="flex items-center space-x-2 text-deep-brown/80">
-                                        <CheckCircle className="w-4 h-4 text-sage-green flex-shrink-0" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
                         </div>
 
                         {/* Purchase Section */}
@@ -230,23 +240,31 @@ export default function GameDetailPage({
                                     <button
                                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                         className="p-2 hover:bg-sage-green/10 transition-colors"
+                                        disabled={!product.inStock}
                                     >
                                         <Minus className="w-4 h-4 text-deep-brown" />
                                     </button>
                                     <span className="px-4 py-2 text-deep-brown font-medium">{quantity}</span>
                                     <button
-                                        onClick={() => setQuantity(quantity + 1)}
+                                        onClick={() => setQuantity(Math.min(product.quantity, quantity + 1))}
                                         className="p-2 hover:bg-sage-green/10 transition-colors"
+                                        disabled={!product.inStock}
                                     >
                                         <Plus className="w-4 h-4 text-deep-brown" />
                                     </button>
                                 </div>
                             </div>
 
-                            {game.inStock ? (
-                                <button className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group">
+                            {product.inStock ? (
+                                <button
+                                    className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
+                                    onClick={() => {
+                                        // TODO: Add to cart functionality
+                                        alert(`Added ${quantity} x ${product.title} to cart!`);
+                                    }}
+                                >
                                     <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                    <span>Add to Cart - ${(game.price * quantity).toFixed(2)}</span>
+                                    <span>Add to Cart - ${(parseFloat(product.price) * quantity).toFixed(2)}</span>
                                 </button>
                             ) : (
                                 <button disabled className="w-full bg-gray-400 text-white px-8 py-4 rounded-lg font-semibold cursor-not-allowed">
@@ -255,16 +273,10 @@ export default function GameDetailPage({
                             )}
 
                             <div className="flex items-center justify-between text-sm">
-                                {game.inStock ? (
-                                    <div className="flex items-center space-x-2 text-sage-green font-medium">
-                                        <CheckCircle className="w-4 h-4" />
-                                        <span>In stock and ready to ship</span>
-                                    </div>
-                                ) : (
-                                    <div className="flex items-center space-x-2 text-red-600">
-                                        <span>❌ Currently out of stock</span>
-                                    </div>
-                                )}
+                                <div className="flex items-center space-x-2 text-sage-green font-medium">
+                                    <Shield className="w-4 h-4" />
+                                    <span>Secure checkout</span>
+                                </div>
 
                                 <button className="flex items-center space-x-1 text-deep-brown/60 hover:text-amber-700 transition-colors">
                                     <Share2 className="w-4 h-4" />

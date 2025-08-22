@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -15,15 +15,45 @@ import {
     Search,
     Sparkles,
     Award,
-    BookOpen
+    BookOpen,
+    Loader2
 } from 'lucide-react';
-import { games, categories } from '@/data/games';
+
+interface ShopifyProduct {
+    id: string;
+    title: string;
+    handle: string;
+    price: string;
+    currency: string;
+    inStock: boolean;
+    quantity: number;
+}
 
 export default function GamesPage() {
+    const [products, setProducts] = useState<ShopifyProduct[]>([]);
+    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('name');
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [searchTerm, setSearchTerm] = useState('');
+
+    // Fetch products from Shopify
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const response = await fetch('/api/inventory');
+                const data = await response.json();
+                if (data.success) {
+                    setProducts(data.products);
+                }
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProducts();
+    }, []);
 
     const categoriesWithIcons = [
         { value: 'all', label: 'All Games', icon: Grid3X3 },
@@ -31,18 +61,32 @@ export default function GamesPage() {
         { value: 'strategy', label: 'Strategy', icon: Filter }
     ];
 
-    const filteredGames = games.filter(game => {
-        const matchesCategory = selectedCategory === 'all' || game.category === selectedCategory;
-        const matchesSearch = game.name.toLowerCase().includes(searchTerm.toLowerCase());
-        return matchesCategory && matchesSearch;
+    // Filter products
+    const filteredProducts = products.filter(product => {
+        const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
+        // For now, show all products regardless of category since we don't have category data from Shopify yet
+        return matchesSearch;
     });
 
-    const sortedGames = [...filteredGames].sort((a, b) => {
-        if (sortBy === 'price') return a.price - b.price;
-        if (sortBy === 'name') return a.name.localeCompare(b.name);
-        if (sortBy === 'rating') return b.rating - a.rating;
+    // Sort products
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+        if (sortBy === 'price') return parseFloat(a.price) - parseFloat(b.price);
+        if (sortBy === 'name') return a.title.localeCompare(b.title);
         return 0;
     });
+
+    if (loading) {
+        return (
+            <div className="bg-warm-cream min-h-screen">
+                <div className="max-w-7xl mx-auto px-4 py-8">
+                    <div className="flex items-center justify-center py-20">
+                        <Loader2 className="w-8 h-8 animate-spin text-amber-700" />
+                        <span className="ml-2 text-deep-brown">Loading games...</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-warm-cream min-h-screen">
@@ -59,7 +103,7 @@ export default function GamesPage() {
                         <p className="text-deep-brown/70 mt-2">Discover your next favorite game from our curated collection</p>
                     </div>
                     <div className="hidden md:flex items-center space-x-2 text-deep-brown/60">
-                        <span>{sortedGames.length} games found</span>
+                        <span>{sortedProducts.length} games found</span>
                     </div>
                 </div>
 
@@ -78,26 +122,6 @@ export default function GamesPage() {
                             />
                         </div>
 
-                        {/* Category Filters */}
-                        <div className="flex flex-wrap gap-2">
-                            {categoriesWithIcons.map(category => {
-                                const IconComponent = category.icon;
-                                return (
-                                    <button
-                                        key={category.value}
-                                        onClick={() => setSelectedCategory(category.value)}
-                                        className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${selectedCategory === category.value
-                                            ? 'bg-amber-700 text-warm-cream shadow-lg'
-                                            : 'bg-sage-green/10 text-deep-brown hover:bg-sage-green/20'
-                                            }`}
-                                    >
-                                        <IconComponent className="w-4 h-4" />
-                                        <span>{category.label}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-
                         {/* Sort and View Controls */}
                         <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-2">
@@ -109,7 +133,6 @@ export default function GamesPage() {
                                 >
                                     <option value="name">Name</option>
                                     <option value="price">Price</option>
-                                    <option value="rating">Rating</option>
                                 </select>
                             </div>
 
@@ -136,67 +159,30 @@ export default function GamesPage() {
                 {/* Enhanced Games Grid/List */}
                 {viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {sortedGames.map((game) => (
-                            <Link key={game.id} href={`/games/${game.handle}`}>
+                        {sortedProducts.map((product) => (
+                            <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                                    {/* Game Image */}
+                                    {/* Game Image Placeholder */}
                                     <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
-                                        {game.images.length > 0 ? (
-                                            <Image
-                                                src={game.images[0]}
-                                                alt={game.name}
-                                                fill
-                                                className="object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
-                                        )}
+                                        <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        {game.isNew && (
-                                            <div className="absolute top-2 right-2 bg-amber-700 text-warm-cream px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                                                <Sparkles className="w-3 h-3" />
-                                                <span>NEW</span>
-                                            </div>
-                                        )}
                                         <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-deep-brown flex items-center space-x-1">
-                                            <Star className="w-3 h-3 fill-current text-amber-600" />
-                                            <span>{game.rating}</span>
+                                            <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                            <span>{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
                                         </div>
                                     </div>
 
                                     {/* Game Info */}
                                     <div className="space-y-3">
                                         <div className="flex items-start justify-between">
-                                            <h3 className="font-semibold text-deep-brown group-hover:text-amber-700 transition-colors">{game.name}</h3>
-                                            <span className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full capitalize font-medium">
-                                                {game.category}
-                                            </span>
-                                        </div>
-
-                                        <p className="text-sm text-deep-brown/60 line-clamp-2">{game.description}</p>
-
-                                        <div className="flex items-center justify-between text-xs text-deep-brown/60">
-                                            <div className="flex items-center space-x-1">
-                                                <Users className="w-3 h-3" />
-                                                <span>{game.players}</span>
-                                            </div>
-                                            <div className="flex items-center space-x-1">
-                                                <Clock className="w-3 h-3" />
-                                                <span>{game.playtime}</span>
-                                            </div>
+                                            <h3 className="font-semibold text-deep-brown group-hover:text-amber-700 transition-colors">{product.title}</h3>
                                         </div>
 
                                         <div className="flex items-center justify-between pt-2 border-t border-sage-green/20">
-                                            <p className="text-xl font-bold text-gold">${game.price}</p>
-                                            <div className="flex items-center space-x-1 text-amber-700">
-                                                {[...Array(5)].map((_, i) => (
-                                                    <Star
-                                                        key={i}
-                                                        className={`w-3 h-3 ${i < Math.floor(game.rating) ? 'fill-current' : 'text-gray-300'}`}
-                                                    />
-                                                ))}
-                                            </div>
+                                            <p className="text-xl font-bold text-gold">${product.price}</p>
+                                            <span className="text-sm text-deep-brown/60">
+                                                Qty: {product.quantity}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -206,56 +192,28 @@ export default function GamesPage() {
                 ) : (
                     // List View
                     <div className="space-y-4">
-                        {sortedGames.map((game) => (
-                            <Link key={game.id} href={`/games/${game.handle}`}>
+                        {sortedProducts.map((product) => (
+                            <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center space-x-6">
                                         <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
-                                            {game.images.length > 0 ? (
-                                                <Image
-                                                    src={game.images[0]}
-                                                    alt={game.name}
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="96px"
-                                                />
-                                            ) : (
-                                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
-                                            )}
-                                            {game.isNew && (
-                                                <div className="absolute -top-1 -right-1 bg-amber-700 text-warm-cream p-1 rounded-full">
-                                                    <Sparkles className="w-3 h-3" />
-                                                </div>
-                                            )}
+                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
                                         </div>
 
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-start justify-between mb-2">
-                                                <h3 className="text-xl font-semibold text-deep-brown group-hover:text-amber-700 transition-colors">{game.name}</h3>
+                                                <h3 className="text-xl font-semibold text-deep-brown group-hover:text-amber-700 transition-colors">{product.title}</h3>
                                                 <div className="flex items-center space-x-4">
-                                                    <span className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full capitalize font-medium">
-                                                        {game.category}
+                                                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${product.inStock ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                                        {product.inStock ? 'In Stock' : 'Out of Stock'}
                                                     </span>
-                                                    <p className="text-2xl font-bold text-gold">${game.price}</p>
+                                                    <p className="text-2xl font-bold text-gold">${product.price}</p>
                                                 </div>
                                             </div>
 
-                                            <p className="text-deep-brown/60 mb-3">{game.description}</p>
-
                                             <div className="flex items-center justify-between">
-                                                <div className="flex items-center space-x-6 text-sm text-deep-brown/60">
-                                                    <div className="flex items-center space-x-1">
-                                                        <Users className="w-4 h-4" />
-                                                        <span>{game.players}</span>
-                                                    </div>
-                                                    <div className="flex items-center space-x-1">
-                                                        <Clock className="w-4 h-4" />
-                                                        <span>{game.playtime}</span>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center space-x-1 text-amber-700">
-                                                    <Star className="w-4 h-4 fill-current" />
-                                                    <span className="font-medium">{game.rating}</span>
+                                                <div className="text-sm text-deep-brown/60">
+                                                    Quantity available: {product.quantity}
                                                 </div>
                                             </div>
                                         </div>
@@ -267,21 +225,18 @@ export default function GamesPage() {
                 )}
 
                 {/* No Results State */}
-                {sortedGames.length === 0 && (
+                {sortedProducts.length === 0 && !loading && (
                     <div className="text-center py-16">
                         <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Search className="w-12 h-12 text-sage-green" />
                         </div>
                         <h3 className="text-xl font-semibold text-deep-brown mb-2">No games found</h3>
-                        <p className="text-deep-brown/60 mb-4">Try adjusting your search or filter criteria</p>
+                        <p className="text-deep-brown/60 mb-4">Try adjusting your search criteria</p>
                         <button
-                            onClick={() => {
-                                setSearchTerm('');
-                                setSelectedCategory('all');
-                            }}
+                            onClick={() => setSearchTerm('')}
                             className="bg-amber-700 text-warm-cream px-6 py-2 rounded-lg font-medium hover:bg-amber-800 transition-colors"
                         >
-                            Clear Filters
+                            Clear Search
                         </button>
                     </div>
                 )}
