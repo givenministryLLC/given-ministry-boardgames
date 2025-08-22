@@ -42,7 +42,7 @@ const faqs = [
         id: 5,
         icon: MessageCircle,
         question: "How can I contact you?",
-        answer: "You can reach us by email at hello@givenministry.com or phone at (555) 123-GAME. We typically respond within 24 hours."
+        answer: "You can reach us by email at hello@givenministry.com or phone at 937-823-1411. We typically respond within 24 hours."
     }
 ];
 
@@ -129,7 +129,7 @@ export default function FAQPage() {
                             <span>Email Us</span>
                         </a>
                         <a
-                            href="tel:555-123-GAME"
+                            href="tel:937-823-1411"
                             className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
                         >
                             <Phone className="w-5 h-5" />

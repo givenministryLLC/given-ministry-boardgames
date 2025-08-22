@@ -204,7 +204,7 @@ export default function PoliciesPage() {
                             <span>Email Us</span>
                         </a>
                         <a
-                            href="tel:555-123-GAME"
+                            href="tel:937-823-1411"
                             className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
                         >
                             <Phone className="w-5 h-5" />

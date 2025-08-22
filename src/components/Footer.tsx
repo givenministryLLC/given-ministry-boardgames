@@ -34,12 +34,12 @@ export default function Footer() {
                             </div>
                             <div className="flex items-center space-x-2 text-warm-cream/80">
                                 <Phone className="w-4 h-4 text-gold" />
-                                <span>(555) 123-GAME</span>
+                                <span>937-823-1411</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Enhanced Quick Links */}
+                    {/* Rest of the component stays the same */}
                     <div>
                         <h4 className="font-semibold mb-4 text-gold flex items-center space-x-2">
                             <Star className="w-4 h-4" />
@@ -73,7 +73,6 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Enhanced Customer Service */}
                     <div>
                         <h4 className="font-semibold mb-4 text-gold flex items-center space-x-2">
                             <HelpCircle className="w-4 h-4" />
@@ -107,7 +106,6 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Enhanced Newsletter */}
                     <div>
                         <h4 className="font-semibold mb-4 text-gold flex items-center space-x-2">
                             <Mail className="w-4 h-4" />

@@ -327,7 +327,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Phone</h4>
                     <p className="text-deep-brown/80">
-                      <a href="tel:555-123-GAME" className="hover:text-amber-700 transition-colors">(555) 123-GAME</a>
+                      <a href="tel:937-823-1411" className="hover:text-amber-700 transition-colors">937-823-1411</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
                       Call us for immediate assistance
@@ -401,7 +401,7 @@ export default function Home() {
                       <span>Email</span>
                     </a>
                     <a
-                      href="tel:555-123-GAME"
+                      href="tel:937-823-1411"
                       className="inline-flex items-center justify-center space-x-2 border border-sage-green text-sage-green px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green hover:text-warm-cream transition-colors"
                     >
                       <Phone className="w-4 h-4" />
