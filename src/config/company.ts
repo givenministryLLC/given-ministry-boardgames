@@ -18,7 +18,6 @@ export const companyConfig = {
     policies: {
         returnDays: 30,
         standardShipping: 9.99,
-        freeShippingThreshold: 50,
         processingTime: "1-2 business days",
         deliveryTime: "3-5 business days"
     },

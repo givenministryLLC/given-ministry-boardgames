@@ -19,7 +19,7 @@ const faqs = [
         id: 1,
         icon: Truck,
         question: "How long does shipping take?",
-        answer: `We typically ship within ${companyConfig.policies.processingTime}. Standard shipping takes ${companyConfig.policies.deliveryTime}. Free shipping on orders over $${companyConfig.policies.freeShippingThreshold}.`
+        answer: `We typically ship within ${companyConfig.policies.processingTime}. Standard shipping takes ${companyConfig.policies.deliveryTime}. Shipping cost is $${companyConfig.policies.standardShipping} for all orders.`
     },
     {
         id: 2,

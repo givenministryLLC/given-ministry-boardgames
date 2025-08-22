@@ -134,8 +134,7 @@ export default function PoliciesPage() {
                         <div className="space-y-2 text-sm text-deep-brown/80">
                             <p>• We ship within the {companyConfig.location.country} only</p>
                             <p>• You'll receive tracking information via email</p>
-                            <p>• Standard shipping is ${companyConfig.policies.standardShipping}</p>
-                            <p>• Free shipping on orders over ${companyConfig.policies.freeShippingThreshold}</p>
+                            <p>• Standard shipping is ${companyConfig.policies.standardShipping} for all orders</p>
                             <p>• We package games carefully to prevent damage</p>
                         </div>
                     </div>
