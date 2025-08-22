@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -12,70 +15,156 @@ import {
     Minus,
     ShoppingCart,
     Award,
-    CheckCircle
+    CheckCircle,
+    ChevronLeft,
+    ChevronRight
 } from 'lucide-react';
 import { games } from '@/data/games';
 
-// Get game by handle from our data
-async function getGame(handle: string) {
+// Move this outside the component
+function getGame(handle: string) {
     return games.find(game => game.handle === handle) || null;
 }
 
-export default async function GameDetailPage({
+export default function GameDetailPage({
     params,
 }: {
     params: Promise<{ handle: string }>;
 }) {
-    const { handle } = await params;
-    const game = await getGame(handle);
+    const [handle, setHandle] = useState<string>('');
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        params.then(p => setHandle(p.handle));
+    }, [params]);
+
+    if (!handle) return <div>Loading...</div>;
+
+    const game = getGame(handle);
 
     if (!game) {
         notFound();
     }
 
+    const hasMultipleImages = game.images.length > 1;
+
+    const nextImage = () => {
+        console.log('Next image clicked'); // Debug log
+        setCurrentImageIndex((prev) => {
+            const next = prev === game.images.length - 1 ? 0 : prev + 1;
+            console.log('Current:', prev, 'Next:', next); // Debug log
+            return next;
+        });
+    };
+
+    const prevImage = () => {
+        console.log('Previous image clicked'); // Debug log
+        setCurrentImageIndex((prev) => {
+            const next = prev === 0 ? game.images.length - 1 : prev - 1;
+            console.log('Current:', prev, 'Next:', next); // Debug log
+            return next;
+        });
+    };
+
+    const goToImage = (index: number) => {
+        console.log('Go to image:', index); // Debug log
+        setCurrentImageIndex(index);
+    };
+
     return (
         <div className="bg-warm-cream min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Enhanced Game Images */}
+                    {/* Enhanced Game Images with Navigation */}
                     <div className="space-y-4">
                         <div className="relative h-96 rounded-xl mb-4 border border-sage-green/30 overflow-hidden group">
                             {game.images.length > 0 ? (
-                                <Image
-                                    src={game.images[0]}
-                                    alt={game.name}
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
+                                <>
+                                    <Image
+                                        src={game.images[currentImageIndex]}
+                                        alt={`${game.name} - Image ${currentImageIndex + 1}`}
+                                        fill
+                                        className="object-cover transition-opacity duration-300"
+                                        priority
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                    />
+
+                                    {/* Navigation Arrows - Only show if multiple images */}
+                                    {hasMultipleImages && (
+                                        <>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    prevImage();
+                                                }}
+                                                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-20"
+                                                aria-label="Previous image"
+                                                type="button"
+                                            >
+                                                <ChevronLeft className="w-6 h-6" />
+                                            </button>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    nextImage();
+                                                }}
+                                                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 z-20"
+                                                aria-label="Next image"
+                                                type="button"
+                                            >
+                                                <ChevronRight className="w-6 h-6" />
+                                            </button>
+                                        </>
+                                    )}
+
+                                    {/* Image Counter */}
+                                    {hasMultipleImages && (
+                                        <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm z-10">
+                                            {currentImageIndex + 1} of {game.images.length}
+                                        </div>
+                                    )}
+                                </>
                             ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
                             )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent"></div>
-                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
+
+                            <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent pointer-events-none"></div>
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1 z-10">
                                 <Star className="w-4 h-4 fill-current text-amber-600" />
                                 <span className="font-medium text-deep-brown">{game.rating}</span>
                                 <span className="text-deep-brown/60">({game.reviews})</span>
                             </div>
-                            <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors">
+                            <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors z-10">
                                 <Heart className="w-5 h-5 text-deep-brown hover:text-red-500 transition-colors" />
                             </button>
                         </div>
 
-                        {/* Thumbnail gallery */}
-                        {game.images.length > 1 && (
+                        {/* Enhanced Thumbnail gallery */}
+                        {hasMultipleImages && (
                             <div className="grid grid-cols-4 gap-2">
-                                {game.images.slice(0, 4).map((image, index) => (
-                                    <div key={index} className="relative h-20 rounded-lg border border-sage-green/30 hover:border-amber-700 transition-colors cursor-pointer overflow-hidden">
+                                {game.images.map((image, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => goToImage(index)}
+                                        className={`relative h-20 rounded-lg border-2 transition-all duration-200 cursor-pointer overflow-hidden ${index === currentImageIndex
+                                            ? 'border-amber-700 shadow-lg'
+                                            : 'border-sage-green/30 hover:border-amber-500'
+                                            }`}
+                                    >
                                         <Image
                                             src={image}
-                                            alt={`${game.name} - View ${index + 1}`}
+                                            alt={`${game.name} - Thumbnail ${index + 1}`}
                                             fill
                                             className="object-cover"
                                             sizes="80px"
                                         />
-                                    </div>
+                                        {index === currentImageIndex && (
+                                            <div className="absolute inset-0 bg-amber-700/20"></div>
+                                        )}
+                                    </button>
                                 ))}
                             </div>
                         )}
@@ -141,11 +230,17 @@ export default async function GameDetailPage({
                             <div className="flex items-center justify-between">
                                 <span className="text-lg font-semibold text-deep-brown">Quantity:</span>
                                 <div className="flex items-center border border-sage-green/30 rounded-lg">
-                                    <button className="p-2 hover:bg-sage-green/10 transition-colors">
+                                    <button
+                                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                                        className="p-2 hover:bg-sage-green/10 transition-colors"
+                                    >
                                         <Minus className="w-4 h-4 text-deep-brown" />
                                     </button>
-                                    <span className="px-4 py-2 text-deep-brown font-medium">1</span>
-                                    <button className="p-2 hover:bg-sage-green/10 transition-colors">
+                                    <span className="px-4 py-2 text-deep-brown font-medium">{quantity}</span>
+                                    <button
+                                        onClick={() => setQuantity(quantity + 1)}
+                                        className="p-2 hover:bg-sage-green/10 transition-colors"
+                                    >
                                         <Plus className="w-4 h-4 text-deep-brown" />
                                     </button>
                                 </div>
@@ -154,7 +249,7 @@ export default async function GameDetailPage({
                             {game.inStock ? (
                                 <button className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group">
                                     <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                    <span>Add to Cart - ${game.price}</span>
+                                    <span>Add to Cart - ${(game.price * quantity).toFixed(2)}</span>
                                 </button>
                             ) : (
                                 <button disabled className="w-full bg-gray-400 text-white px-8 py-4 rounded-lg font-semibold cursor-not-allowed">
