@@ -67,6 +67,33 @@ export const games: Game[] = [
             "Perfect for Christian families and church groups"
         ],
         images: []
+    },
+    {
+        id: 3,
+        name: "Hidden",
+        price: 39.99,
+        category: "strategy",
+        handle: "hidden",
+        players: "2-8 players",
+        playtime: "45-75 minutes",
+        age: "10+",
+        rating: 4.7,
+        reviews: 28,
+        isNew: true,
+        inStock: true,
+        description: "A Christian mystery game based on Galatians 5:19 where players solve mysteries while learning about biblical teachings on hidden sins.",
+        longDescription: "Hidden is a unique Christian-themed mystery game that combines the excitement of detective work with biblical teachings. Based on Galatians 5:19 and the principle that 'what is done in secret will come to light,' players navigate through different rooms including the Children's Church, Library, Baptismal Pool, and more while solving mysteries. The game teaches about the works of the flesh and encourages players to live in the light of God's truth.",
+        features: [
+            "Mystery-solving gameplay with biblical foundation",
+            "Based on Galatians 5:19 and biblical principles",
+            "Multiple room locations including church settings",
+            "Character, weapon, and room cards for detective work",
+            "Wildcard mechanics for strategic gameplay",
+            "Accommodates large groups up to 8 players",
+            "Teaches about living truthfully and avoiding hidden sins",
+            "Perfect for youth groups and family game nights"
+        ],
+        images: []
     }
 ];
 
