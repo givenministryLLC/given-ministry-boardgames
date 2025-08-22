@@ -27,6 +27,10 @@ interface ShopifyProduct {
     currency: string;
     inStock: boolean;
     quantity: number;
+    images: Array<{
+        url: string;
+        alt: string;
+    }>;
 }
 
 export default function GamesPage() {
@@ -156,15 +160,25 @@ export default function GamesPage() {
                     </div>
                 </div>
 
-                {/* Enhanced Games Grid/List */}
+                {/* UPDATED: Games Grid with Images */}
                 {viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {sortedProducts.map((product) => (
                             <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                                    {/* Game Image Placeholder */}
+                                    {/* UPDATED: Game Image with Shopify images */}
                                     <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
-                                        <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                        {product.images.length > 0 ? (
+                                            <Image
+                                                src={product.images[0].url}
+                                                alt={product.images[0].alt}
+                                                fill
+                                                className="object-cover transition-opacity duration-300"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                         <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-deep-brown flex items-center space-x-1">
                                             <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
@@ -190,14 +204,24 @@ export default function GamesPage() {
                         ))}
                     </div>
                 ) : (
-                    // List View
+                    // UPDATED: List View with Images
                     <div className="space-y-4">
                         {sortedProducts.map((product) => (
                             <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center space-x-6">
                                         <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
-                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                            {product.images.length > 0 ? (
+                                                <Image
+                                                    src={product.images[0].url}
+                                                    alt={product.images[0].alt}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="96px"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                            )}
                                         </div>
 
                                         <div className="flex-1 min-w-0">

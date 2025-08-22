@@ -10,6 +10,13 @@ interface ShopifyVariant {
     };
 }
 
+interface ShopifyImage {
+    node: {
+        url: string;
+        altText: string | null;
+    };
+}
+
 interface ShopifyProduct {
     node: {
         id: string;
@@ -24,6 +31,9 @@ interface ShopifyProduct {
         };
         variants: {
             edges: ShopifyVariant[];
+        };
+        images: {
+            edges: ShopifyImage[];
         };
     };
 }
@@ -68,6 +78,14 @@ export async function GET() {
                                     }
                                 }
                             }
+                            images(first: 5) {
+                                edges {
+                                    node {
+                                        url
+                                        altText
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -86,7 +104,11 @@ export async function GET() {
                 price: edge.node.priceRange.minVariantPrice.amount,
                 currency: edge.node.priceRange.minVariantPrice.currencyCode,
                 inStock: edge.node.variants.edges[0]?.node.availableForSale || false,
-                quantity: edge.node.variants.edges[0]?.node.quantityAvailable || 0
+                quantity: edge.node.variants.edges[0]?.node.quantityAvailable || 0,
+                images: edge.node.images.edges.map((imageEdge: ShopifyImage) => ({
+                    url: imageEdge.node.url,
+                    alt: imageEdge.node.altText || edge.node.title
+                }))
             }))
         });
     } catch (error) {
