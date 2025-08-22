@@ -11,13 +11,11 @@ import {
     Star,
     Users,
     Clock,
-    Tag,
     Search,
     Sparkles,
-    Award,
     BookOpen
 } from 'lucide-react';
-import { games, categories } from '@/data/games';
+import { games } from '@/data/games';
 
 export default function GamesPage() {
     const [selectedCategory, setSelectedCategory] = useState('all');

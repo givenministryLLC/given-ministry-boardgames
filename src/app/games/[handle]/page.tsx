@@ -7,7 +7,6 @@ import {
     Star,
     Users,
     Clock,
-    Tag,
     Shield,
     Heart,
     Share2,
