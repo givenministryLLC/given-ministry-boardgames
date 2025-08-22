@@ -27,10 +27,10 @@ interface ShopifyProduct {
     currency: string;
     inStock: boolean;
     quantity: number;
-    images: Array<{
+    featuredImage: {
         url: string;
         alt: string;
-    }>;
+    } | null;
 }
 
 export default function GamesPage() {
@@ -160,18 +160,18 @@ export default function GamesPage() {
                     </div>
                 </div>
 
-                {/* UPDATED: Games Grid with Images */}
+                {/* Games Grid with Images */}
                 {viewMode === 'grid' ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {sortedProducts.map((product) => (
                             <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                                    {/* UPDATED: Game Image with Shopify images */}
+                                    {/* Game Image with Shopify images */}
                                     <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
-                                        {product.images.length > 0 ? (
+                                        {product.featuredImage ? (
                                             <Image
-                                                src={product.images[0].url}
-                                                alt={product.images[0].alt}
+                                                src={product.featuredImage.url}
+                                                alt={product.featuredImage.alt}
                                                 fill
                                                 className="object-cover transition-opacity duration-300"
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -204,17 +204,17 @@ export default function GamesPage() {
                         ))}
                     </div>
                 ) : (
-                    // UPDATED: List View with Images
+                    // List View with Images
                     <div className="space-y-4">
                         {sortedProducts.map((product) => (
                             <Link key={product.id} href={`/games/${product.handle}`}>
                                 <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
                                     <div className="flex items-center space-x-6">
                                         <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
-                                            {product.images.length > 0 ? (
+                                            {product.featuredImage ? (
                                                 <Image
-                                                    src={product.images[0].url}
-                                                    alt={product.images[0].alt}
+                                                    src={product.featuredImage.url}
+                                                    alt={product.featuredImage.alt}
                                                     fill
                                                     className="object-cover"
                                                     sizes="96px"

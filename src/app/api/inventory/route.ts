@@ -1,4 +1,4 @@
-// src/app/api/inventory/route.ts
+// src/app/api/inventory/route.ts - UPDATED VERSION (First Image Only)
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 
 // Define interfaces for type safety
@@ -7,13 +7,6 @@ interface ShopifyVariant {
         id: string;
         availableForSale: boolean;
         quantityAvailable: number;
-    };
-}
-
-interface ShopifyImage {
-    node: {
-        url: string;
-        altText: string | null;
     };
 }
 
@@ -32,9 +25,10 @@ interface ShopifyProduct {
         variants: {
             edges: ShopifyVariant[];
         };
-        images: {
-            edges: ShopifyImage[];
-        };
+        featuredImage: {
+            url: string;
+            altText: string | null;
+        } | null;
     };
 }
 
@@ -78,13 +72,9 @@ export async function GET() {
                                     }
                                 }
                             }
-                            images(first: 5) {
-                                edges {
-                                    node {
-                                        url
-                                        altText
-                                    }
-                                }
+                            featuredImage {
+                                url
+                                altText
                             }
                         }
                     }
@@ -105,10 +95,10 @@ export async function GET() {
                 currency: edge.node.priceRange.minVariantPrice.currencyCode,
                 inStock: edge.node.variants.edges[0]?.node.availableForSale || false,
                 quantity: edge.node.variants.edges[0]?.node.quantityAvailable || 0,
-                images: edge.node.images.edges.map((imageEdge: ShopifyImage) => ({
-                    url: imageEdge.node.url,
-                    alt: imageEdge.node.altText || edge.node.title
-                }))
+                featuredImage: edge.node.featuredImage ? {
+                    url: edge.node.featuredImage.url,
+                    alt: edge.node.featuredImage.altText || edge.node.title
+                } : null
             }))
         });
     } catch (error) {
