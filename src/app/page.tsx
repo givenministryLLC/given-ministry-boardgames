@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -8,6 +9,7 @@ import {
   Sparkles,
   Heart,
   Shield,
+  Zap,
   Mail,
   Phone,
   Clock,
@@ -15,8 +17,7 @@ import {
   Send,
   CheckCircle,
   MessageCircle,
-  Globe,
-  Gamepad2
+  Globe
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
