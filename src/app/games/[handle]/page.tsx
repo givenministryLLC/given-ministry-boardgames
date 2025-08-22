@@ -4,17 +4,11 @@ import { useState, useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import {
-    Star,
-    Users,
-    Clock,
-    Tag,
     Shield,
-    Heart,
     Share2,
     Plus,
     Minus,
     ShoppingCart,
-    Award,
     CheckCircle,
     ChevronLeft,
     ChevronRight,
