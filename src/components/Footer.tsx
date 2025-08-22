@@ -53,7 +53,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/about" className="flex items-center space-x-2 text-warm-cream/80 hover:text-gold transition-all duration-200 hover:translate-x-1">
+                                <Link href="/#about" className="flex items-center space-x-2 text-warm-cream/80 hover:text-gold transition-all duration-200 hover:translate-x-1">
                                     <ArrowRight className="w-3 h-3" />
                                     <span>About Us</span>
                                 </Link>

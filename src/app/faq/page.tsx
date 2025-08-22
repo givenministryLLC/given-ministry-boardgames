@@ -8,7 +8,9 @@ import {
     MessageCircle,
     Truck,
     Shield,
-    Heart
+    Heart,
+    Mail,
+    Phone
 } from 'lucide-react';
 
 const faqs = [
@@ -65,9 +67,7 @@ export default function FAQPage() {
                     </div>
                     <h1 className="text-4xl font-bold mb-4 text-deep-brown">Frequently Asked Questions</h1>
                     <p className="text-deep-brown/80 max-w-2xl mx-auto">
-                        Quick answers to common questions. Can't find what you're looking for?
-                        <a href="/about" className="text-amber-700 hover:text-amber-800 underline font-medium ml-1">Contact us</a>
-                        and we'll be happy to help!
+                        Quick answers to common questions about our games and policies.
                     </p>
                 </div>
 
@@ -120,15 +120,24 @@ export default function FAQPage() {
                     <p className="mb-6 text-warm-cream/90">
                         We're a small business and love to help personally! Reach out and we'll get back to you quickly.
                     </p>
-                    <a
-                        href="/about"
-                        className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors shadow-lg hover:shadow-xl"
-                    >
-                        <MessageCircle className="w-5 h-5" />
-                        <span>Contact Us</span>
-                    </a>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a
+                            href="mailto:hello@givenministry.com"
+                            className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
+                        >
+                            <Mail className="w-5 h-5" />
+                            <span>Email Us</span>
+                        </a>
+                        <a
+                            href="tel:555-123-GAME"
+                            className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
+                        >
+                            <Phone className="w-5 h-5" />
+                            <span>Call Us</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </div >
         </div >
     );
 }
