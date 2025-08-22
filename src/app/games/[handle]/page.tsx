@@ -18,10 +18,10 @@ import {
     ChevronLeft,
     ChevronRight
 } from 'lucide-react';
-import { games } from '@/data/games';
+import { games, Game } from '@/data/games';
 
 // Client component for the interactive parts
-function GameDetailClient({ game }: { game: any }) {
+function GameDetailClient({ game }: { game: Game }) {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [quantity, setQuantity] = useState(1);
 
@@ -114,8 +114,8 @@ function GameDetailClient({ game }: { game: any }) {
                                         key={index}
                                         onClick={() => setSelectedImageIndex(index)}
                                         className={`relative h-20 rounded-lg border-2 transition-all duration-200 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-500 ${selectedImageIndex === index
-                                                ? 'border-amber-700 ring-2 ring-amber-700/30 scale-105'
-                                                : 'border-sage-green/30 hover:border-amber-700/50 hover:scale-102'
+                                            ? 'border-amber-700 ring-2 ring-amber-700/30 scale-105'
+                                            : 'border-sage-green/30 hover:border-amber-700/50 hover:scale-102'
                                             }`}
                                         type="button"
                                     >
@@ -138,13 +138,13 @@ function GameDetailClient({ game }: { game: any }) {
                         {/* Image Navigation Dots */}
                         {game.images.length > 1 && (
                             <div className="flex justify-center space-x-2 pt-2">
-                                {game.images.map((_: any, index: number) => (
+                                {game.images.map((_: string, index: number) => (
                                     <button
                                         key={index}
                                         onClick={() => setSelectedImageIndex(index)}
                                         className={`w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 ${selectedImageIndex === index
-                                                ? 'bg-amber-700 scale-125'
-                                                : 'bg-sage-green/30 hover:bg-amber-700/50'
+                                            ? 'bg-amber-700 scale-125'
+                                            : 'bg-sage-green/30 hover:bg-amber-700/50'
                                             }`}
                                         aria-label={`Go to image ${index + 1}`}
                                         type="button"
@@ -285,17 +285,17 @@ function GameDetailClient({ game }: { game: any }) {
 }
 
 // Get game by handle from our data
-async function getGame(handle: string) {
+function getGame(handle: string): Game | null {
     return games.find(game => game.handle === handle) || null;
 }
 
-export default async function GameDetailPage({
+export default function GameDetailPage({
     params,
 }: {
-    params: Promise<{ handle: string }>;
+    params: { handle: string };
 }) {
-    const { handle } = await params;
-    const game = await getGame(handle);
+    // Convert async params to sync access for client component
+    const game = getGame(params.handle);
 
     if (!game) {
         notFound();
