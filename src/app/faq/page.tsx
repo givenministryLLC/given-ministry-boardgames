@@ -12,19 +12,20 @@ import {
     Mail,
     Phone
 } from 'lucide-react';
+import { companyConfig } from '@/config/company';
 
 const faqs = [
     {
         id: 1,
         icon: Truck,
         question: "How long does shipping take?",
-        answer: "We typically ship within 1-2 business days. Standard shipping takes 3-5 business days. Free shipping on orders over $50."
+        answer: `We typically ship within ${companyConfig.policies.processingTime}. Standard shipping takes ${companyConfig.policies.deliveryTime}. Free shipping on orders over $${companyConfig.policies.freeShippingThreshold}.`
     },
     {
         id: 2,
         icon: Shield,
         question: "What is your return policy?",
-        answer: "We accept returns within 30 days of purchase for unopened games in original condition. Contact us first and we'll handle the return process."
+        answer: `We accept returns within ${companyConfig.policies.returnDays} days of purchase for unopened games in original condition. Contact us first and we'll handle the return process.`
     },
     {
         id: 3,
@@ -42,7 +43,7 @@ const faqs = [
         id: 5,
         icon: MessageCircle,
         question: "How can I contact you?",
-        answer: "You can reach us by email at robinperkins1125@gmail.com or phone at 937-823-1411. We typically respond within 24 hours."
+        answer: `You can reach us by email at ${companyConfig.email} or phone at ${companyConfig.phoneFormatted}. We typically respond within 24 hours.`
     }
 ];
 
@@ -122,14 +123,14 @@ export default function FAQPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                            href="mailto:robinperkins1125@gmail.com"
+                            href={`mailto:${companyConfig.email}`}
                             className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
                         >
                             <Mail className="w-5 h-5" />
                             <span>Email Us</span>
                         </a>
                         <a
-                            href="tel:937-823-1411"
+                            href={`tel:${companyConfig.phone}`}
                             className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
                         >
                             <Phone className="w-5 h-5" />

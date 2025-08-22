@@ -11,6 +11,7 @@ import {
     HelpCircle,
     Shield
 } from 'lucide-react';
+import { companyConfig } from '@/config/company';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,9 +27,9 @@ export default function Header() {
                         </div>
                         <div>
                             <span className="text-xl font-bold text-amber-700 group-hover:text-amber-800 transition-colors">
-                                Given Ministry
+                                {companyConfig.name.split(' ')[0]} {companyConfig.name.split(' ')[1]}
                             </span>
-                            <div className="text-sm text-deep-brown/70 -mt-1">LLC</div>
+                            <div className="text-sm text-deep-brown/70 -mt-1">{companyConfig.name.split(' ')[2]}</div>
                         </div>
                     </Link>
 

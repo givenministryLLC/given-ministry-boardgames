@@ -14,6 +14,7 @@ import {
     Tag,
     CheckCircle
 } from 'lucide-react';
+import { companyConfig } from '@/config/company';
 
 export default function CartPage() {
     const [cartItems, setCartItems] = useState([
@@ -50,7 +51,7 @@ export default function CartPage() {
     };
 
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const shipping = 9.99; // Fixed shipping cost
+    const shipping = subtotal >= companyConfig.policies.freeShippingThreshold ? 0 : companyConfig.policies.standardShipping;
     const total = subtotal + shipping;
 
     const handleCheckout = () => {
@@ -200,8 +201,19 @@ export default function CartPage() {
                                 </div>
                                 <div className="flex justify-between text-deep-brown">
                                     <span>Shipping:</span>
-                                    <span>${shipping.toFixed(2)}</span>
+                                    <span>
+                                        {shipping === 0 ? (
+                                            <span className="text-sage-green font-medium">FREE</span>
+                                        ) : (
+                                            `$${shipping.toFixed(2)}`
+                                        )}
+                                    </span>
                                 </div>
+                                {subtotal < companyConfig.policies.freeShippingThreshold && (
+                                    <div className="text-xs text-amber-700 bg-amber-50 p-2 rounded">
+                                        Add ${(companyConfig.policies.freeShippingThreshold - subtotal).toFixed(2)} more for free shipping!
+                                    </div>
+                                )}
                                 <div className="border-t border-sage-green/30 pt-3">
                                     <div className="flex justify-between font-bold text-lg text-deep-brown">
                                         <span>Total:</span>
@@ -230,7 +242,7 @@ export default function CartPage() {
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <CheckCircle className="w-4 h-4 text-sage-green" />
-                                    <span>30-day return policy</span>
+                                    <span>{companyConfig.policies.returnDays}-day return policy</span>
                                 </div>
                             </div>
                         </div>

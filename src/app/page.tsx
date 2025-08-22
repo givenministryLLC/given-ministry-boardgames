@@ -21,6 +21,7 @@ import {
   Globe,
   Gamepad2
 } from 'lucide-react';
+import { companyConfig } from '@/config/company';
 
 export default function Home() {
   // Sample games data - will be replaced with Sanity CMS
@@ -88,10 +89,10 @@ export default function Home() {
             </div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Welcome to Given Ministry LLC
+            Welcome to {companyConfig.name}
           </h1>
           <p className="text-xl mb-8 text-warm-cream/90 max-w-2xl mx-auto">
-            A small family business bringing you carefully selected board games for unforgettable moments together
+            {companyConfig.tagline}
           </p>
           <Link
             href="#our-games"
@@ -134,7 +135,7 @@ export default function Home() {
                       <Heart className="w-6 h-6 text-amber-700" />
                     </div>
                     <div className="text-2xl font-bold text-deep-brown">Family</div>
-                    <div className="text-sm text-deep-brown/70">Owned & Operated</div>
+                    <div className="text-sm text-deep-brown/70">{companyConfig.values.familyOwned}</div>
                   </div>
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-md border border-sage-green/20">
@@ -143,7 +144,7 @@ export default function Home() {
                       <Award className="w-6 h-6 text-amber-700" />
                     </div>
                     <div className="text-2xl font-bold text-deep-brown">Hand</div>
-                    <div className="text-sm text-deep-brown/70">Picked Games</div>
+                    <div className="text-sm text-deep-brown/70">{companyConfig.values.handPicked}</div>
                   </div>
                 </div>
               </div>
@@ -154,7 +155,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
                   <Star className="w-4 h-4 fill-current text-amber-600" />
-                  <span className="font-medium text-deep-brown">Est. 2024</span>
+                  <span className="font-medium text-deep-brown">{companyConfig.values.established}</span>
                 </div>
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
                   <Heart className="w-4 h-4 text-red-500" />
@@ -312,7 +313,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Email</h4>
                     <p className="text-amber-700 hover:text-amber-800 transition-colors">
-                      <a href="mailto:robinperkins1125@gmail.com">robinperkins1125@gmail.com</a>
+                      <a href={`mailto:${companyConfig.email}`}>{companyConfig.email}</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
                       We typically respond within 24 hours
@@ -327,7 +328,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Phone</h4>
                     <p className="text-deep-brown/80">
-                      <a href="tel:937-823-1411" className="hover:text-amber-700 transition-colors">937-823-1411</a>
+                      <a href={`tel:${companyConfig.phone}`} className="hover:text-amber-700 transition-colors">{companyConfig.phoneFormatted}</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
                       Call us for immediate assistance
@@ -342,9 +343,9 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Business Hours</h4>
                     <div className="text-deep-brown/80 space-y-1 text-sm">
-                      <p>Monday - Friday: 9 AM - 6 PM EST</p>
-                      <p>Saturday: 10 AM - 4 PM EST</p>
-                      <p>Sunday: Closed</p>
+                      <p>{companyConfig.businessHours.weekdays}</p>
+                      <p>{companyConfig.businessHours.saturday}</p>
+                      <p>{companyConfig.businessHours.sunday}</p>
                     </div>
                   </div>
                 </div>
@@ -356,8 +357,7 @@ export default function Home() {
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Location</h4>
                     <p className="text-deep-brown/80 text-sm">
-                      Proudly serving customers<br />
-                      across the United States
+                      {companyConfig.location.description}
                     </p>
                   </div>
                 </div>
@@ -379,7 +379,7 @@ export default function Home() {
                     We'll help you find the perfect game!
                   </p>
                   <a
-                    href="mailto:robinperkins1125@gmail.com?subject=Game Recommendation Request"
+                    href={`mailto:${companyConfig.email}?subject=Game Recommendation Request`}
                     className="inline-flex items-center space-x-2 bg-amber-700 text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-amber-800 transition-colors"
                   >
                     <Mail className="w-4 h-4" />
@@ -394,14 +394,14 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
-                      href="mailto:robinperkins1125@gmail.com"
+                      href={`mailto:${companyConfig.email}`}
                       className="inline-flex items-center justify-center space-x-2 bg-sage-green text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green/80 transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       <span>Email</span>
                     </a>
                     <a
-                      href="tel:937-823-1411"
+                      href={`tel:${companyConfig.phone}`}
                       className="inline-flex items-center justify-center space-x-2 border border-sage-green text-sage-green px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green hover:text-warm-cream transition-colors"
                     >
                       <Phone className="w-4 h-4" />

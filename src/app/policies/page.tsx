@@ -8,6 +8,7 @@ import {
     Mail,
     Phone
 } from 'lucide-react';
+import { companyConfig } from '@/config/company';
 
 export default function PoliciesPage() {
     return (
@@ -71,10 +72,10 @@ export default function PoliciesPage() {
                         <div className="bg-sage-green/10 p-6 rounded-xl">
                             <div className="flex items-center space-x-2 mb-3">
                                 <Clock className="w-5 h-5 text-amber-700" />
-                                <h3 className="font-semibold text-deep-brown">30-Day Returns</h3>
+                                <h3 className="font-semibold text-deep-brown">{companyConfig.policies.returnDays}-Day Returns</h3>
                             </div>
                             <p className="text-deep-brown/80 text-sm">
-                                Return unopened games within 30 days of delivery for a full refund.
+                                Return unopened games within {companyConfig.policies.returnDays} days of delivery for a full refund.
                             </p>
                         </div>
 
@@ -116,7 +117,7 @@ export default function PoliciesPage() {
                                 <Clock className="w-6 h-6 text-warm-cream" />
                             </div>
                             <h3 className="font-semibold text-deep-brown mb-2">Fast Processing</h3>
-                            <p className="text-deep-brown/80 text-sm">Ships within 1-2 business days</p>
+                            <p className="text-deep-brown/80 text-sm">Ships within {companyConfig.policies.processingTime}</p>
                         </div>
 
                         <div className="bg-sage-green/10 p-6 rounded-xl text-center">
@@ -124,16 +125,17 @@ export default function PoliciesPage() {
                                 <Truck className="w-6 h-6 text-warm-cream" />
                             </div>
                             <h3 className="font-semibold text-deep-brown mb-2">Standard Delivery</h3>
-                            <p className="text-deep-brown/80 text-sm">3-5 business days</p>
+                            <p className="text-deep-brown/80 text-sm">{companyConfig.policies.deliveryTime}</p>
                         </div>
                     </div>
 
                     <div className="bg-sage-green/10 p-6 rounded-xl">
                         <h3 className="font-semibold text-deep-brown mb-3">Shipping Details</h3>
                         <div className="space-y-2 text-sm text-deep-brown/80">
-                            <p>• We ship within the United States only</p>
+                            <p>• We ship within the {companyConfig.location.country} only</p>
                             <p>• You'll receive tracking information via email</p>
-                            <p>• Standard shipping is $9.99</p>
+                            <p>• Standard shipping is ${companyConfig.policies.standardShipping}</p>
+                            <p>• Free shipping on orders over ${companyConfig.policies.freeShippingThreshold}</p>
                             <p>• We package games carefully to prevent damage</p>
                         </div>
                     </div>
@@ -197,14 +199,14 @@ export default function PoliciesPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
-                            href="mailto:robinperkins1125@gmail.com"
+                            href={`mailto:${companyConfig.email}`}
                             className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
                         >
                             <Mail className="w-5 h-5" />
                             <span>Email Us</span>
                         </a>
                         <a
-                            href="tel:937-823-1411"
+                            href={`tel:${companyConfig.phone}`}
                             className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
                         >
                             <Phone className="w-5 h-5" />

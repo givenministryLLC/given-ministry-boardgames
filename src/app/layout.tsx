@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { companyConfig } from "@/config/company";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Given Ministry LLC",
-  description: "Discover amazing board games for every occasion. Strategy games, family games, party games and more. Fast shipping and expert recommendations.",
+  title: companyConfig.name,
+  description: companyConfig.description,
 };
 
 export default function RootLayout({
