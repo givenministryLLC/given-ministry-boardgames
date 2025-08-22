@@ -62,6 +62,7 @@ export async function GET(
                     title
                     handle
                     description
+                    descriptionHtml
                     priceRange {
                         minVariantPrice {
                             amount
@@ -108,7 +109,7 @@ export async function GET(
                 id: product.id,
                 title: product.title,
                 handle: product.handle,
-                description: product.description || '',
+                description: product.descriptionHtml || product.description || '',
                 price: product.priceRange.minVariantPrice.amount,
                 currency: product.priceRange.minVariantPrice.currencyCode,
                 inStock: product.variants.edges[0]?.node.availableForSale || false,
