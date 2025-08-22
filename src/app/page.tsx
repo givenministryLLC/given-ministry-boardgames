@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -24,54 +23,6 @@ import {
 import { companyConfig } from '@/config/company';
 
 export default function Home() {
-  // Sample games data - will be replaced with Sanity CMS
-  const games = [
-    {
-      id: 1,
-      name: 'Settlers of Catan',
-      price: 49.99,
-      handle: 'settlers-of-catan',
-      players: '3-4',
-      playtime: '60-90 min',
-      rating: 4.8,
-      isNew: false,
-      description: 'Build settlements and trade resources in this classic strategy game'
-    },
-    {
-      id: 2,
-      name: 'Ticket to Ride',
-      price: 39.99,
-      handle: 'ticket-to-ride',
-      players: '2-5',
-      playtime: '30-60 min',
-      rating: 4.7,
-      isNew: true,
-      description: 'Cross-country train adventure connecting cities across America'
-    },
-    {
-      id: 3,
-      name: 'Wingspan',
-      price: 59.99,
-      handle: 'wingspan',
-      players: '1-5',
-      playtime: '40-70 min',
-      rating: 4.9,
-      isNew: true,
-      description: 'Beautiful engine-building game about birds and their habitats'
-    },
-    {
-      id: 4,
-      name: 'Azul',
-      price: 34.99,
-      handle: 'azul',
-      players: '2-4',
-      playtime: '30-45 min',
-      rating: 4.8,
-      isNew: false,
-      description: 'Tile-placement game creating beautiful mosaic patterns'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-warm-cream">
       {/* Hero Section */}
@@ -95,7 +46,7 @@ export default function Home() {
             {companyConfig.tagline}
           </p>
           <Link
-            href="#our-games"
+            href="/games"
             className="inline-flex items-center space-x-2 bg-warm-cream text-deep-brown px-8 py-4 rounded-xl font-semibold hover:bg-yellow-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
           >
             <span>Shop Our Games</span>
@@ -163,83 +114,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Games Collection */}
-      <section id="our-games" className="py-16 bg-gradient-to-r from-sage-green/10 to-amber-100/30">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-4">
-              <Gamepad2 className="w-8 h-8 text-amber-700" />
-            </div>
-            <h2 className="text-4xl font-bold text-deep-brown mb-4">Our Game Collection</h2>
-            <p className="text-deep-brown/70 max-w-2xl mx-auto">
-              Each game has been personally selected for its quality, fun factor, and ability to bring people together
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {games.map((game) => (
-              <Link key={game.id} href={`/games/${game.handle}`}>
-                <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                  {/* Game Image Placeholder */}
-                  <div className="relative bg-gradient-to-br from-sage-green/20 to-amber-100 h-40 rounded-lg mb-4 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    {game.isNew && (
-                      <div className="absolute top-2 right-2 bg-amber-700 text-warm-cream px-2 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                        <Sparkles className="w-3 h-3" />
-                        <span>NEW</span>
-                      </div>
-                    )}
-                    <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-deep-brown flex items-center space-x-1">
-                      <Star className="w-3 h-3 fill-current text-amber-600" />
-                      <span>{game.rating}</span>
-                    </div>
-                  </div>
-
-                  {/* Game Info */}
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-deep-brown group-hover:text-amber-700 transition-colors">{game.name}</h3>
-                    <p className="text-sm text-deep-brown/60 line-clamp-2">{game.description}</p>
-
-                    <div className="flex items-center justify-between text-xs text-deep-brown/60">
-                      <div className="flex items-center space-x-1">
-                        <Users className="w-3 h-3" />
-                        <span>{game.players}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3" />
-                        <span>{game.playtime}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-2 border-t border-sage-green/20">
-                      <p className="text-xl font-bold text-gold">${game.price}</p>
-                      <div className="flex items-center space-x-1 text-amber-700">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-3 h-3 ${i < Math.floor(game.rating) ? 'fill-current' : 'text-gray-300'}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Link
-              href="/games"
-              className="inline-flex items-center space-x-2 text-amber-700 hover:text-amber-800 font-medium transition-colors group"
-            >
-              <span>View All Game Details</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
           </div>
         </div>
       </section>
