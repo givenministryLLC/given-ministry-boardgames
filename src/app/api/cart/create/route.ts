@@ -81,7 +81,7 @@ export async function POST() {
     } catch (error) {
         return Response.json({
             success: false,
-            error: error.message
+            error: 'Failed to process request'
         }, { status: 500 });
     }
 }
