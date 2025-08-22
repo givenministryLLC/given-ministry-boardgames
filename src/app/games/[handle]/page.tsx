@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -15,141 +12,70 @@ import {
     Minus,
     ShoppingCart,
     Award,
-    CheckCircle,
-    ChevronLeft,
-    ChevronRight
+    CheckCircle
 } from 'lucide-react';
 import { games } from '@/data/games';
 
-// Client component for the interactive parts
-function GameDetailClient({ game }: { game: any }) {
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-    const [quantity, setQuantity] = useState(1);
+// Get game by handle from our data
+async function getGame(handle: string) {
+    return games.find(game => game.handle === handle) || null;
+}
 
-    const nextImage = (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setSelectedImageIndex((prev) =>
-            prev === game.images.length - 1 ? 0 : prev + 1
-        );
-    };
+export default async function GameDetailPage({
+    params,
+}: {
+    params: Promise<{ handle: string }>;
+}) {
+    const { handle } = await params;
+    const game = await getGame(handle);
 
-    const prevImage = (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setSelectedImageIndex((prev) =>
-            prev === 0 ? game.images.length - 1 : prev - 1
-        );
-    };
-
-    const handleAddToCart = () => {
-        alert(`Added ${quantity} ${game.name}(s) to cart!`);
-    };
+    if (!game) {
+        notFound();
+    }
 
     return (
         <div className="bg-warm-cream min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Enhanced Interactive Image Gallery */}
+                    {/* Enhanced Game Images */}
                     <div className="space-y-4">
                         <div className="relative h-96 rounded-xl mb-4 border border-sage-green/30 overflow-hidden group">
                             {game.images.length > 0 ? (
-                                <>
-                                    <Image
-                                        src={game.images[selectedImageIndex]}
-                                        alt={`${game.name} - Image ${selectedImageIndex + 1}`}
-                                        fill
-                                        className="object-cover transition-all duration-500 ease-in-out"
-                                        priority
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                    />
-
-                                    {/* Navigation Arrows - Only show if multiple images */}
-                                    {game.images.length > 1 && (
-                                        <>
-                                            <button
-                                                onClick={prevImage}
-                                                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                                                aria-label="Previous image"
-                                                type="button"
-                                            >
-                                                <ChevronLeft className="w-5 h-5" />
-                                            </button>
-                                            <button
-                                                onClick={nextImage}
-                                                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 z-10 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
-                                                aria-label="Next image"
-                                                type="button"
-                                            >
-                                                <ChevronRight className="w-5 h-5" />
-                                            </button>
-
-                                            {/* Image Counter */}
-                                            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                                {selectedImageIndex + 1} / {game.images.length}
-                                            </div>
-                                        </>
-                                    )}
-                                </>
+                                <Image
+                                    src={game.images[0]}
+                                    alt={game.name}
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
                             ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
                             )}
-
-                            {/* Overlay elements with lower z-index */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent z-0"></div>
-                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1 z-10">
+                            <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent"></div>
+                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
                                 <Star className="w-4 h-4 fill-current text-amber-600" />
                                 <span className="font-medium text-deep-brown">{game.rating}</span>
                                 <span className="text-deep-brown/60">({game.reviews})</span>
                             </div>
-                            <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors z-10">
+                            <button className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors">
                                 <Heart className="w-5 h-5 text-deep-brown hover:text-red-500 transition-colors" />
                             </button>
                         </div>
 
-                        {/* Interactive Thumbnail Gallery */}
+                        {/* Thumbnail gallery */}
                         {game.images.length > 1 && (
                             <div className="grid grid-cols-4 gap-2">
-                                {game.images.map((image: string, index: number) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setSelectedImageIndex(index)}
-                                        className={`relative h-20 rounded-lg border-2 transition-all duration-200 cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-500 ${selectedImageIndex === index
-                                                ? 'border-amber-700 ring-2 ring-amber-700/30 scale-105'
-                                                : 'border-sage-green/30 hover:border-amber-700/50 hover:scale-102'
-                                            }`}
-                                        type="button"
-                                    >
+                                {game.images.slice(0, 4).map((image, index) => (
+                                    <div key={index} className="relative h-20 rounded-lg border border-sage-green/30 hover:border-amber-700 transition-colors cursor-pointer overflow-hidden">
                                         <Image
                                             src={image}
-                                            alt={`${game.name} - Thumbnail ${index + 1}`}
+                                            alt={`${game.name} - View ${index + 1}`}
                                             fill
                                             className="object-cover"
                                             sizes="80px"
                                         />
-                                        {/* Selected indicator */}
-                                        {selectedImageIndex === index && (
-                                            <div className="absolute inset-0 bg-amber-700/20"></div>
-                                        )}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-
-                        {/* Image Navigation Dots */}
-                        {game.images.length > 1 && (
-                            <div className="flex justify-center space-x-2 pt-2">
-                                {game.images.map((_: any, index: number) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setSelectedImageIndex(index)}
-                                        className={`w-3 h-3 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 ${selectedImageIndex === index
-                                                ? 'bg-amber-700 scale-125'
-                                                : 'bg-sage-green/30 hover:bg-amber-700/50'
-                                            }`}
-                                        aria-label={`Go to image ${index + 1}`}
-                                        type="button"
-                                    />
+                                    </div>
                                 ))}
                             </div>
                         )}
@@ -201,7 +127,7 @@ function GameDetailClient({ game }: { game: any }) {
                                 <span>Game Features</span>
                             </h3>
                             <ul className="space-y-2">
-                                {game.features.map((feature: string, index: number) => (
+                                {game.features.map((feature, index) => (
                                     <li key={index} className="flex items-center space-x-2 text-deep-brown/80">
                                         <CheckCircle className="w-4 h-4 text-sage-green flex-shrink-0" />
                                         <span>{feature}</span>
@@ -210,40 +136,28 @@ function GameDetailClient({ game }: { game: any }) {
                             </ul>
                         </div>
 
-                        {/* Enhanced Purchase Section */}
+                        {/* Purchase Section */}
                         <div className="bg-white p-6 rounded-lg border border-sage-green/20 space-y-4">
                             <div className="flex items-center justify-between">
                                 <span className="text-lg font-semibold text-deep-brown">Quantity:</span>
                                 <div className="flex items-center border border-sage-green/30 rounded-lg">
-                                    <button
-                                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                        className="p-2 hover:bg-sage-green/10 transition-colors"
-                                        type="button"
-                                    >
+                                    <button className="p-2 hover:bg-sage-green/10 transition-colors">
                                         <Minus className="w-4 h-4 text-deep-brown" />
                                     </button>
-                                    <span className="px-4 py-2 text-deep-brown font-medium min-w-[3rem] text-center">{quantity}</span>
-                                    <button
-                                        onClick={() => setQuantity(quantity + 1)}
-                                        className="p-2 hover:bg-sage-green/10 transition-colors"
-                                        type="button"
-                                    >
+                                    <span className="px-4 py-2 text-deep-brown font-medium">1</span>
+                                    <button className="p-2 hover:bg-sage-green/10 transition-colors">
                                         <Plus className="w-4 h-4 text-deep-brown" />
                                     </button>
                                 </div>
                             </div>
 
                             {game.inStock ? (
-                                <button
-                                    onClick={handleAddToCart}
-                                    className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
-                                    type="button"
-                                >
+                                <button className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group">
                                     <ShoppingCart className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                    <span>Add {quantity} to Cart - ${(game.price * quantity).toFixed(2)}</span>
+                                    <span>Add to Cart - ${game.price}</span>
                                 </button>
                             ) : (
-                                <button disabled className="w-full bg-gray-400 text-white px-8 py-4 rounded-lg font-semibold cursor-not-allowed" type="button">
+                                <button disabled className="w-full bg-gray-400 text-white px-8 py-4 rounded-lg font-semibold cursor-not-allowed">
                                     Out of Stock
                                 </button>
                             )}
@@ -260,7 +174,7 @@ function GameDetailClient({ game }: { game: any }) {
                                     </div>
                                 )}
 
-                                <button className="flex items-center space-x-1 text-deep-brown/60 hover:text-amber-700 transition-colors" type="button">
+                                <button className="flex items-center space-x-1 text-deep-brown/60 hover:text-amber-700 transition-colors">
                                     <Share2 className="w-4 h-4" />
                                     <span>Share</span>
                                 </button>
@@ -283,24 +197,4 @@ function GameDetailClient({ game }: { game: any }) {
             </div>
         </div>
     );
-}
-
-// Get game by handle from our data
-async function getGame(handle: string) {
-    return games.find(game => game.handle === handle) || null;
-}
-
-export default async function GameDetailPage({
-    params,
-}: {
-    params: Promise<{ handle: string }>;
-}) {
-    const { handle } = await params;
-    const game = await getGame(handle);
-
-    if (!game) {
-        notFound();
-    }
-
-    return <GameDetailClient game={game} />;
 }
