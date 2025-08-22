@@ -1,3 +1,4 @@
+**README.md**
 ```md
 # Given Ministry LLC Boardgame Storefront
 
@@ -10,8 +11,8 @@ Build a **headless e-commerce** site for a board game company to **browse invent
 - **Frontend:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **Future Integration:** Shopify Storefront API (for products, cart, checkout)
-- **Optional Later:** Sanity CMS (for blog/content management)
+- **Data Management:** Local TypeScript files (developer-maintained)
+- **Future Integration:** Shopify Storefront API (for cart, checkout only)
 
 ## 🎨 Design Theme
 **Warm Religious-Inspired Color Palette:**
@@ -26,7 +27,7 @@ Colors evoke feelings of warmth, comfort, stability, peace, and tradition.
 ## 📄 Current Pages
 
 ### ✅ Completed Pages
-1. **Home (`/`)** - Hero section, featured games, value propositions
+1. **Home (`/`)** - Hero section, about section, value propositions, contact
 2. **Games List (`/games`)** - Product grid with category filters and sorting
 3. **Game Detail (`/games/[handle]`)** - Individual product pages with details
 4. **About & Contact (`/about`)** - Combined company info and contact form
@@ -39,20 +40,36 @@ Colors evoke feelings of warmth, comfort, stability, peace, and tradition.
 - **Footer** - Company info, links, newsletter signup
 - **Responsive Design** - Mobile-friendly navigation and layouts
 
+## 🎮 Current Inventory
+
+### Games Data Structure
+Games are maintained in `src/data/games.ts` with TypeScript interfaces for:
+- Product information (name, price, description)
+- Game specifications (players, playtime, age)
+- Categories and filtering
+- Stock status and ratings
+
+### Current Games
+- **Freedom's Journey** ($29.99) - Educational game about the Underground Railroad
+  - Category: Educational
+  - Players: 2-6
+  - Playtime: 45-60 minutes
+  - Age: 8+
+
 ## 🚀 Current Status
 
 ### What's Working
 - ✅ Complete page structure and navigation
 - ✅ Responsive design with warm color theme
-- ✅ Product filtering and sorting (placeholder data)
+- ✅ Real product data for Freedom's Journey
+- ✅ Product filtering and sorting with Educational category
 - ✅ Dynamic routing for individual games
-- ✅ Interactive cart functionality
+- ✅ Interactive cart functionality (frontend only)
 - ✅ Contact form (frontend only)
 - ✅ FAQ accordion interface
 - ✅ Comprehensive policies page
 
-### Placeholder Features (Ready for Integration)
-- 🔄 **Product Data:** Currently using hardcoded game data
+### Frontend-Only Features (Ready for Integration)
 - 🔄 **Cart Management:** Frontend-only cart state
 - 🔄 **Checkout:** Button ready for Shopify redirect
 - 🔄 **Contact Form:** Frontend form ready for backend
@@ -60,24 +77,22 @@ Colors evoke feelings of warmth, comfort, stability, peace, and tradition.
 
 ## 🔮 Next Steps (Integration Phase)
 
-### 1. Shopify Integration
+### 1. Shopify Integration (Optional)
 ```bash
-# Environment variables to add:
+# Environment variables to add if using Shopify:
 SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
 SHOPIFY_STOREFRONT_TOKEN=your-storefront-access-token
 ```
 
-**API Integration Tasks:**
-- [ ] Connect `/games` to Shopify products API
-- [ ] Connect `/games/[handle]` to individual product queries
-- [ ] Implement cart API routes (`/api/cart/create`, `/api/cart/add`)
+**API Integration Tasks (if needed):**
+- [ ] Connect cart to Shopify cart API
 - [ ] Add checkout redirect to Shopify hosted checkout
-- [ ] Display real inventory/availability status
+- [ ] Sync inventory status with Shopify
 
-### 2. Content Management (Optional)
-- [ ] Add Sanity CMS for blog/content pages
-- [ ] Create `/studio` route for content editing
-- [ ] Add dynamic content sections
+### 2. Inventory Management
+- [ ] Add more games to `src/data/games.ts`
+- [ ] Add product images to `public/images/games/`
+- [ ] Update game data as needed
 
 ### 3. Production Features
 - [ ] Form submission handling (contact, newsletter)
@@ -121,18 +136,41 @@ src/
 ├── components/
 │   ├── Header.tsx              # Navigation component
 │   └── Footer.tsx              # Footer component
+├── config/
+│   └── company.ts              # Company configuration
+├── data/
+│   └── games.ts                # Games inventory data
 └── [config files]
 ```
 
-## 🎮 Sample Game Data
+## 🎮 Adding New Games
 
-Currently includes placeholder data for:
-- Settlers of Catan ($49.99)
-- Ticket to Ride ($39.99) 
-- Codenames ($19.99)
-- Wingspan ($59.99)
-- Azul ($34.99)
-- Exploding Kittens ($19.99)
+To add a new game, update `src/data/games.ts`:
+
+```typescript
+{
+  id: 2,
+  name: "Your Game Name",
+  price: 39.99,
+  category: "family", // strategy, family, party, educational
+  handle: "your-game-handle",
+  players: "2-4 players",
+  playtime: "30-60 minutes", 
+  age: "10+",
+  rating: 4.5,
+  reviews: 23,
+  isNew: true,
+  inStock: true,
+  description: "Short description for cards and listings",
+  longDescription: "Detailed description for product page",
+  features: [
+    "Feature 1",
+    "Feature 2", 
+    "Feature 3"
+  ],
+  images: [] // Add image paths when available
+}
+```
 
 ## 📝 Development Notes
 
@@ -147,6 +185,7 @@ Currently includes placeholder data for:
 - **Styling:** Tailwind utility classes only
 - **Components:** Functional components with hooks
 - **Routing:** Next.js 15 App Router conventions
+- **Data:** Local TypeScript files for game inventory
 
 ## 🔄 Deployment Plan
 
@@ -157,7 +196,7 @@ Currently includes placeholder data for:
 ### Future: Production Deployment
 1. **Vercel** (recommended for Next.js)
 2. **Domain Setup** (client-owned)
-3. **Environment Variables** (Shopify keys)
+3. **Environment Variables** (if Shopify integration added)
 4. **SSL/HTTPS** (automatic with Vercel)
 
 ## 🏢 Business Requirements
@@ -168,12 +207,13 @@ Currently includes placeholder data for:
 - [x] Shopping cart functionality
 - [x] Company information and policies
 - [x] Contact methods and FAQ
+- [x] Real game data (Freedom's Journey)
 
 ### Post-MVP Features 🔄
-- [ ] Live Shopify product data
-- [ ] Hosted checkout integration
+- [ ] Additional games in inventory
+- [ ] Product images
+- [ ] Shopify integration (optional)
 - [ ] Email marketing integration
-- [ ] CMS for content management
 - [ ] Advanced search functionality
 
 ## 📞 Support & Contact
@@ -182,7 +222,20 @@ For development questions or business requirements, refer to the contact informa
 
 ---
 
-**Status:** ✅ Frontend Complete - Ready for Shopify Integration  
-**Last Updated:** [Current Date]  
-**Version:** 0.2.0 (Frontend MVP Complete)
+**Status:** ✅ Frontend Complete with Real Game Data  
+**Last Updated:** August 21, 2025  
+**Version:** 1.0.0 (Real Inventory Added)
 ```
+
+The key updates made to the documentation:
+
+1. **Removed Sanity CMS** - No longer mentioned as a dependency
+2. **Added Data Management** - Documented the local TypeScript approach
+3. **Updated Current Status** - Reflects Freedom's Journey being added
+4. **Added Inventory Section** - Documents the current games and data structure
+5. **Added Adding Games Guide** - Shows how to add new games easily
+6. **Updated Tech Stack** - Removed CMS dependencies
+7. **Simplified Integration** - Shopify is now optional for checkout only
+8. **Updated Version** - Bumped to 1.0.0 since you have real inventory
+
+The documentation now accurately reflects your current setup with local data management and no external CMS dependencies.
