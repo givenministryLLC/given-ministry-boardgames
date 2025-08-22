@@ -4,18 +4,12 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-    Filter,
-    SortAsc,
+    ArrowUpDown,
+    ArrowUp,
+    ArrowDown,
     Grid3X3,
     List,
-    Star,
-    Users,
-    Clock,
-    Tag,
-    Search,
     Sparkles,
-    Award,
-    BookOpen,
     Loader2
 } from 'lucide-react';
 
@@ -36,10 +30,9 @@ interface ShopifyProduct {
 export default function GamesPage() {
     const [products, setProducts] = useState<ShopifyProduct[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState('all');
     const [sortBy, setSortBy] = useState('name');
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-    const [searchTerm, setSearchTerm] = useState('');
 
     // Fetch products from Shopify
     useEffect(() => {
@@ -59,25 +52,20 @@ export default function GamesPage() {
         fetchProducts();
     }, []);
 
-    const categoriesWithIcons = [
-        { value: 'all', label: 'All Games', icon: Grid3X3 },
-        { value: 'educational', label: 'Educational', icon: BookOpen },
-        { value: 'strategy', label: 'Strategy', icon: Filter }
-    ];
-
-    // Filter products
-    const filteredProducts = products.filter(product => {
-        const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
-        // For now, show all products regardless of category since we don't have category data from Shopify yet
-        return matchesSearch;
-    });
-
     // Sort products
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
-        if (sortBy === 'price') return parseFloat(a.price) - parseFloat(b.price);
-        if (sortBy === 'name') return a.title.localeCompare(b.title);
-        return 0;
+    const sortedProducts = [...products].sort((a, b) => {
+        let comparison = 0;
+        if (sortBy === 'price') {
+            comparison = parseFloat(a.price) - parseFloat(b.price);
+        } else if (sortBy === 'name') {
+            comparison = a.title.localeCompare(b.title);
+        }
+        return sortOrder === 'desc' ? -comparison : comparison;
     });
+
+    const toggleSortOrder = () => {
+        setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc');
+    };
 
     if (loading) {
         return (
@@ -106,40 +94,100 @@ export default function GamesPage() {
                         </h1>
                         <p className="text-deep-brown/70 mt-2">Discover your next favorite game from our curated collection</p>
                     </div>
-                    <div className="hidden md:flex items-center space-x-2 text-deep-brown/60">
-                        <span>{sortedProducts.length} games found</span>
+
+                    {/* Controls grouped together */}
+                    <div className="hidden md:flex flex-col items-end space-y-3">
+                        {/* Sort Controls */}
+                        <div className="flex items-center space-x-2">
+                            <span className="text-sm text-deep-brown/70 font-medium">Sort:</span>
+                            <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                                <button
+                                    onClick={() => setSortBy('name')}
+                                    className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                        }`}
+                                >
+                                    Name
+                                </button>
+                                <button
+                                    onClick={() => setSortBy('price')}
+                                    className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                        }`}
+                                >
+                                    Price
+                                </button>
+                            </div>
+                            <button
+                                onClick={toggleSortOrder}
+                                className="p-2 border border-sage-green/30 rounded-lg bg-white hover:bg-sage-green/10 transition-colors"
+                                title={sortOrder === 'asc' ? 'Sort descending' : 'Sort ascending'}
+                            >
+                                {sortOrder === 'asc' ? (
+                                    <ArrowUp className="w-4 h-4 text-deep-brown" />
+                                ) : (
+                                    <ArrowDown className="w-4 h-4 text-deep-brown" />
+                                )}
+                            </button>
+                        </div>
+
+                        {/* View Toggle */}
+                        <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                            <button
+                                onClick={() => setViewMode('grid')}
+                                className={`p-3 transition-colors ${viewMode === 'grid' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                    }`}
+                            >
+                                <Grid3X3 className="w-5 h-5" />
+                            </button>
+                            <button
+                                onClick={() => setViewMode('list')}
+                                className={`p-3 transition-colors ${viewMode === 'list' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                    }`}
+                            >
+                                <List className="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                {/* Enhanced Search and Filters */}
-                <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20 mb-8">
-                    <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-                        {/* Search Bar */}
-                        <div className="relative flex-1 max-w-md">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-deep-brown/40" />
-                            <input
-                                type="text"
-                                placeholder="Search games..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-sage-green/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-600 focus:border-transparent bg-white text-deep-brown"
-                            />
+                {/* Mobile Controls */}
+                <div className="md:hidden bg-white p-4 rounded-xl shadow-lg border border-sage-green/20 mb-8">
+                    <div className="flex flex-col space-y-4">
+                        {/* Mobile Sort */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-deep-brown/70 font-medium">Sort by:</span>
+                            <div className="flex items-center space-x-2">
+                                <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                                    <button
+                                        onClick={() => setSortBy('name')}
+                                        className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            }`}
+                                    >
+                                        Name
+                                    </button>
+                                    <button
+                                        onClick={() => setSortBy('price')}
+                                        className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price' ? 'bg-amber-700 text-warm-cream' : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            }`}
+                                    >
+                                        Price
+                                    </button>
+                                </div>
+                                <button
+                                    onClick={toggleSortOrder}
+                                    className="p-2 border border-sage-green/30 rounded-lg bg-white hover:bg-sage-green/10 transition-colors"
+                                >
+                                    {sortOrder === 'asc' ? (
+                                        <ArrowUp className="w-4 h-4 text-deep-brown" />
+                                    ) : (
+                                        <ArrowDown className="w-4 h-4 text-deep-brown" />
+                                    )}
+                                </button>
+                            </div>
                         </div>
 
-                        {/* Sort and View Controls */}
-                        <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2">
-                                <SortAsc className="w-4 h-4 text-deep-brown/60" />
-                                <select
-                                    value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
-                                    className="border border-sage-green/30 rounded-lg px-3 py-2 bg-white text-deep-brown focus:outline-none focus:ring-2 focus:ring-amber-600"
-                                >
-                                    <option value="name">Name</option>
-                                    <option value="price">Price</option>
-                                </select>
-                            </div>
-
+                        {/* Mobile View Toggle */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-sm text-deep-brown/70 font-medium">View:</span>
                             <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
                                 <button
                                     onClick={() => setViewMode('grid')}
@@ -252,16 +300,10 @@ export default function GamesPage() {
                 {sortedProducts.length === 0 && !loading && (
                     <div className="text-center py-16">
                         <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Search className="w-12 h-12 text-sage-green" />
+                            <Sparkles className="w-12 h-12 text-sage-green" />
                         </div>
-                        <h3 className="text-xl font-semibold text-deep-brown mb-2">No games found</h3>
-                        <p className="text-deep-brown/60 mb-4">Try adjusting your search criteria</p>
-                        <button
-                            onClick={() => setSearchTerm('')}
-                            className="bg-amber-700 text-warm-cream px-6 py-2 rounded-lg font-medium hover:bg-amber-800 transition-colors"
-                        >
-                            Clear Search
-                        </button>
+                        <h3 className="text-xl font-semibold text-deep-brown mb-2">No games available</h3>
+                        <p className="text-deep-brown/60">Check back soon for new additions to our collection!</p>
                     </div>
                 )}
             </div>
