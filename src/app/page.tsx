@@ -17,7 +17,8 @@ import {
   Send,
   CheckCircle,
   MessageCircle,
-  Globe
+  Globe,
+  Gamepad2
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
