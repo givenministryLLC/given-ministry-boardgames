@@ -289,6 +289,7 @@ export default function GameDetailPage({
 
                                                 const data = await response.json();
                                                 if (data.success) {
+                                                    window.dispatchEvent(new Event('cartUpdated'));
                                                     // Redirect to cart page
                                                     window.location.href = '/cart';
                                                 } else {

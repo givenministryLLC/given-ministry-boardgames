@@ -128,6 +128,7 @@ export default function CartPage() {
                 const data = await response.json();
                 if (data.success) {
                     setCart(data.cart);
+                    window.dispatchEvent(new Event('cartUpdated'));
                 }
             } else {
                 // Update quantity
@@ -143,6 +144,7 @@ export default function CartPage() {
                 const data = await response.json();
                 if (data.success) {
                     setCart(data.cart);
+                    window.dispatchEvent(new Event('cartUpdated'));
                 }
             }
         } catch (error) {
