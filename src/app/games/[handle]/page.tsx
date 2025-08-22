@@ -216,10 +216,7 @@ export default function GameDetailPage({
 
                         {/* Product Description */}
                         <div className="space-y-4">
-                            <div
-                                className="text-deep-brown leading-relaxed"
-                                dangerouslySetInnerHTML={{ __html: product.description }}
-                            />
+                            <p className="text-deep-brown leading-relaxed">{product.description}</p>
                         </div>
 
                         {/* Stock Info */}
