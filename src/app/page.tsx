@@ -39,8 +39,21 @@ export default function Home() {
               <Sparkles className="w-12 h-12 text-mint-whisper animate-spin" />
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Welcome to {companyConfig.name}
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in relative">
+            <span className="relative inline-block text-warm-cream font-black tracking-tight transform hover:scale-105 transition-all duration-300"
+              style={{
+                textShadow: `
+                  2px 2px 0px #7a8471,
+                  4px 4px 0px #6b7562,
+                  6px 6px 0px #5c6653,
+                  8px 8px 0px #4d5744,
+                  10px 10px 0px #3e4835,
+                  12px 12px 0px #2f3926,
+                  14px 14px 20px rgba(0,0,0,0.4)
+                `         
+              }}>
+              Welcome to {companyConfig.name}
+            </span>
           </h1>
           <p className="text-xl mb-8 text-warm-cream/90 max-w-2xl mx-auto">
             {companyConfig.tagline}
