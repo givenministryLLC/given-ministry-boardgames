@@ -75,7 +75,7 @@ export default function GameDetailPage({
             <div className="bg-warm-cream min-h-screen">
                 <div className="max-w-7xl mx-auto px-4 py-8">
                     <div className="flex items-center justify-center py-20">
-                        <Loader2 className="w-8 h-8 animate-spin text-amber-700" />
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
                         <span className="ml-2 text-deep-brown">Loading game...</span>
                     </div>
                 </div>
@@ -161,10 +161,10 @@ export default function GameDetailPage({
                                     )}
                                 </>
                             ) : (
-                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-amber-100" />
+                                <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-mint-whisper" />
                             )}
 
-                            <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent pointer-events-none"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none"></div>
                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1 z-10">
                                 <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
                                 <span className="font-medium text-deep-brown">
@@ -181,8 +181,8 @@ export default function GameDetailPage({
                                         key={index}
                                         onClick={() => goToImage(index)}
                                         className={`relative h-20 rounded-lg border-2 transition-all duration-200 cursor-pointer overflow-hidden ${index === currentImageIndex
-                                            ? 'border-amber-700 shadow-lg'
-                                            : 'border-sage-green/30 hover:border-amber-500'
+                                                ? 'border-primary shadow-lg'
+                                                : 'border-sage-green/30 hover:border-sanctuary-green'
                                             }`}
                                     >
                                         <Image
@@ -193,7 +193,7 @@ export default function GameDetailPage({
                                             sizes="80px"
                                         />
                                         {index === currentImageIndex && (
-                                            <div className="absolute inset-0 bg-amber-700/20"></div>
+                                            <div className="absolute inset-0 bg-primary/20"></div>
                                         )}
                                     </button>
                                 ))}
@@ -205,7 +205,7 @@ export default function GameDetailPage({
                     <div className="space-y-6">
                         <div>
                             <h1 className="text-4xl font-bold mb-4 text-deep-brown">{product.title}</h1>
-                            <p className="text-3xl font-bold text-gold mb-6">${product.price}</p>
+                            <p className="text-3xl font-bold text-sanctuary-green mb-6">${product.price}</p>
                         </div>
 
                         {/* Product Description */}
@@ -254,7 +254,7 @@ export default function GameDetailPage({
 
                             {product.inStock ? (
                                 <button
-                                    className="w-full bg-amber-700 text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
+                                    className="w-full bg-primary text-warm-cream px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group"
                                     onClick={async () => {
                                         try {
                                             // Get or create cart
@@ -316,7 +316,7 @@ export default function GameDetailPage({
                                     <span>Secure checkout</span>
                                 </div>
 
-                                <button className="flex items-center space-x-1 text-deep-brown/60 hover:text-amber-700 transition-colors">
+                                <button className="flex items-center space-x-1 text-deep-brown/60 hover:text-primary transition-colors">
                                     <Share2 className="w-4 h-4" />
                                     <span>Share</span>
                                 </button>

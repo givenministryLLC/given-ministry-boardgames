@@ -165,7 +165,7 @@ export default function CartPage() {
             <div className="bg-warm-cream min-h-screen">
                 <div className="max-w-4xl mx-auto px-4 py-8 text-center">
                     <div className="flex items-center justify-center py-20">
-                        <Loader2 className="w-8 h-8 animate-spin text-amber-700" />
+                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
                         <span className="ml-2 text-deep-brown">Loading cart...</span>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ export default function CartPage() {
                         <p className="text-deep-brown/70 mb-8">Looks like you haven't added any games yet. Let's fix that!</p>
                         <Link
                             href="/games"
-                            className="inline-flex items-center space-x-2 bg-amber-700 text-warm-cream px-8 py-3 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl group"
+                            className="inline-flex items-center space-x-2 bg-primary text-warm-cream px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-200 shadow-lg hover:shadow-xl group"
                         >
                             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                             <span>Continue Shopping</span>
@@ -207,7 +207,7 @@ export default function CartPage() {
             <div className="max-w-6xl mx-auto px-4 py-8">
                 {/* Enhanced Header */}
                 <div className="flex items-center space-x-3 mb-8">
-                    <div className="bg-amber-700 p-2 rounded-lg">
+                    <div className="bg-primary p-2 rounded-lg">
                         <ShoppingCart className="w-6 h-6 text-warm-cream" />
                     </div>
                     <div>
@@ -222,7 +222,7 @@ export default function CartPage() {
                         {cartItems.map(({ node: item }) => (
                             <div key={item.id} className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20 hover:shadow-xl transition-shadow">
                                 <div className="flex items-center gap-6">
-                                    <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 w-24 h-24 rounded-lg border border-sage-green/30 flex-shrink-0 overflow-hidden">
+                                    <div className="bg-gradient-to-br from-sage-green/20 to-mint-whisper w-24 h-24 rounded-lg border border-sage-green/30 flex-shrink-0 overflow-hidden">
                                         {item.merchandise.image ? (
                                             <Image
                                                 src={item.merchandise.image.url}
@@ -236,7 +236,7 @@ export default function CartPage() {
 
                                     <div className="flex-1 min-w-0">
                                         <Link href={`/games/${item.merchandise.product.handle}`} className="group">
-                                            <h3 className="font-semibold text-lg text-deep-brown group-hover:text-amber-700 transition-colors mb-1">
+                                            <h3 className="font-semibold text-lg text-deep-brown group-hover:text-primary transition-colors mb-1">
                                                 {item.merchandise.product.title}
                                             </h3>
                                         </Link>
@@ -270,7 +270,7 @@ export default function CartPage() {
                                             </div>
 
                                             <div className="text-right">
-                                                <div className="font-bold text-xl text-gold">
+                                                <div className="font-bold text-xl text-sanctuary-green">
                                                     ${item.estimatedCost.totalAmount.amount}
                                                 </div>
                                                 <button
@@ -292,7 +292,7 @@ export default function CartPage() {
                         <div className="pt-4">
                             <Link
                                 href="/games"
-                                className="inline-flex items-center space-x-2 text-amber-700 hover:text-amber-800 font-medium transition-colors group"
+                                className="inline-flex items-center space-x-2 text-primary hover:text-primary-dark font-medium transition-colors group"
                             >
                                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                                 <span>Continue Shopping</span>
@@ -304,7 +304,7 @@ export default function CartPage() {
                     <div className="space-y-6">
                         <div className="bg-white p-6 rounded-xl shadow-lg border border-sage-green/20">
                             <h3 className="font-semibold text-deep-brown mb-4 flex items-center space-x-2">
-                                <Gift className="w-5 h-5 text-amber-700" />
+                                <Gift className="w-5 h-5 text-primary" />
                                 <span>Order Summary</span>
                             </h3>
 
@@ -320,14 +320,14 @@ export default function CartPage() {
                                 <div className="border-t border-sage-green/30 pt-3">
                                     <div className="flex justify-between font-bold text-lg text-deep-brown">
                                         <span>Total:</span>
-                                        <span className="text-gold">${total.toFixed(2)}</span>
+                                        <span className="text-sanctuary-green">${total.toFixed(2)}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <button
                                 onClick={handleCheckout}
-                                className="w-full bg-amber-700 text-warm-cream py-4 rounded-lg font-semibold hover:bg-amber-800 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group mb-4"
+                                className="w-full bg-primary text-warm-cream py-4 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 group mb-4"
                             >
                                 <Shield className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                 <span>Secure Checkout</span>

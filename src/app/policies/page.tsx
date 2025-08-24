@@ -14,16 +14,16 @@ export default function PoliciesPage() {
     return (
         <div className="bg-warm-cream min-h-screen">
             {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-deep-brown via-amber-900 to-amber-800 text-warm-cream py-16 overflow-hidden">
+            <section className="relative bg-gradient-to-br from-forest-prayer via-primary to-sanctuary-green text-warm-cream py-16 overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-gold/20 rounded-full animate-pulse"></div>
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-mint-whisper/20 rounded-full animate-pulse"></div>
                     <div className="absolute bottom-8 -left-8 w-16 h-16 bg-warm-cream/10 rounded-full animate-bounce"></div>
                 </div>
 
                 <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
                     <div className="flex justify-center mb-6">
                         <div className="bg-warm-cream/20 p-4 rounded-full">
-                            <Shield className="w-10 h-10 text-gold" />
+                            <Shield className="w-10 h-10 text-mint-whisper" />
                         </div>
                     </div>
                     <h1 className="text-4xl font-bold mb-4">Our Policies</h1>
@@ -48,10 +48,10 @@ export default function PoliciesPage() {
                                 href={item.href}
                                 className="group bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 border border-sage-green/20 text-center hover:-translate-y-1"
                             >
-                                <div className="bg-amber-100 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-amber-700 transition-colors">
-                                    <IconComponent className="w-6 h-6 text-amber-700 group-hover:text-warm-cream transition-colors" />
+                                <div className="bg-mint-whisper w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-primary transition-colors">
+                                    <IconComponent className="w-6 h-6 text-primary group-hover:text-warm-cream transition-colors" />
                                 </div>
-                                <span className="font-medium text-deep-brown group-hover:text-amber-700 transition-colors">
+                                <span className="font-medium text-deep-brown group-hover:text-primary transition-colors">
                                     {item.title}
                                 </span>
                             </a>
@@ -62,7 +62,7 @@ export default function PoliciesPage() {
                 {/* Return Policy */}
                 <section id="returns" className="mb-12 bg-white p-8 rounded-2xl shadow-lg border border-sage-green/20">
                     <div className="flex items-center space-x-3 mb-6">
-                        <div className="bg-amber-700 p-3 rounded-xl">
+                        <div className="bg-primary p-3 rounded-xl">
                             <RefreshCw className="w-8 h-8 text-warm-cream" />
                         </div>
                         <h2 className="text-3xl font-bold text-deep-brown">Return Policy</h2>
@@ -71,7 +71,7 @@ export default function PoliciesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                         <div className="bg-sage-green/10 p-6 rounded-xl">
                             <div className="flex items-center space-x-2 mb-3">
-                                <Clock className="w-5 h-5 text-amber-700" />
+                                <Clock className="w-5 h-5 text-primary" />
                                 <h3 className="font-semibold text-deep-brown">{companyConfig.policies.returnDays}-Day Returns</h3>
                             </div>
                             <p className="text-deep-brown/80 text-sm">
@@ -81,7 +81,7 @@ export default function PoliciesPage() {
 
                         <div className="bg-sage-green/10 p-6 rounded-xl">
                             <div className="flex items-center space-x-2 mb-3">
-                                <CheckCircle className="w-5 h-5 text-amber-700" />
+                                <CheckCircle className="w-5 h-5 text-primary" />
                                 <h3 className="font-semibold text-deep-brown">Simple Process</h3>
                             </div>
                             <p className="text-deep-brown/80 text-sm">
@@ -90,13 +90,13 @@ export default function PoliciesPage() {
                         </div>
                     </div>
 
-                    <div className="bg-amber-50 p-6 rounded-xl border border-amber-200">
-                        <h3 className="font-semibold text-amber-800 mb-2">Quick & Easy Returns</h3>
-                        <p className="text-amber-800 text-sm mb-3">
+                    <div className="bg-mint-whisper p-6 rounded-xl border border-olive-mist">
+                        <h3 className="font-semibold text-forest-prayer mb-2">Quick & Easy Returns</h3>
+                        <p className="text-forest-prayer text-sm mb-3">
                             As a small business, we keep returns simple. Games must be unopened and in original condition.
                             Contact us and we'll send you a prepaid return label.
                         </p>
-                        <p className="text-amber-800 text-sm">
+                        <p className="text-forest-prayer text-sm">
                             <strong>Damaged items:</strong> We'll replace damaged games immediately at no cost to you.
                         </p>
                     </div>
@@ -105,7 +105,7 @@ export default function PoliciesPage() {
                 {/* Shipping Policy */}
                 <section id="shipping" className="mb-12 bg-white p-8 rounded-2xl shadow-lg border border-sage-green/20">
                     <div className="flex items-center space-x-3 mb-6">
-                        <div className="bg-amber-700 p-3 rounded-xl">
+                        <div className="bg-primary p-3 rounded-xl">
                             <Truck className="w-8 h-8 text-warm-cream" />
                         </div>
                         <h2 className="text-3xl font-bold text-deep-brown">Shipping</h2>
@@ -143,7 +143,7 @@ export default function PoliciesPage() {
                 {/* Privacy Policy */}
                 <section id="privacy" className="mb-12 bg-white p-8 rounded-2xl shadow-lg border border-sage-green/20">
                     <div className="flex items-center space-x-3 mb-6">
-                        <div className="bg-amber-700 p-3 rounded-xl">
+                        <div className="bg-primary p-3 rounded-xl">
                             <Shield className="w-8 h-8 text-warm-cream" />
                         </div>
                         <h2 className="text-3xl font-bold text-deep-brown">Privacy Policy</h2>
@@ -152,7 +152,7 @@ export default function PoliciesPage() {
                     <div className="space-y-6">
                         <div className="bg-sage-green/10 p-6 rounded-xl">
                             <h3 className="font-semibold text-deep-brown mb-3 flex items-center space-x-2">
-                                <Shield className="w-5 h-5 text-amber-700" />
+                                <Shield className="w-5 h-5 text-primary" />
                                 <span>We Keep It Simple</span>
                             </h3>
                             <p className="text-deep-brown/80 text-sm mb-3">
@@ -166,9 +166,9 @@ export default function PoliciesPage() {
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                                <h4 className="font-medium text-amber-800 mb-2">What We Don't Do</h4>
-                                <div className="space-y-1 text-sm text-amber-700">
+                            <div className="bg-mint-whisper p-4 rounded-lg border border-olive-mist">
+                                <h4 className="font-medium text-forest-prayer mb-2">What We Don't Do</h4>
+                                <div className="space-y-1 text-sm text-sanctuary-green">
                                     <p>• Sell your information</p>
                                     <p>• Send spam emails</p>
                                     <p>• Share data with third parties</p>
@@ -188,7 +188,7 @@ export default function PoliciesPage() {
                 </section>
 
                 {/* Contact CTA */}
-                <div className="bg-gradient-to-r from-amber-700 to-amber-800 p-8 rounded-2xl text-warm-cream text-center">
+                <div className="bg-gradient-to-r from-primary to-primary-dark p-8 rounded-2xl text-warm-cream text-center">
                     <div className="flex justify-center mb-4">
                         <Heart className="w-12 h-12" />
                     </div>
@@ -199,7 +199,7 @@ export default function PoliciesPage() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
                             href={`mailto:${companyConfig.email}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
+                            className="inline-flex items-center space-x-2 bg-warm-cream text-primary px-6 py-3 rounded-lg font-semibold hover:bg-mint-whisper transition-colors"
                         >
                             <Mail className="w-5 h-5" />
                             <span>Email Us</span>

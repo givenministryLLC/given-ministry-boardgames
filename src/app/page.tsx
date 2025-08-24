@@ -26,17 +26,17 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-warm-cream">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-amber-700 via-yellow-800 to-amber-900 text-warm-cream py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green text-warm-cream py-20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-gold/20 rounded-full animate-pulse"></div>
+          <div className="absolute -top-4 -right-4 w-24 h-24 bg-mint-whisper/20 rounded-full animate-pulse"></div>
           <div className="absolute top-1/2 -left-8 w-16 h-16 bg-warm-cream/10 rounded-full animate-bounce"></div>
-          <div className="absolute bottom-8 right-1/3 w-12 h-12 bg-gold/30 rounded-full animate-pulse"></div>
+          <div className="absolute bottom-8 right-1/3 w-12 h-12 bg-olive-mist/30 rounded-full animate-pulse"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
           <div className="flex justify-center mb-6">
             <div className="bg-warm-cream/20 p-4 rounded-full">
-              <Sparkles className="w-12 h-12 text-gold animate-spin" />
+              <Sparkles className="w-12 h-12 text-mint-whisper animate-spin" />
             </div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -47,7 +47,7 @@ export default function Home() {
           </p>
           <Link
             href="/games"
-            className="inline-flex items-center space-x-2 bg-warm-cream text-deep-brown px-8 py-4 rounded-xl font-semibold hover:bg-yellow-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
+            className="inline-flex items-center space-x-2 bg-warm-cream text-forest-prayer px-8 py-4 rounded-xl font-semibold hover:bg-mint-whisper transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 group"
           >
             <span>Shop Our Games</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -61,7 +61,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="bg-amber-700 p-2 rounded-lg">
+                <div className="bg-primary p-2 rounded-lg">
                   <Heart className="w-6 h-6 text-warm-cream" />
                 </div>
                 <h2 className="text-3xl font-bold text-deep-brown">Our Family Story</h2>
@@ -82,8 +82,8 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="bg-white p-4 rounded-xl shadow-md border border-sage-green/20">
                   <div className="text-center">
-                    <div className="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Heart className="w-6 h-6 text-amber-700" />
+                    <div className="bg-mint-whisper w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Heart className="w-6 h-6 text-primary" />
                     </div>
                     <div className="text-2xl font-bold text-deep-brown">Family</div>
                     <div className="text-sm text-deep-brown/70">{companyConfig.values.familyOwned}</div>
@@ -91,8 +91,8 @@ export default function Home() {
                 </div>
                 <div className="bg-white p-4 rounded-xl shadow-md border border-sage-green/20">
                   <div className="text-center">
-                    <div className="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <Award className="w-6 h-6 text-amber-700" />
+                    <div className="bg-mint-whisper w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <Award className="w-6 h-6 text-primary" />
                     </div>
                     <div className="text-2xl font-bold text-deep-brown">Hand</div>
                     <div className="text-sm text-deep-brown/70">{companyConfig.values.handPicked}</div>
@@ -102,10 +102,10 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="bg-gradient-to-br from-sage-green/20 to-amber-100 h-80 rounded-xl border border-sage-green/30 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-amber-700/20 to-transparent"></div>
+              <div className="bg-gradient-to-br from-sage-green/20 to-mint-whisper h-80 rounded-xl border border-sage-green/30 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
-                  <Star className="w-4 h-4 fill-current text-amber-600" />
+                  <Star className="w-4 h-4 fill-current text-sanctuary-green" />
                   <span className="font-medium text-deep-brown">{companyConfig.values.established}</span>
                 </div>
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center space-x-1">
@@ -122,34 +122,34 @@ export default function Home() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center mb-4">
-            <Shield className="w-8 h-8 text-amber-700" />
+            <Shield className="w-8 h-8 text-primary" />
           </div>
           <h2 className="text-4xl font-bold mb-4 text-deep-brown">Why Choose Our Family Business?</h2>
           <p className="text-deep-brown/70 mb-12 max-w-2xl mx-auto">
             We're not just another online store – we're a family that cares about bringing joy to your family
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group bg-sage-green/5 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
-              <div className="bg-amber-700/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-700 transition-colors duration-300">
-                <Heart className="w-8 h-8 text-amber-700 group-hover:text-warm-cream transition-colors duration-300" />
+            <div className="group bg-mint-whisper p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
+                <Heart className="w-8 h-8 text-primary group-hover:text-warm-cream transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-amber-700">Personal Touch</h3>
+              <h3 className="text-xl font-semibold mb-3 text-primary">Personal Touch</h3>
               <p className="text-gray-600">Every order is personally handled with care. We know each game and can provide personal recommendations.</p>
             </div>
 
-            <div className="group bg-sage-green/5 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
-              <div className="bg-amber-700/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-700 transition-colors duration-300">
-                <Truck className="w-8 h-8 text-amber-700 group-hover:text-warm-cream transition-colors duration-300" />
+            <div className="group bg-mint-whisper p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
+                <Truck className="w-8 h-8 text-primary group-hover:text-warm-cream transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-amber-700">Fast & Careful Shipping</h3>
+              <h3 className="text-xl font-semibold mb-3 text-primary">Fast & Careful Shipping</h3>
               <p className="text-gray-600">We ship quickly and package with care to ensure your games arrive safely.</p>
             </div>
 
-            <div className="group bg-sage-green/5 p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
-              <div className="bg-amber-700/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-amber-700 transition-colors duration-300">
-                <Users className="w-8 h-8 text-amber-700 group-hover:text-warm-cream transition-colors duration-300" />
+            <div className="group bg-mint-whisper p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
+              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
+                <Users className="w-8 h-8 text-primary group-hover:text-warm-cream transition-colors duration-300" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-amber-700">Family Values</h3>
+              <h3 className="text-xl font-semibold mb-3 text-primary">Family Values</h3>
               <p className="text-gray-600">We understand the importance of family time and choose games that bring people together.</p>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <div className="flex justify-center mb-4">
-              <div className="bg-amber-700 p-3 rounded-full">
+              <div className="bg-primary p-3 rounded-full">
                 <MessageCircle className="w-8 h-8 text-warm-cream" />
               </div>
             </div>
@@ -175,18 +175,18 @@ export default function Home() {
             {/* Contact Info */}
             <div className="bg-white p-8 rounded-xl shadow-lg border border-sage-green/20">
               <h3 className="text-xl font-semibold mb-6 text-deep-brown flex items-center space-x-2">
-                <Globe className="w-6 h-6 text-amber-700" />
+                <Globe className="w-6 h-6 text-primary" />
                 <span>Contact Information</span>
               </h3>
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-amber-700" />
+                  <div className="bg-mint-whisper p-3 rounded-lg">
+                    <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Email</h4>
-                    <p className="text-amber-700 hover:text-amber-800 transition-colors">
+                    <p className="text-primary hover:text-primary-dark transition-colors">
                       <a href={`mailto:${companyConfig.email}`}>{companyConfig.email}</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
@@ -196,13 +196,13 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <Phone className="w-6 h-6 text-amber-700" />
+                  <div className="bg-mint-whisper p-3 rounded-lg">
+                    <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Phone</h4>
                     <p className="text-deep-brown/80">
-                      <a href={`tel:${companyConfig.phone}`} className="hover:text-amber-700 transition-colors">{companyConfig.phoneFormatted}</a>
+                      <a href={`tel:${companyConfig.phone}`} className="hover:text-primary transition-colors">{companyConfig.phoneFormatted}</a>
                     </p>
                     <p className="text-sm text-deep-brown/60 mt-1">
                       Call us for immediate assistance
@@ -211,8 +211,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <Clock className="w-6 h-6 text-amber-700" />
+                  <div className="bg-mint-whisper p-3 rounded-lg">
+                    <Clock className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Business Hours</h4>
@@ -225,8 +225,8 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="bg-amber-100 p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-amber-700" />
+                  <div className="bg-mint-whisper p-3 rounded-lg">
+                    <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-deep-brown mb-1">Location</h4>
@@ -241,20 +241,20 @@ export default function Home() {
             {/* Quick Contact */}
             <div className="bg-white p-8 rounded-xl shadow-lg border border-sage-green/20">
               <h3 className="text-xl font-semibold mb-6 text-deep-brown flex items-center space-x-2">
-                <Send className="w-6 h-6 text-amber-700" />
+                <Send className="w-6 h-6 text-primary" />
                 <span>Quick Contact</span>
               </h3>
 
               <div className="space-y-6">
-                <div className="bg-amber-50 p-6 rounded-xl border border-amber-200">
-                  <h4 className="font-semibold text-amber-800 mb-3">Need Game Recommendations?</h4>
-                  <p className="text-amber-700 text-sm mb-4">
+                <div className="bg-mint-whisper p-6 rounded-xl border border-olive-mist">
+                  <h4 className="font-semibold text-forest-prayer mb-3">Need Game Recommendations?</h4>
+                  <p className="text-primary text-sm mb-4">
                     Tell us about your group size, preferred game length, and what kind of fun you're looking for.
                     We'll help you find the perfect game!
                   </p>
                   <a
                     href={`mailto:${companyConfig.email}?subject=Game Recommendation Request`}
-                    className="inline-flex items-center space-x-2 bg-amber-700 text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-amber-800 transition-colors"
+                    className="inline-flex items-center space-x-2 bg-primary text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors"
                   >
                     <Mail className="w-4 h-4" />
                     <span>Ask for Recommendations</span>
@@ -269,7 +269,7 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
                       href={`mailto:${companyConfig.email}`}
-                      className="inline-flex items-center justify-center space-x-2 bg-sage-green text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green/80 transition-colors"
+                      className="inline-flex items-center justify-center space-x-2 bg-sage-green text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-sanctuary-green transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       <span>Email</span>

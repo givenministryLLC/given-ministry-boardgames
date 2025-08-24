@@ -63,7 +63,7 @@ export default function FAQPage() {
             <div className="max-w-4xl mx-auto px-4 py-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="bg-amber-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="bg-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <HelpCircle className="w-8 h-8 text-warm-cream" />
                     </div>
                     <h1 className="text-4xl font-bold mb-4 text-deep-brown">Frequently Asked Questions</h1>
@@ -84,8 +84,8 @@ export default function FAQPage() {
                                 >
                                     <div className="flex justify-between items-start">
                                         <div className="flex items-start space-x-4 flex-1">
-                                            <div className="bg-amber-100 p-2 rounded-lg flex-shrink-0">
-                                                <IconComponent className="w-5 h-5 text-amber-700" />
+                                            <div className="bg-mint-whisper p-2 rounded-lg flex-shrink-0">
+                                                <IconComponent className="w-5 h-5 text-primary" />
                                             </div>
                                             <div className="flex-1">
                                                 <h3 className="font-semibold text-lg text-deep-brown">{faq.question}</h3>
@@ -93,8 +93,8 @@ export default function FAQPage() {
                                         </div>
                                         <div className="ml-4 flex-shrink-0">
                                             {openItems.includes(faq.id) ?
-                                                <ChevronUp className="w-6 h-6 text-amber-700" /> :
-                                                <ChevronDown className="w-6 h-6 text-amber-700" />
+                                                <ChevronUp className="w-6 h-6 text-primary" /> :
+                                                <ChevronDown className="w-6 h-6 text-primary" />
                                             }
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ export default function FAQPage() {
                 </div>
 
                 {/* Contact CTA */}
-                <div className="bg-gradient-to-r from-amber-700 to-amber-800 p-8 rounded-xl text-warm-cream text-center">
+                <div className="bg-gradient-to-r from-primary to-primary-dark p-8 rounded-xl text-warm-cream text-center">
                     <div className="flex justify-center mb-4">
                         <MessageCircle className="w-12 h-12" />
                     </div>
@@ -124,7 +124,7 @@ export default function FAQPage() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
                             href={`mailto:${companyConfig.email}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream text-amber-700 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-50 transition-colors"
+                            className="inline-flex items-center space-x-2 bg-warm-cream text-primary px-6 py-3 rounded-lg font-semibold hover:bg-mint-whisper transition-colors"
                         >
                             <Mail className="w-5 h-5" />
                             <span>Email Us</span>
