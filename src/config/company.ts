@@ -9,7 +9,7 @@ export const companyConfig = {
         sunday: "Sunday: Closed"
     },
     description: "Your trusted source for amazing board games. Bringing families and friends together through the joy of gaming.",
-    tagline: "A small family business bringing you carefully selected board games for unforgettable moments together",
+    tagline: "A business that is founded under God values. It is one thing to say you are a Christian. This word has a lot of different meanings. It could mean lukewarm, hot or cold. It could mean a higher power, and higher being. A God with many names, and what I believe is the only wise and true God, who created heaven and earth and all that is in it.",
     values: {
         familyOwned: "Family Owned & Operated",
         handPicked: "Hand Picked Games",

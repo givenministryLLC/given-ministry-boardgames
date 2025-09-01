@@ -1,4 +1,3 @@
-// src/app/api/inventory/route.ts - UPDATED VERSION (First Image Only)
 import { createStorefrontApiClient } from '@shopify/storefront-api-client';
 
 // Define interfaces for type safety
