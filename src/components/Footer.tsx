@@ -108,26 +108,6 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Newsletter */}
-                    <div>
-                        <h4 className="font-semibold mb-4 text-mint-whisper flex items-center space-x-2">
-                            <Mail className="w-4 h-4" />
-                            <span>Stay Updated</span>
-                        </h4>
-                        <p className="text-warm-cream/80 mb-4">
-                            Subscribe to our newsletter for new game releases and special offers.
-                        </p>
-                        <div className="flex">
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                className="flex-1 px-3 py-2 bg-sanctuary-green/30 border border-sage-green text-warm-cream placeholder-warm-cream/60 rounded-l focus:outline-none focus:border-mint-whisper transition-colors"
-                            />
-                            <button className="bg-sanctuary-green px-4 py-2 rounded-r hover:bg-sage-green transition-all duration-200 hover:scale-105 flex items-center">
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Bottom Bar */}
