@@ -84,7 +84,7 @@ export default function Footer() {
                             <li>
                                 <Link href="/policies" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
                                     <Shield className="w-3 h-3" />
-                                    <span>Return Policy</span>
+                                    <span>No Returns</span>
                                 </Link>
                             </li>
                             <li>

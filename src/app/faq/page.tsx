@@ -25,7 +25,7 @@ const faqs = [
         id: 2,
         icon: Shield,
         question: "What is your return policy?",
-        answer: `We accept returns within ${companyConfig.policies.returnDays} days of purchase for unopened games in original condition. Contact us first and we'll handle the return process.`
+        answer: "We do not accept returns - all sales are final. However, if you receive a damaged or defective item, please contact us immediately and we'll work with you to resolve the issue."
     },
     {
         id: 3,

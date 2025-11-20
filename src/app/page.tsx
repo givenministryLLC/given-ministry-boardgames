@@ -277,7 +277,7 @@ export default function Home() {
                 <div className="bg-sage-green/10 p-6 rounded-xl border border-sage-green/20">
                   <h4 className="font-semibold text-deep-brown mb-3">Have Questions?</h4>
                   <p className="text-deep-brown/80 text-sm mb-4">
-                    Questions about shipping, returns, or anything else? We're here to help and respond quickly!
+                    Questions about shipping, policies, or anything else? We're here to help and respond quickly!
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a

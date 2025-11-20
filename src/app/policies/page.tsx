@@ -2,7 +2,7 @@ import {
     Shield,
     Truck,
     Heart,
-    RefreshCw,
+    XCircle,
     Clock,
     CheckCircle,
     Mail,
@@ -37,7 +37,7 @@ export default function PoliciesPage() {
                 {/* Policy Navigation */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     {[
-                        { icon: RefreshCw, title: "Returns", href: "#returns" },
+                        { icon: XCircle, title: "No Returns", href: "#returns" },
                         { icon: Truck, title: "Shipping", href: "#shipping" },
                         { icon: Shield, title: "Privacy", href: "#privacy" }
                     ].map((item, index) => {
@@ -63,41 +63,25 @@ export default function PoliciesPage() {
                 <section id="returns" className="mb-12 bg-white p-8 rounded-2xl shadow-lg border border-sage-green/20">
                     <div className="flex items-center space-x-3 mb-6">
                         <div className="bg-primary p-3 rounded-xl">
-                            <RefreshCw className="w-8 h-8 text-warm-cream" />
+                            <XCircle className="w-8 h-8 text-warm-cream" />
                         </div>
-                        <h2 className="text-3xl font-bold text-deep-brown">Return Policy</h2>
+                        <h2 className="text-3xl font-bold text-deep-brown">No Returns Policy</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                        <div className="bg-sage-green/10 p-6 rounded-xl">
-                            <div className="flex items-center space-x-2 mb-3">
-                                <Clock className="w-5 h-5 text-primary" />
-                                <h3 className="font-semibold text-deep-brown">{companyConfig.policies.returnDays}-Day Returns</h3>
-                            </div>
-                            <p className="text-deep-brown/80 text-sm">
-                                Return unopened games within {companyConfig.policies.returnDays} days of delivery for a full refund.
-                            </p>
+                    <div className="bg-sage-green/10 p-6 rounded-xl mb-6">
+                        <div className="flex items-center space-x-2 mb-3">
+                            <XCircle className="w-5 h-5 text-primary" />
+                            <h3 className="font-semibold text-deep-brown">All Sales Final</h3>
                         </div>
-
-                        <div className="bg-sage-green/10 p-6 rounded-xl">
-                            <div className="flex items-center space-x-2 mb-3">
-                                <CheckCircle className="w-5 h-5 text-primary" />
-                                <h3 className="font-semibold text-deep-brown">Simple Process</h3>
-                            </div>
-                            <p className="text-deep-brown/80 text-sm">
-                                Just contact us first - we'll make it easy and handle the details.
-                            </p>
-                        </div>
+                        <p className="text-deep-brown/80 text-sm">
+                            We do not accept returns or offer refunds on any purchases. Please review your order carefully before completing your purchase.
+                        </p>
                     </div>
 
                     <div className="bg-mint-whisper p-6 rounded-xl border border-olive-mist">
-                        <h3 className="font-semibold text-forest-prayer mb-2">Quick & Easy Returns</h3>
-                        <p className="text-forest-prayer text-sm mb-3">
-                            As a small business, we keep returns simple. Games must be unopened and in original condition.
-                            Contact us and we'll send you a prepaid return label.
-                        </p>
+                        <h3 className="font-semibold text-forest-prayer mb-2">Damaged Items Only</h3>
                         <p className="text-forest-prayer text-sm">
-                            <strong>Damaged items:</strong> We'll replace damaged games immediately at no cost to you.
+                            <strong>Exception:</strong> If you receive a damaged or defective item, please contact us immediately. We'll work with you to resolve the issue, which may include a replacement or store credit at our discretion.
                         </p>
                     </div>
                 </section>
