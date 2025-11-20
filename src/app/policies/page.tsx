@@ -1,63 +1,15 @@
 import {
     Shield,
     Truck,
-    Heart,
     XCircle,
-    Clock,
-    CheckCircle,
-    Mail,
-    Phone
+    Clock
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
 export default function PoliciesPage() {
     return (
         <div className="bg-warm-cream min-h-screen">
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-forest-prayer via-primary to-sanctuary-green text-warm-cream py-16 overflow-hidden">
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-mint-whisper/20 rounded-full animate-pulse"></div>
-                    <div className="absolute bottom-8 -left-8 w-16 h-16 bg-warm-cream/10 rounded-full animate-bounce"></div>
-                </div>
-
-                <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-                    <div className="flex justify-center mb-6">
-                        <div className="bg-warm-cream/20 p-4 rounded-full">
-                            <Shield className="w-10 h-10 text-mint-whisper" />
-                        </div>
-                    </div>
-                    <h1 className="text-4xl font-bold mb-4">Our Policies</h1>
-                    <p className="text-xl text-warm-cream/90 max-w-2xl mx-auto">
-                        Simple, straightforward policies for our small family business
-                    </p>
-                </div>
-            </section>
-
             <div className="max-w-4xl mx-auto px-4 py-12">
-                {/* Policy Navigation */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                    {[
-                        { icon: XCircle, title: "No Returns", href: "#returns" },
-                        { icon: Truck, title: "Shipping", href: "#shipping" },
-                        { icon: Shield, title: "Privacy", href: "#privacy" }
-                    ].map((item, index) => {
-                        const IconComponent = item.icon;
-                        return (
-                            <a
-                                key={index}
-                                href={item.href}
-                                className="group bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 border border-sage-green/20 text-center hover:-translate-y-1"
-                            >
-                                <div className="bg-mint-whisper w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:bg-primary transition-colors">
-                                    <IconComponent className="w-6 h-6 text-primary group-hover:text-warm-cream transition-colors" />
-                                </div>
-                                <span className="font-medium text-deep-brown group-hover:text-primary transition-colors">
-                                    {item.title}
-                                </span>
-                            </a>
-                        );
-                    })}
-                </div>
 
                 {/* Return Policy */}
                 <section id="returns" className="mb-12 bg-white p-8 rounded-2xl shadow-lg border border-sage-green/20">
@@ -170,33 +122,6 @@ export default function PoliciesPage() {
                         </div>
                     </div>
                 </section>
-
-                {/* Contact CTA */}
-                <div className="bg-gradient-to-r from-primary to-primary-dark p-8 rounded-2xl text-warm-cream text-center">
-                    <div className="flex justify-center mb-4">
-                        <Heart className="w-12 h-12" />
-                    </div>
-                    <h2 className="text-2xl font-bold mb-2">Questions About Our Policies?</h2>
-                    <p className="mb-6 text-warm-cream/90">
-                        We're a small business and happy to explain anything personally!
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a
-                            href={`mailto:${companyConfig.email}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream text-primary px-6 py-3 rounded-lg font-semibold hover:bg-mint-whisper transition-colors"
-                        >
-                            <Mail className="w-5 h-5" />
-                            <span>Email Us</span>
-                        </a>
-                        <a
-                            href={`tel:${companyConfig.phone}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
-                        >
-                            <Phone className="w-5 h-5" />
-                            <span>Call Us</span>
-                        </a>
-                    </div>
-                </div >
             </div >
         </div >
     );
