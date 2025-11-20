@@ -8,7 +8,6 @@ import {
   Award,
   Sparkles,
   Heart,
-  Shield,
   Zap,
   Mail,
   Phone,
@@ -270,41 +269,6 @@ export default function Home() {
         </div >
       </section >
 
-      {/* Trust Indicators */}
-      < section className="py-12 bg-white" >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="group">
-              <div className="flex justify-center mb-2">
-                <Shield className="w-8 h-8 text-sage-green group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="text-2xl font-bold text-deep-brown">100%</div>
-              <div className="text-sm text-deep-brown/70">Authentic Games</div>
-            </div>
-            <div className="group">
-              <div className="flex justify-center mb-2">
-                <Truck className="w-8 h-8 text-sage-green group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="text-2xl font-bold text-deep-brown">Fast</div>
-              <div className="text-sm text-deep-brown/70">Shipping</div>
-            </div>
-            <div className="group">
-              <div className="flex justify-center mb-2">
-                <Star className="w-8 h-8 text-sage-green group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="text-2xl font-bold text-deep-brown">4.9★</div>
-              <div className="text-sm text-deep-brown/70">Customer Rating</div>
-            </div>
-            <div className="group">
-              <div className="flex justify-center mb-2">
-                <Heart className="w-8 h-8 text-sage-green group-hover:scale-110 transition-transform" />
-              </div>
-              <div className="text-2xl font-bold text-deep-brown">Family</div>
-              <div className="text-sm text-deep-brown/70">Owned Business</div>
-            </div>
-          </div>
-        </div>
-      </section >
     </div >
   );
 }
