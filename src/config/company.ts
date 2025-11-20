@@ -13,7 +13,7 @@ export const companyConfig = {
     values: {
         familyOwned: "Family Owned & Operated",
         handPicked: "Hand Picked Games",
-        established: "Est. 2024"
+        established: "Est. 2025"
     },
     policies: {
         standardShipping: 9.99,
