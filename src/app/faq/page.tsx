@@ -7,10 +7,7 @@ import {
     HelpCircle,
     MessageCircle,
     Truck,
-    Shield,
-    Heart,
-    Mail,
-    Phone
+    Shield
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
@@ -34,12 +31,6 @@ const faqs = [
         answer: "Yes, all our games are 100% authentic and brand new. We work directly with publishers to ensure you receive genuine products."
     },
     {
-        id: 4,
-        icon: Heart,
-        question: "Do you offer game recommendations?",
-        answer: "Absolutely! With our small, curated selection, we know each game well and can help you choose the perfect one for your needs."
-    },
-    {
         id: 5,
         icon: MessageCircle,
         question: "How can I contact you?",
@@ -61,19 +52,8 @@ export default function FAQPage() {
     return (
         <div className="bg-warm-cream min-h-screen">
             <div className="max-w-4xl mx-auto px-4 py-8">
-                {/* Header */}
-                <div className="text-center mb-12">
-                    <div className="bg-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <HelpCircle className="w-8 h-8 text-warm-cream" />
-                    </div>
-                    <h1 className="text-4xl font-bold mb-4 text-deep-brown">Frequently Asked Questions</h1>
-                    <p className="text-deep-brown/80 max-w-2xl mx-auto">
-                        Quick answers to common questions about our games and policies.
-                    </p>
-                </div>
-
                 {/* FAQ Items */}
-                <div className="space-y-4 mb-12">
+                <div className="space-y-4">
                     {faqs.map((faq) => {
                         const IconComponent = faq.icon;
                         return (
@@ -110,33 +90,6 @@ export default function FAQPage() {
                             </div>
                         );
                     })}
-                </div>
-
-                {/* Contact CTA */}
-                <div className="bg-gradient-to-r from-primary to-primary-dark p-8 rounded-xl text-warm-cream text-center">
-                    <div className="flex justify-center mb-4">
-                        <MessageCircle className="w-12 h-12" />
-                    </div>
-                    <h2 className="text-2xl font-bold mb-2">Still have questions?</h2>
-                    <p className="mb-6 text-warm-cream/90">
-                        We're a small business and love to help personally! Reach out and we'll get back to you quickly.
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a
-                            href={`mailto:${companyConfig.email}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream text-primary px-6 py-3 rounded-lg font-semibold hover:bg-mint-whisper transition-colors"
-                        >
-                            <Mail className="w-5 h-5" />
-                            <span>Email Us</span>
-                        </a>
-                        <a
-                            href={`tel:${companyConfig.phone}`}
-                            className="inline-flex items-center space-x-2 bg-warm-cream/20 border border-warm-cream text-warm-cream px-6 py-3 rounded-lg font-semibold hover:bg-warm-cream/30 transition-colors"
-                        >
-                            <Phone className="w-5 h-5" />
-                            <span>Call Us</span>
-                        </a>
-                    </div>
                 </div>
             </div >
         </div >
