@@ -60,9 +60,9 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/faq" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
+                                <Link href="/help" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
                                     <ArrowRight className="w-3 h-3" />
-                                    <span>FAQ</span>
+                                    <span>Help</span>
                                 </Link>
                             </li>
                             <li>
@@ -82,25 +82,19 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="/policies" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
+                                <Link href="/help#returns" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
                                     <Shield className="w-3 h-3" />
                                     <span>No Returns</span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/policies" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
+                                <Link href="/help#shipping" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
                                     <Truck className="w-3 h-3" />
                                     <span>Shipping Info</span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/policies" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
-                                    <Shield className="w-3 h-3" />
-                                    <span>Terms of Service</span>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/policies" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
+                                <Link href="/help#privacy" className="flex items-center space-x-2 text-warm-cream/80 hover:text-mint-whisper transition-all duration-200 hover:translate-x-1">
                                     <Shield className="w-3 h-3" />
                                     <span>Privacy Policy</span>
                                 </Link>

@@ -8,8 +8,7 @@ import {
     ShoppingCart,
     Home,
     Gamepad2,
-    HelpCircle,
-    Shield
+    HelpCircle
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
@@ -97,18 +96,11 @@ export default function Header() {
                             <span>Games</span>
                         </Link>
                         <Link
-                            href="/faq"
+                            href="/help"
                             className="flex items-center space-x-2 text-deep-brown hover:text-primary transition-all duration-200 hover:scale-105 group"
                         >
                             <HelpCircle className="w-4 h-4 group-hover:animate-pulse" />
-                            <span>FAQ</span>
-                        </Link>
-                        <Link
-                            href="/policies"
-                            className="flex items-center space-x-2 text-deep-brown hover:text-primary transition-all duration-200 hover:scale-105 group"
-                        >
-                            <Shield className="w-4 h-4 group-hover:animate-pulse" />
-                            <span>Policies</span>
+                            <span>Help</span>
                         </Link>
                     </nav>
 
@@ -161,20 +153,12 @@ export default function Header() {
                                 <span>Games</span>
                             </Link>
                             <Link
-                                href="/faq"
+                                href="/help"
                                 className="flex items-center space-x-3 text-deep-brown hover:text-primary py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 <HelpCircle className="w-5 h-5" />
-                                <span>FAQ</span>
-                            </Link>
-                            <Link
-                                href="/policies"
-                                className="flex items-center space-x-3 text-deep-brown hover:text-primary py-3 px-4 rounded-lg hover:bg-sage-green/10 transition-all duration-200"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                <Shield className="w-5 h-5" />
-                                <span>Policies</span>
+                                <span>Help</span>
                             </Link>
                         </div>
                     </nav>

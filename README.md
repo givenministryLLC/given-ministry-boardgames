@@ -32,8 +32,7 @@ Colors evoke feelings of warmth, comfort, stability, peace, and tradition.
 3. **Game Detail (`/games/[handle]`)** - Individual product pages with details
 4. **About & Contact (`/about`)** - Combined company info and contact form
 5. **Cart (`/cart`)** - Shopping cart with quantity controls and checkout
-6. **FAQ (`/faq`)** - Expandable frequently asked questions
-7. **Policies (`/policies`)** - Return policy, shipping, terms, privacy
+6. **Help (`/help`)** - FAQ and policies combined (returns, shipping, privacy)
 
 ### 🧩 Key Components
 - **Header** - Navigation with logo, menu, cart link
@@ -66,8 +65,7 @@ Games are maintained in `src/data/games.ts` with TypeScript interfaces for:
 - ✅ Dynamic routing for individual games
 - ✅ Interactive cart functionality (frontend only)
 - ✅ Contact form (frontend only)
-- ✅ FAQ accordion interface
-- ✅ Comprehensive policies page
+- ✅ Help page with FAQ accordion and detailed policies
 
 ### Frontend-Only Features (Ready for Integration)
 - 🔄 **Cart Management:** Frontend-only cart state
@@ -125,11 +123,10 @@ src/
 ├── app/
 │   ├── about/page.tsx          # About & Contact combined
 │   ├── cart/page.tsx           # Shopping cart
-│   ├── faq/page.tsx            # FAQ with accordion
 │   ├── games/
 │   │   ├── [handle]/page.tsx   # Dynamic game detail pages
 │   │   └── page.tsx            # Games listing with filters
-│   ├── policies/page.tsx       # All policies combined
+│   ├── help/page.tsx           # FAQ and policies combined
 │   ├── globals.css             # Warm color theme
 │   ├── layout.tsx              # Root layout with header/footer
 │   └── page.tsx                # Homepage
