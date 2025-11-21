@@ -18,7 +18,8 @@ export const companyConfig = {
     policies: {
         standardShipping: 9.99,
         processingTime: "1-2 business days",
-        deliveryTime: "5-7 business days"
+        deliveryTime: "5-7 business days",
+        returnDays: 30
     },
     location: {
         country: "United States",
