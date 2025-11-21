@@ -1,119 +1,103 @@
-**README.md**
-```md
 # Given Ministry LLC Boardgame Storefront
 
-A warm, Christian-inspired Next.js e-commerce website for an online board game store built with App Router, TypeScript, and Tailwind CSS.
+An e-commerce website for a family-owned board game store built with Next.js 15, TypeScript, Tailwind CSS, and Shopify Storefront API.
 
-## 🎯 Project Goal
-Build a **headless e-commerce** site for a board game company to **browse inventory and buy** games online. Features a calm, warm, religious-inspired design with colors evoking comfort, tradition, and tranquility.
+## 🎯 Project Overview
+
+Headless e-commerce site for browsing and purchasing board games online. Features a warm earth-toned design with custom color palette and full Shopify integration for cart management and checkout.
 
 ## 🛠 Tech Stack
+
 - **Frontend:** Next.js 15 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS v4
-- **Data Management:** Local TypeScript files (developer-maintained)
-- **Future Integration:** Shopify Storefront API (for cart, checkout only)
+- **E-Commerce:** Shopify Storefront API
+- **Icons:** Lucide React
+- **State Management:** React Hooks, LocalStorage
 
 ## 🎨 Design Theme
-**Warm Religious-Inspired Color Palette:**
+
+**Warm Earth-Toned Color Palette:**
 - **Warm Cream:** `#faf8f3` (backgrounds)
 - **Deep Brown:** `#3c2e26` (primary text)
 - **Amber/Gold:** `#8b6914`, `#b8860b` (buttons, accents)
 - **Sage Green:** `#7a8471` (subtle accents, borders)
 - **Rich Brown:** `#5d4e37` (footer, strong text)
 
-Colors evoke feelings of warmth, comfort, stability, peace, and tradition.
+## 📄 Pages
 
-## 📄 Current Pages
+1. **Home (`/`)** - Hero section with value propositions and trust badges
+2. **Games (`/games`)** - Product catalog with grid/list views, sorting by name/price
+3. **Game Detail (`/games/[handle]`)** - Individual product pages with Shopify data
+4. **Cart (`/cart`)** - Shopping cart with real-time updates and Shopify integration
+5. **Help (`/help`)** - FAQ accordion and policies (shipping, returns, privacy)
 
-### ✅ Completed Pages
-1. **Home (`/`)** - Hero section, about section, value propositions, contact
-2. **Games List (`/games`)** - Product grid with category filters and sorting
-3. **Game Detail (`/games/[handle]`)** - Individual product pages with details
-4. **About & Contact (`/about`)** - Combined company info and contact form
-5. **Cart (`/cart`)** - Shopping cart with quantity controls and checkout
-6. **Help (`/help`)** - FAQ and policies combined (returns, shipping, privacy)
+## 🧩 Components
 
-### 🧩 Key Components
-- **Header** - Navigation with logo, menu, cart link
+- **Header** - Sticky navigation with dynamic cart counter, mobile hamburger menu
 - **Footer** - Company info, links, newsletter signup
-- **Responsive Design** - Mobile-friendly navigation and layouts
+- **Product Cards** - Grid/list views with stock indicators and pricing
+- **Cart Management** - Add/remove items, quantity controls
 
-## 🎮 Current Inventory
+## 🔌 API Routes
 
-### Games Data Structure
-Games are maintained in `src/data/games.ts` with TypeScript interfaces for:
-- Product information (name, price, description)
-- Game specifications (players, playtime, age)
-- Categories and filtering
-- Stock status and ratings
+All routes integrate with Shopify Storefront API:
 
-### Current Games
-- **Freedom's Journey** ($29.99) - Educational game about the Underground Railroad
-  - Category: Educational
-  - Players: 2-6
-  - Playtime: 45-60 minutes
-  - Age: 8+
+- `/api/inventory` - Fetch all products from Shopify
+- `/api/product/[handle]` - Get individual product details
+- `/api/cart/create` - Create new Shopify cart
+- `/api/cart/get` - Retrieve existing cart
+- `/api/cart/add` - Add items to cart
+- `/api/cart/update` - Update item quantities
+- `/api/cart/remove` - Remove items from cart
 
-## 🚀 Current Status
+## ✨ Features
 
-### What's Working
-- ✅ Complete page structure and navigation
-- ✅ Responsive design with warm color theme
-- ✅ Real product data for Freedom's Journey
-- ✅ Product filtering and sorting with Educational category
-- ✅ Dynamic routing for individual games
-- ✅ Interactive cart functionality (frontend only)
-- ✅ Contact form (frontend only)
-- ✅ Help page with FAQ accordion and detailed policies
+### Shopping Experience
+- Real-time cart synchronization across browser tabs
+- Dynamic product catalog from Shopify
+- Product sorting (name, price) with ascending/descending order
+- Grid and list view toggle
+- Stock availability indicators
+- Responsive mobile design
 
-### Frontend-Only Features (Ready for Integration)
-- 🔄 **Cart Management:** Frontend-only cart state
-- 🔄 **Checkout:** Button ready for Shopify redirect
-- 🔄 **Contact Form:** Frontend form ready for backend
-- 🔄 **Newsletter:** Input ready for email service
+### Cart Management
+- Add/remove products
+- Quantity controls with live updates
+- Subtotal and total calculations
+- Shipping cost display
+- Secure Shopify checkout redirect
+- Cart persistence via LocalStorage
 
-## 🔮 Next Steps (Integration Phase)
+### UI/UX
+- Custom gradient backgrounds
+- Icon-based navigation (Lucide React)
+- Animated hover states and transitions
+- Mobile-optimized hamburger menu
+- Loading states for async operations
+- Trust badges (SSL, shipping, returns)
 
-### 1. Shopify Integration (Optional)
-```bash
-# Environment variables to add if using Shopify:
-SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
-SHOPIFY_STOREFRONT_TOKEN=your-storefront-access-token
-```
-
-**API Integration Tasks (if needed):**
-- [ ] Connect cart to Shopify cart API
-- [ ] Add checkout redirect to Shopify hosted checkout
-- [ ] Sync inventory status with Shopify
-
-### 2. Inventory Management
-- [ ] Add more games to `src/data/games.ts`
-- [ ] Add product images to `public/images/games/`
-- [ ] Update game data as needed
-
-### 3. Production Features
-- [ ] Form submission handling (contact, newsletter)
-- [ ] SEO optimization and metadata
-- [ ] Performance optimization
-- [ ] Error handling and loading states
-
-## 🏃‍♂️ Getting Started
+## 🚀 Getting Started
 
 ```bash
-# Clone and install
-git clone [your-repo-url]
-cd given-ministry-boardgame-storefront
+# Install dependencies
 npm install
+
+# Add environment variables
+# Create .env.local with:
+SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-storefront-token
 
 # Run development server
 npm run dev
 # Open http://localhost:3000
 
-# Other commands
-npm run build    # Production build
-npm run start    # Production server
-npm run lint     # ESLint check
+# Production build
+npm run build
+npm run start
+
+# Lint code
+npm run lint
 ```
 
 ## 📁 Project Structure
@@ -121,118 +105,93 @@ npm run lint     # ESLint check
 ```
 src/
 ├── app/
-│   ├── about/page.tsx          # About & Contact combined
-│   ├── cart/page.tsx           # Shopping cart
+│   ├── api/
+│   │   ├── cart/
+│   │   │   ├── add/route.ts
+│   │   │   ├── create/route.ts
+│   │   │   ├── get/route.ts
+│   │   │   ├── remove/route.ts
+│   │   │   └── update/route.ts
+│   │   ├── inventory/route.ts
+│   │   └── product/[handle]/route.ts
+│   ├── cart/page.tsx
 │   ├── games/
-│   │   ├── [handle]/page.tsx   # Dynamic game detail pages
-│   │   └── page.tsx            # Games listing with filters
-│   ├── help/page.tsx           # FAQ and policies combined
-│   ├── globals.css             # Warm color theme
-│   ├── layout.tsx              # Root layout with header/footer
-│   └── page.tsx                # Homepage
+│   │   ├── [handle]/page.tsx
+│   │   └── page.tsx
+│   ├── help/page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
 ├── components/
-│   ├── Header.tsx              # Navigation component
-│   └── Footer.tsx              # Footer component
+│   ├── Footer.tsx
+│   └── Header.tsx
 ├── config/
-│   └── company.ts              # Company configuration
-├── data/
-│   └── games.ts                # Games inventory data
-└── [config files]
+│   └── company.ts
+└── context/
+    └── (context files)
 ```
 
-## 🎮 Adding New Games
+## 🔧 Configuration
 
-To add a new game, update `src/data/games.ts`:
+### Company Settings
+Update company information in `src/config/company.ts`:
+- Business name, contact info
+- Business hours
+- Shipping rates and policies
+- Return policy details
 
-```typescript
-{
-  id: 2,
-  name: "Your Game Name",
-  price: 39.99,
-  category: "family", // strategy, family, party, educational
-  handle: "your-game-handle",
-  players: "2-4 players",
-  playtime: "30-60 minutes", 
-  age: "10+",
-  rating: 4.5,
-  reviews: 23,
-  isNew: true,
-  inStock: true,
-  description: "Short description for cards and listings",
-  longDescription: "Detailed description for product page",
-  features: [
-    "Feature 1",
-    "Feature 2", 
-    "Feature 3"
-  ],
-  images: [] // Add image paths when available
-}
-```
+### Shopify Setup
+1. Create a Shopify store
+2. Generate Storefront API access token
+3. Add products to Shopify inventory
+4. Configure environment variables
 
-## 📝 Development Notes
+## 📦 Dependencies
 
-### Commit Pattern
-- `feat/`: New features
-- `fix/`: Bug fixes  
-- `style/`: Design/styling updates
-- `chore/`: Maintenance tasks
+**Core:**
+- `next@15.4.6`
+- `react@19.1.0`
+- `react-dom@19.1.0`
+- `typescript@^5`
+
+**Shopify:**
+- `@shopify/storefront-api-client@^1.0.9`
+
+**UI:**
+- `tailwindcss@^4`
+- `lucide-react@^0.469.0`
+
+**Dev Tools:**
+- `eslint@^9`
+- `eslint-config-next@15.4.6`
+
+## 🎯 Current Status
+
+**✅ Completed:**
+- Full Shopify integration
+- Real-time cart management
+- Product catalog with images from Shopify CDN
+- Responsive design
+- Mobile navigation
+- Help page with FAQs
+- Secure checkout flow
+
+## 📝 Development
 
 ### Code Standards
-- **TypeScript:** Strict mode enabled
-- **Styling:** Tailwind utility classes only
-- **Components:** Functional components with hooks
-- **Routing:** Next.js 15 App Router conventions
-- **Data:** Local TypeScript files for game inventory
+- TypeScript strict mode
+- Tailwind utility classes
+- Functional React components with hooks
+- Next.js 15 App Router conventions
+- ESLint for code quality
 
-## 🔄 Deployment Plan
-
-### Current: Development Only
-- Local development on `localhost:3000`
-- No deployment setup yet
-
-### Future: Production Deployment
-1. **Vercel** (recommended for Next.js)
-2. **Domain Setup** (client-owned)
-3. **Environment Variables** (if Shopify integration added)
-4. **SSL/HTTPS** (automatic with Vercel)
-
-## 🏢 Business Requirements
-
-### MVP Scope ✅
-- [x] Product browsing and filtering
-- [x] Individual product pages
-- [x] Shopping cart functionality
-- [x] Company information and policies
-- [x] Contact methods and FAQ
-- [x] Real game data (Freedom's Journey)
-
-### Post-MVP Features 🔄
-- [ ] Additional games in inventory
-- [ ] Product images
-- [ ] Shopify integration (optional)
-- [ ] Email marketing integration
-- [ ] Advanced search functionality
-
-## 📞 Support & Contact
-
-For development questions or business requirements, refer to the contact information in the About page or reach out through the integrated contact form.
+### Git Workflow
+- `feat:` New features
+- `fix:` Bug fixes
+- `style:` Design/styling updates
+- `chore:` Maintenance tasks
 
 ---
 
-**Status:** ✅ Frontend Complete with Real Game Data  
-**Last Updated:** August 21, 2025  
-**Version:** 1.0.0 (Real Inventory Added)
-```
-
-The key updates made to the documentation:
-
-1. **Removed Sanity CMS** - No longer mentioned as a dependency
-2. **Added Data Management** - Documented the local TypeScript approach
-3. **Updated Current Status** - Reflects Freedom's Journey being added
-4. **Added Inventory Section** - Documents the current games and data structure
-5. **Added Adding Games Guide** - Shows how to add new games easily
-6. **Updated Tech Stack** - Removed CMS dependencies
-7. **Simplified Integration** - Shopify is now optional for checkout only
-8. **Updated Version** - Bumped to 1.0.0 since you have real inventory
-
-The documentation now accurately reflects your current setup with local data management and no external CMS dependencies.
+**Status:** ✅ Production Ready
+**Version:** 2.0.0 (Shopify Integration Complete)
