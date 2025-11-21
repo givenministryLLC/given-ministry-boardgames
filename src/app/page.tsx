@@ -13,7 +13,6 @@ import {
   Phone,
   Clock,
   MapPin,
-  Send,
   CheckCircle,
   MessageCircle,
   Globe,
@@ -218,53 +217,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Quick Contact */}
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-sage-green/20">
-              <h3 className="text-xl font-semibold mb-6 text-deep-brown flex items-center space-x-2">
-                <Send className="w-6 h-6 text-primary" />
-                <span>Quick Contact</span>
-              </h3>
-
-              <div className="space-y-6">
-                <div className="bg-mint-whisper p-6 rounded-xl border border-olive-mist">
-                  <h4 className="font-semibold text-forest-prayer mb-3">Need Game Recommendations?</h4>
-                  <p className="text-primary text-sm mb-4">
-                    Tell us about your group size, preferred game length, and what kind of fun you're looking for.
-                    We'll help you find the perfect game!
-                  </p>
-                  <a
-                    href={`mailto:${companyConfig.email}?subject=Game Recommendation Request`}
-                    className="inline-flex items-center space-x-2 bg-primary text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Ask for Recommendations</span>
-                  </a>
-                </div>
-
-                <div className="bg-sage-green/10 p-6 rounded-xl border border-sage-green/20">
-                  <h4 className="font-semibold text-deep-brown mb-3">Have Questions?</h4>
-                  <p className="text-deep-brown/80 text-sm mb-4">
-                    Questions about shipping, policies, or anything else? We're here to help and respond quickly!
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a
-                      href={`mailto:${companyConfig.email}`}
-                      className="inline-flex items-center justify-center space-x-2 bg-sage-green text-warm-cream px-4 py-2 rounded-lg text-sm font-medium hover:bg-sanctuary-green transition-colors"
-                    >
-                      <Mail className="w-4 h-4" />
-                      <span>Email</span>
-                    </a>
-                    <a
-                      href={`tel:${companyConfig.phone}`}
-                      className="inline-flex items-center justify-center space-x-2 border border-sage-green text-sage-green px-4 py-2 rounded-lg text-sm font-medium hover:bg-sage-green hover:text-warm-cream transition-colors"
-                    >
-                      <Phone className="w-4 h-4" />
-                      <span>Call</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div >
         </div >
       </section >
