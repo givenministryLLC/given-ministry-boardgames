@@ -179,34 +179,34 @@ export default function HelpPage() {
                             <div className="bg-sage-green/10 p-6 rounded-xl">
                                 <h3 className="font-semibold text-deep-brown mb-3 flex items-center space-x-2">
                                     <Shield className="w-5 h-5 text-primary" />
-                                    <span>We Keep It Simple</span>
+                                    <span>We Don't Collect or Store Data</span>
                                 </h3>
                                 <p className="text-deep-brown/80 text-sm mb-3">
-                                    As a small family business, we only collect the information we need to process your order and ship your games:
+                                    As a small family-run board game business, we don't collect, store, or maintain any customer data ourselves.
                                 </p>
-                                <div className="space-y-2 text-sm text-deep-brown/80">
-                                    <p>• Your name and email for order confirmation</p>
-                                    <p>• Shipping address to send your games</p>
-                                    <p>• Payment info (securely processed by our payment provider)</p>
-                                </div>
+                                <p className="text-deep-brown/80 text-sm">
+                                    When you place an order, your payment and shipping information is handled directly by Shopify, our e-commerce platform.
+                                    We don't have access to or store your payment details. For information about how Shopify handles your data,
+                                    please visit <a href="https://www.shopify.com/legal/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Shopify's Privacy Policy</a>.
+                                </p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="bg-mint-whisper p-4 rounded-lg border border-olive-mist">
-                                    <h4 className="font-medium text-forest-prayer mb-2">What We Don't Do</h4>
+                                    <h4 className="font-medium text-forest-prayer mb-2">Simple & Straightforward</h4>
                                     <div className="space-y-1 text-sm text-sanctuary-green">
-                                        <p>• Sell your information</p>
-                                        <p>• Send spam emails</p>
-                                        <p>• Share data with third parties</p>
+                                        <p>• No data collection by us</p>
+                                        <p>• No marketing databases</p>
+                                        <p>• No tracking or analytics</p>
                                     </div>
                                 </div>
 
                                 <div className="bg-sage-green/10 p-4 rounded-lg">
-                                    <h4 className="font-medium text-deep-brown mb-2">Your Rights</h4>
+                                    <h4 className="font-medium text-deep-brown mb-2">Questions?</h4>
                                     <div className="space-y-1 text-sm text-deep-brown/80">
-                                        <p>• Delete your data anytime</p>
-                                        <p>• Opt out of emails easily</p>
-                                        <p>• Contact us with questions</p>
+                                        <p>Contact us anytime at:</p>
+                                        <p>{companyConfig.email}</p>
+                                        <p>{companyConfig.phoneFormatted}</p>
                                     </div>
                                 </div>
                             </div>
