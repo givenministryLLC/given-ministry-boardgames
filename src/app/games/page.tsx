@@ -69,11 +69,11 @@ export default function GamesPage() {
 
     if (loading) {
         return (
-            <div className="bg-warm-cream min-h-screen">
+            <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
                 <div className="max-w-7xl mx-auto px-4 py-8">
                     <div className="flex items-center justify-center py-20">
-                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                        <span className="ml-2 text-deep-brown">Loading games...</span>
+                        <Loader2 className="w-8 h-8 animate-spin text-warm-cream" />
+                        <span className="ml-2 text-warm-cream">Loading games...</span>
                     </div>
                 </div>
             </div>
@@ -81,31 +81,31 @@ export default function GamesPage() {
     }
 
     return (
-        <div className="bg-warm-cream min-h-screen">
+        <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Enhanced Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-4xl font-bold text-deep-brown flex items-center space-x-3">
-                            <div className="bg-primary p-2 rounded-lg">
-                                <Grid3X3 className="w-8 h-8 text-warm-cream" />
+                        <h1 className="text-4xl font-bold text-warm-cream flex items-center space-x-3">
+                            <div className="bg-warm-cream/20 p-2 rounded-lg border border-warm-cream/30">
+                                <Grid3X3 className="w-8 h-8 text-mint-whisper" />
                             </div>
                             <span>Board Games</span>
                         </h1>
-                        <p className="text-deep-brown/70 mt-2">Discover your next favorite game from our curated collection</p>
+                        <p className="text-warm-cream/80 mt-2">Discover your next favorite game from our curated collection</p>
                     </div>
 
                     {/* Controls grouped together */}
                     <div className="hidden md:flex flex-col items-end space-y-3">
                         {/* Sort Controls */}
                         <div className="flex items-center space-x-2">
-                            <span className="text-sm text-deep-brown/70 font-medium">Sort:</span>
-                            <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                            <span className="text-sm text-warm-cream/80 font-medium">Sort:</span>
+                            <div className="flex border border-warm-cream/30 rounded-lg overflow-hidden backdrop-blur-sm">
                                 <button
                                     onClick={() => setSortBy('name')}
                                     className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name'
-                                            ? 'bg-primary text-warm-cream'
-                                            : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     Name
@@ -113,8 +113,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setSortBy('price')}
                                     className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price'
-                                            ? 'bg-primary text-warm-cream'
-                                            : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     Price
@@ -122,24 +122,24 @@ export default function GamesPage() {
                             </div>
                             <button
                                 onClick={toggleSortOrder}
-                                className="p-2 border border-sage-green/30 rounded-lg bg-white hover:bg-sage-green/10 transition-colors"
+                                className="p-2 border border-warm-cream/30 rounded-lg bg-warm-cream/10 hover:bg-warm-cream/20 transition-colors backdrop-blur-sm"
                                 title={sortOrder === 'asc' ? 'Sort descending' : 'Sort ascending'}
                             >
                                 {sortOrder === 'asc' ? (
-                                    <ArrowUp className="w-4 h-4 text-deep-brown" />
+                                    <ArrowUp className="w-4 h-4 text-warm-cream" />
                                 ) : (
-                                    <ArrowDown className="w-4 h-4 text-deep-brown" />
+                                    <ArrowDown className="w-4 h-4 text-warm-cream" />
                                 )}
                             </button>
                         </div>
 
                         {/* View Toggle */}
-                        <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                        <div className="flex border border-warm-cream/30 rounded-lg overflow-hidden backdrop-blur-sm">
                             <button
                                 onClick={() => setViewMode('grid')}
                                 className={`p-3 transition-colors ${viewMode === 'grid'
-                                        ? 'bg-primary text-warm-cream'
-                                        : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                     }`}
                             >
                                 <Grid3X3 className="w-5 h-5" />
@@ -147,8 +147,8 @@ export default function GamesPage() {
                             <button
                                 onClick={() => setViewMode('list')}
                                 className={`p-3 transition-colors ${viewMode === 'list'
-                                        ? 'bg-primary text-warm-cream'
-                                        : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                     }`}
                             >
                                 <List className="w-5 h-5" />
@@ -158,18 +158,18 @@ export default function GamesPage() {
                 </div>
 
                 {/* Mobile Controls */}
-                <div className="md:hidden bg-white p-4 rounded-xl shadow-lg border border-sage-green/20 mb-8">
+                <div className="md:hidden bg-warm-cream/10 backdrop-blur-sm p-4 rounded-xl border border-warm-cream/30 mb-8">
                     <div className="flex flex-col space-y-4">
                         {/* Mobile Sort */}
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-deep-brown/70 font-medium">Sort by:</span>
+                            <span className="text-sm text-warm-cream/80 font-medium">Sort by:</span>
                             <div className="flex items-center space-x-2">
-                                <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                                <div className="flex border border-warm-cream/30 rounded-lg overflow-hidden">
                                     <button
                                         onClick={() => setSortBy('name')}
                                         className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name'
-                                                ? 'bg-primary text-warm-cream'
-                                                : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                                ? 'bg-warm-cream text-forest-prayer'
+                                                : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                             }`}
                                     >
                                         Name
@@ -177,8 +177,8 @@ export default function GamesPage() {
                                     <button
                                         onClick={() => setSortBy('price')}
                                         className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price'
-                                                ? 'bg-primary text-warm-cream'
-                                                : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                                ? 'bg-warm-cream text-forest-prayer'
+                                                : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                             }`}
                                     >
                                         Price
@@ -186,12 +186,12 @@ export default function GamesPage() {
                                 </div>
                                 <button
                                     onClick={toggleSortOrder}
-                                    className="p-2 border border-sage-green/30 rounded-lg bg-white hover:bg-sage-green/10 transition-colors"
+                                    className="p-2 border border-warm-cream/30 rounded-lg bg-warm-cream/10 hover:bg-warm-cream/20 transition-colors"
                                 >
                                     {sortOrder === 'asc' ? (
-                                        <ArrowUp className="w-4 h-4 text-deep-brown" />
+                                        <ArrowUp className="w-4 h-4 text-warm-cream" />
                                     ) : (
-                                        <ArrowDown className="w-4 h-4 text-deep-brown" />
+                                        <ArrowDown className="w-4 h-4 text-warm-cream" />
                                     )}
                                 </button>
                             </div>
@@ -199,13 +199,13 @@ export default function GamesPage() {
 
                         {/* Mobile View Toggle */}
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-deep-brown/70 font-medium">View:</span>
-                            <div className="flex border border-sage-green/30 rounded-lg overflow-hidden">
+                            <span className="text-sm text-warm-cream/80 font-medium">View:</span>
+                            <div className="flex border border-warm-cream/30 rounded-lg overflow-hidden">
                                 <button
                                     onClick={() => setViewMode('grid')}
                                     className={`p-2 transition-colors ${viewMode === 'grid'
-                                            ? 'bg-primary text-warm-cream'
-                                            : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     <Grid3X3 className="w-4 h-4" />
@@ -213,8 +213,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setViewMode('list')}
                                     className={`p-2 transition-colors ${viewMode === 'list'
-                                            ? 'bg-primary text-warm-cream'
-                                            : 'bg-white text-deep-brown hover:bg-sage-green/10'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     <List className="w-4 h-4" />
@@ -318,11 +318,11 @@ export default function GamesPage() {
                 {/* No Results State */}
                 {sortedProducts.length === 0 && !loading && (
                     <div className="text-center py-16">
-                        <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Sparkles className="w-12 h-12 text-sage-green" />
+                        <div className="bg-warm-cream/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <Sparkles className="w-12 h-12 text-mint-whisper" />
                         </div>
-                        <h3 className="text-xl font-semibold text-deep-brown mb-2">No games available</h3>
-                        <p className="text-deep-brown/60">Check back soon for new additions to our collection!</p>
+                        <h3 className="text-xl font-semibold text-warm-cream mb-2">No games available</h3>
+                        <p className="text-warm-cream/80">Check back soon for new additions to our collection!</p>
                     </div>
                 )}
             </div>

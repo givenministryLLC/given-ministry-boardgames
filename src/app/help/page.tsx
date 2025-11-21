@@ -69,11 +69,11 @@ export default function HelpPage() {
     };
 
     return (
-        <div className="bg-warm-cream min-h-screen">
+        <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
             <div className="max-w-4xl mx-auto px-4 py-8">
                 {/* FAQ Section */}
                 <div className="mb-12">
-                    <h1 className="text-4xl font-bold text-deep-brown mb-8 text-center">Frequently Asked Questions</h1>
+                    <h1 className="text-4xl font-bold text-warm-cream mb-8 text-center">Frequently Asked Questions</h1>
                     <div className="space-y-4">
                         {faqs.map((faq) => {
                             const IconComponent = faq.icon;
@@ -115,8 +115,8 @@ export default function HelpPage() {
                 </div>
 
                 {/* Policies Section */}
-                <div className="border-t border-sage-green/30 pt-12">
-                    <h1 className="text-4xl font-bold text-deep-brown mb-8 text-center">Our Policies</h1>
+                <div className="border-t border-warm-cream/30 pt-12">
+                    <h1 className="text-4xl font-bold text-warm-cream mb-8 text-center">Our Policies</h1>
                     <div className="space-y-4">
                         {policies.map((policy) => {
                             const IconComponent = policy.icon;

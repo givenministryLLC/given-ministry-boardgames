@@ -162,11 +162,11 @@ export default function CartPage() {
 
     if (loading) {
         return (
-            <div className="bg-warm-cream min-h-screen">
+            <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
                 <div className="max-w-4xl mx-auto px-4 py-8 text-center">
                     <div className="flex items-center justify-center py-20">
-                        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-                        <span className="ml-2 text-deep-brown">Loading cart...</span>
+                        <Loader2 className="w-8 h-8 animate-spin text-warm-cream" />
+                        <span className="ml-2 text-warm-cream">Loading cart...</span>
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@ export default function CartPage() {
 
     if (cartItems.length === 0) {
         return (
-            <div className="bg-warm-cream min-h-screen">
+            <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
                 <div className="max-w-4xl mx-auto px-4 py-8 text-center">
                     <div className="bg-white p-12 rounded-xl shadow-lg border border-sage-green/20">
                         <div className="bg-sage-green/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -203,16 +203,16 @@ export default function CartPage() {
     const total = subtotal + shipping;
 
     return (
-        <div className="bg-warm-cream min-h-screen">
+        <div className="bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green min-h-screen">
             <div className="max-w-6xl mx-auto px-4 py-8">
                 {/* Enhanced Header */}
                 <div className="flex items-center space-x-3 mb-8">
-                    <div className="bg-primary p-2 rounded-lg">
-                        <ShoppingCart className="w-6 h-6 text-warm-cream" />
+                    <div className="bg-warm-cream/20 p-2 rounded-lg border border-warm-cream/30">
+                        <ShoppingCart className="w-6 h-6 text-mint-whisper" />
                     </div>
                     <div>
-                        <h1 className="text-4xl font-bold text-deep-brown">Your Cart</h1>
-                        <p className="text-deep-brown/70">{cart?.totalQuantity || 0} {cart?.totalQuantity === 1 ? 'item' : 'items'} in your cart</p>
+                        <h1 className="text-4xl font-bold text-warm-cream">Your Cart</h1>
+                        <p className="text-warm-cream/80">{cart?.totalQuantity || 0} {cart?.totalQuantity === 1 ? 'item' : 'items'} in your cart</p>
                     </div>
                 </div>
 
@@ -292,7 +292,7 @@ export default function CartPage() {
                         <div className="pt-4">
                             <Link
                                 href="/games"
-                                className="inline-flex items-center space-x-2 text-primary hover:text-primary-dark font-medium transition-colors group"
+                                className="inline-flex items-center space-x-2 text-warm-cream hover:text-mint-whisper font-medium transition-colors group"
                             >
                                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                                 <span>Continue Shopping</span>

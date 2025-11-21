@@ -12,16 +12,17 @@ import { companyConfig } from '@/config/company';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-warm-cream">
-      {/* Hero Section with Family Story */}
-      <section className="relative bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green text-warm-cream py-20 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-mint-whisper/20 rounded-full animate-pulse"></div>
-          <div className="absolute top-1/2 -left-8 w-16 h-16 bg-warm-cream/10 rounded-full animate-bounce"></div>
-          <div className="absolute bottom-8 right-1/3 w-12 h-12 bg-olive-mist/30 rounded-full animate-pulse"></div>
-        </div>
+    <div className="relative min-h-screen bg-gradient-to-br from-primary via-forest-prayer to-sanctuary-green text-warm-cream overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-4 -right-4 w-24 h-24 bg-mint-whisper/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/2 -left-8 w-16 h-16 bg-warm-cream/10 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-8 right-1/3 w-12 h-12 bg-olive-mist/30 rounded-full animate-pulse"></div>
+      </div>
 
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+      {/* Main Content */}
+      <div className="relative z-10 py-20">
+        <div className="max-w-7xl mx-auto px-4">
           {/* Main Hero Content */}
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
@@ -109,8 +110,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-    </div >
+      </div>
+    </div>
   );
 }
