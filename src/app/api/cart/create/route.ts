@@ -78,7 +78,7 @@ export async function POST() {
             success: true,
             cart: result.data.cartCreate.cart
         });
-    } catch (error) {
+    } catch {
         return Response.json({
             success: false,
             error: 'Failed to process request'

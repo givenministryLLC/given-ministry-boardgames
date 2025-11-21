@@ -37,6 +37,10 @@ interface ShopifyProductsResponse {
             edges: ShopifyProduct[];
         };
     };
+    errors?: {
+        message?: string;
+        networkStatusCode?: number;
+    };
 }
 
 export async function GET() {
@@ -81,7 +85,7 @@ export async function GET() {
             }
         `;
 
-        const result = await client.request(query) as any;
+        const result = await client.request(query) as ShopifyProductsResponse;
 
         // Check for errors in the response
         if (result.errors) {

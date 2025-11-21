@@ -60,7 +60,7 @@ export default function GameDetailPage({
                 } else {
                     setError(data.error);
                 }
-            } catch (err) {
+            } catch {
                 setError('Failed to load product');
             } finally {
                 setLoading(false);

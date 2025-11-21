@@ -12,7 +12,6 @@ import {
     Truck,
     Shield,
     Gift,
-    Tag,
     CheckCircle,
     Loader2
 } from 'lucide-react';
