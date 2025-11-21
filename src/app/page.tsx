@@ -80,7 +80,7 @@ export default function Home() {
                 <Heart className="w-8 h-8 text-primary group-hover:text-warm-cream transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-primary text-center">Personal Touch</h3>
-              <p className="text-gray-600 text-center">Every order is personally handled with care. We know each game and can provide personal recommendations.</p>
+              <p className="text-gray-600 text-center">Every order is personally handled with care. We carefully select each game to ensure quality and meaningful play experiences.</p>
             </div>
 
             <div className="group bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-sage-green/20">
@@ -96,7 +96,7 @@ export default function Home() {
                 <Users className="w-8 h-8 text-primary group-hover:text-warm-cream transition-colors duration-300" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-primary text-center">Family Values</h3>
-              <p className="text-gray-600 text-center">We understand the importance of family time and choose games that bring people together.</p>
+              <p className="text-gray-600 text-center">We choose games that educate about God and bring families together in faith and fellowship.</p>
             </div>
           </div>
 
