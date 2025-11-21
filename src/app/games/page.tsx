@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-    ArrowUpDown,
     ArrowUp,
     ArrowDown,
     Grid3X3,
@@ -87,9 +86,6 @@ export default function GamesPage() {
                 <div className="flex items-center justify-between mb-8">
                     <div>
                         <h1 className="text-4xl font-bold text-warm-cream flex items-center space-x-3">
-                            <div className="bg-warm-cream/20 p-2 rounded-lg border border-warm-cream/30">
-                                <Grid3X3 className="w-8 h-8 text-mint-whisper" />
-                            </div>
                             <span>Board Games</span>
                         </h1>
                         <p className="text-warm-cream/80 mt-2">Discover your next favorite game from our curated collection</p>
@@ -104,8 +100,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setSortBy('name')}
                                     className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name'
-                                            ? 'bg-warm-cream text-forest-prayer'
-                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     Name
@@ -113,8 +109,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setSortBy('price')}
                                     className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price'
-                                            ? 'bg-warm-cream text-forest-prayer'
-                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     Price
@@ -138,8 +134,8 @@ export default function GamesPage() {
                             <button
                                 onClick={() => setViewMode('grid')}
                                 className={`p-3 transition-colors ${viewMode === 'grid'
-                                        ? 'bg-warm-cream text-forest-prayer'
-                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                    ? 'bg-warm-cream text-forest-prayer'
+                                    : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                     }`}
                             >
                                 <Grid3X3 className="w-5 h-5" />
@@ -147,8 +143,8 @@ export default function GamesPage() {
                             <button
                                 onClick={() => setViewMode('list')}
                                 className={`p-3 transition-colors ${viewMode === 'list'
-                                        ? 'bg-warm-cream text-forest-prayer'
-                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                    ? 'bg-warm-cream text-forest-prayer'
+                                    : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                     }`}
                             >
                                 <List className="w-5 h-5" />
@@ -168,8 +164,8 @@ export default function GamesPage() {
                                     <button
                                         onClick={() => setSortBy('name')}
                                         className={`px-3 py-2 text-sm transition-colors ${sortBy === 'name'
-                                                ? 'bg-warm-cream text-forest-prayer'
-                                                : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                             }`}
                                     >
                                         Name
@@ -177,8 +173,8 @@ export default function GamesPage() {
                                     <button
                                         onClick={() => setSortBy('price')}
                                         className={`px-3 py-2 text-sm transition-colors ${sortBy === 'price'
-                                                ? 'bg-warm-cream text-forest-prayer'
-                                                : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                            ? 'bg-warm-cream text-forest-prayer'
+                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                             }`}
                                     >
                                         Price
@@ -204,8 +200,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setViewMode('grid')}
                                     className={`p-2 transition-colors ${viewMode === 'grid'
-                                            ? 'bg-warm-cream text-forest-prayer'
-                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     <Grid3X3 className="w-4 h-4" />
@@ -213,8 +209,8 @@ export default function GamesPage() {
                                 <button
                                     onClick={() => setViewMode('list')}
                                     className={`p-2 transition-colors ${viewMode === 'list'
-                                            ? 'bg-warm-cream text-forest-prayer'
-                                            : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
+                                        ? 'bg-warm-cream text-forest-prayer'
+                                        : 'bg-warm-cream/10 text-warm-cream hover:bg-warm-cream/20'
                                         }`}
                                 >
                                     <List className="w-4 h-4" />
@@ -225,107 +221,111 @@ export default function GamesPage() {
                 </div>
 
                 {/* Games Grid with Images */}
-                {viewMode === 'grid' ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {sortedProducts.map((product) => (
-                            <Link key={product.id} href={`/games/${product.handle}`}>
-                                <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
-                                    {/* Game Image with Shopify images */}
-                                    <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
-                                        {product.featuredImage ? (
-                                            <Image
-                                                src={product.featuredImage.url}
-                                                alt={product.featuredImage.alt}
-                                                fill
-                                                className="object-cover transition-opacity duration-300"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-mint-whisper" />
-                                        )}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-deep-brown flex items-center space-x-1">
-                                            <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
-                                            <span>{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Game Info */}
-                                    <div className="space-y-3">
-                                        <div className="flex items-start justify-between">
-                                            <h3 className="font-semibold text-deep-brown group-hover:text-primary transition-colors">{product.title}</h3>
-                                        </div>
-
-                                        <div className="flex items-center justify-between pt-2 border-t border-sage-green/20">
-                                            <p className="text-xl font-bold text-sanctuary-green">${product.price}</p>
-                                            <span className="text-sm text-deep-brown/60">
-                                                Qty: {product.quantity}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                ) : (
-                    // List View with Images
-                    <div className="space-y-4">
-                        {sortedProducts.map((product) => (
-                            <Link key={product.id} href={`/games/${product.handle}`}>
-                                <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
-                                    <div className="flex items-center space-x-6">
-                                        <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
+                {
+                    viewMode === 'grid' ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {sortedProducts.map((product) => (
+                                <Link key={product.id} href={`/games/${product.handle}`}>
+                                    <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-2xl transition-all duration-300 cursor-pointer hover:-translate-y-2">
+                                        {/* Game Image with Shopify images */}
+                                        <div className="relative h-40 rounded-lg mb-4 overflow-hidden">
                                             {product.featuredImage ? (
                                                 <Image
                                                     src={product.featuredImage.url}
                                                     alt={product.featuredImage.alt}
                                                     fill
-                                                    className="object-cover"
-                                                    sizes="96px"
+                                                    className="object-cover transition-opacity duration-300"
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                 />
                                             ) : (
                                                 <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-mint-whisper" />
                                             )}
+                                            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                            <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-deep-brown flex items-center space-x-1">
+                                                <span className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                                                <span>{product.inStock ? 'In Stock' : 'Out of Stock'}</span>
+                                            </div>
                                         </div>
 
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex items-start justify-between mb-2">
-                                                <h3 className="text-xl font-semibold text-deep-brown group-hover:text-primary transition-colors">{product.title}</h3>
-                                                <div className="flex items-center space-x-4">
-                                                    <span className={`text-xs px-2 py-1 rounded-full font-medium ${product.inStock
-                                                            ? 'bg-green-100 text-green-700'
-                                                            : 'bg-red-100 text-red-700'
-                                                        }`}>
-                                                        {product.inStock ? 'In Stock' : 'Out of Stock'}
-                                                    </span>
-                                                    <p className="text-2xl font-bold text-sanctuary-green">${product.price}</p>
-                                                </div>
+                                        {/* Game Info */}
+                                        <div className="space-y-3">
+                                            <div className="flex items-start justify-between">
+                                                <h3 className="font-semibold text-deep-brown group-hover:text-primary transition-colors">{product.title}</h3>
                                             </div>
 
-                                            <div className="flex items-center justify-between">
-                                                <div className="text-sm text-deep-brown/60">
-                                                    Quantity available: {product.quantity}
+                                            <div className="flex items-center justify-between pt-2 border-t border-sage-green/20">
+                                                <p className="text-xl font-bold text-sanctuary-green">${product.price}</p>
+                                                <span className="text-sm text-deep-brown/60">
+                                                    Qty: {product.quantity}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    ) : (
+                        // List View with Images
+                        <div className="space-y-4">
+                            {sortedProducts.map((product) => (
+                                <Link key={product.id} href={`/games/${product.handle}`}>
+                                    <div className="group bg-white border border-sage-green/30 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer">
+                                        <div className="flex items-center space-x-6">
+                                            <div className="relative w-24 h-24 rounded-lg flex-shrink-0 overflow-hidden">
+                                                {product.featuredImage ? (
+                                                    <Image
+                                                        src={product.featuredImage.url}
+                                                        alt={product.featuredImage.alt}
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="96px"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full bg-gradient-to-br from-sage-green/20 to-mint-whisper" />
+                                                )}
+                                            </div>
+
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-start justify-between mb-2">
+                                                    <h3 className="text-xl font-semibold text-deep-brown group-hover:text-primary transition-colors">{product.title}</h3>
+                                                    <div className="flex items-center space-x-4">
+                                                        <span className={`text-xs px-2 py-1 rounded-full font-medium ${product.inStock
+                                                            ? 'bg-green-100 text-green-700'
+                                                            : 'bg-red-100 text-red-700'
+                                                            }`}>
+                                                            {product.inStock ? 'In Stock' : 'Out of Stock'}
+                                                        </span>
+                                                        <p className="text-2xl font-bold text-sanctuary-green">${product.price}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="flex items-center justify-between">
+                                                    <div className="text-sm text-deep-brown/60">
+                                                        Quantity available: {product.quantity}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                )}
+                                </Link>
+                            ))}
+                        </div>
+                    )
+                }
 
                 {/* No Results State */}
-                {sortedProducts.length === 0 && !loading && (
-                    <div className="text-center py-16">
-                        <div className="bg-warm-cream/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <Sparkles className="w-12 h-12 text-mint-whisper" />
+                {
+                    sortedProducts.length === 0 && !loading && (
+                        <div className="text-center py-16">
+                            <div className="bg-warm-cream/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Sparkles className="w-12 h-12 text-mint-whisper" />
+                            </div>
+                            <h3 className="text-xl font-semibold text-warm-cream mb-2">No games available</h3>
+                            <p className="text-warm-cream/80">Check back soon for new additions to our collection!</p>
                         </div>
-                        <h3 className="text-xl font-semibold text-warm-cream mb-2">No games available</h3>
-                        <p className="text-warm-cream/80">Check back soon for new additions to our collection!</p>
-                    </div>
-                )}
-            </div>
-        </div>
+                    )
+                }
+            </div >
+        </div >
     );
 }
