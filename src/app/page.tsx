@@ -7,16 +7,7 @@ import {
   Users,
   Award,
   Sparkles,
-  Heart,
-  Zap,
-  Mail,
-  Phone,
-  Clock,
-  MapPin,
-  CheckCircle,
-  MessageCircle,
-  Globe,
-  Gamepad2
+  Heart
 } from 'lucide-react';
 import { companyConfig } from '@/config/company';
 
@@ -134,92 +125,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Contact Us */}
-      <section className="py-16 bg-warm-cream">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-4">
-              <div className="bg-primary p-3 rounded-full">
-                <MessageCircle className="w-8 h-8 text-warm-cream" />
-              </div>
-            </div>
-            <h2 className="text-3xl font-bold text-deep-brown mb-4">Get in Touch</h2>
-            <p className="text-deep-brown/70 max-w-2xl mx-auto">
-              Have questions about a game? Need a recommendation? We're a small family business and love to help personally!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-sage-green/20">
-              <h3 className="text-xl font-semibold mb-6 text-deep-brown flex items-center space-x-2">
-                <Globe className="w-6 h-6 text-primary" />
-                <span>Contact Information</span>
-              </h3>
-
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-mint-whisper p-3 rounded-lg">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-deep-brown mb-1">Email</h4>
-                    <p className="text-primary hover:text-primary-dark transition-colors">
-                      <a href={`mailto:${companyConfig.email}`}>{companyConfig.email}</a>
-                    </p>
-                    <p className="text-sm text-deep-brown/60 mt-1">
-                      We typically respond within 24 hours
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-mint-whisper p-3 rounded-lg">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-deep-brown mb-1">Phone</h4>
-                    <p className="text-deep-brown/80">
-                      <a href={`tel:${companyConfig.phone}`} className="hover:text-primary transition-colors">{companyConfig.phoneFormatted}</a>
-                    </p>
-                    <p className="text-sm text-deep-brown/60 mt-1">
-                      Call us for immediate assistance
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-mint-whisper p-3 rounded-lg">
-                    <Clock className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-deep-brown mb-1">Business Hours</h4>
-                    <div className="text-deep-brown/80 space-y-1 text-sm">
-                      <p>{companyConfig.businessHours.weekdays}</p>
-                      <p>{companyConfig.businessHours.saturday}</p>
-                      <p>{companyConfig.businessHours.sunday}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-mint-whisper p-3 rounded-lg">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-deep-brown mb-1">Location</h4>
-                    <p className="text-deep-brown/80 text-sm">
-                      {companyConfig.location.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div >
-        </div >
-      </section >
 
     </div >
   );
