@@ -43,7 +43,7 @@ export async function GET() {
     try {
         const client = createStorefrontApiClient({
             storeDomain: `https://${process.env.SHOPIFY_STORE_DOMAIN}`,
-            apiVersion: '2024-10',
+            apiVersion: '2025-10',
             publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
         });
 
@@ -81,7 +81,26 @@ export async function GET() {
             }
         `;
 
-        const result = await client.request(query) as ShopifyProductsResponse;
+        const result = await client.request(query) as any;
+
+        // Check for errors in the response
+        if (result.errors) {
+            const errorMessage = result.errors.networkStatusCode === 402
+                ? 'Shopify store payment required. Please check your Shopify billing settings.'
+                : result.errors.message || 'Shopify API error';
+
+            return Response.json({
+                success: false,
+                error: errorMessage
+            }, { status: result.errors.networkStatusCode || 500 });
+        }
+
+        if (!result.data?.products) {
+            return Response.json({
+                success: false,
+                error: 'Unexpected response from Shopify'
+            }, { status: 500 });
+        }
 
         return Response.json({
             success: true,

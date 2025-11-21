@@ -33,6 +33,8 @@ export default function GamesPage() {
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
+    const [error, setError] = useState<string | null>(null);
+
     // Fetch products from Shopify
     useEffect(() => {
         async function fetchProducts() {
@@ -41,9 +43,12 @@ export default function GamesPage() {
                 const data = await response.json();
                 if (data.success) {
                     setProducts(data.products);
+                } else {
+                    setError(data.error || 'Failed to load products');
                 }
             } catch (error) {
                 console.error('Error fetching products:', error);
+                setError('Failed to connect to the server');
             } finally {
                 setLoading(false);
             }
@@ -313,9 +318,27 @@ export default function GamesPage() {
                     )
                 }
 
+                {/* Error State */}
+                {
+                    error && (
+                        <div className="text-center py-16">
+                            <div className="bg-red-500/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span className="text-4xl">⚠️</span>
+                            </div>
+                            <h3 className="text-xl font-semibold text-warm-cream mb-2">Unable to load games</h3>
+                            <p className="text-warm-cream/80 mb-4">{error}</p>
+                            {error.includes('payment') && (
+                                <p className="text-warm-cream/60 text-sm">
+                                    Please log into your Shopify admin to resolve billing issues.
+                                </p>
+                            )}
+                        </div>
+                    )
+                }
+
                 {/* No Results State */}
                 {
-                    sortedProducts.length === 0 && !loading && (
+                    !error && sortedProducts.length === 0 && !loading && (
                         <div className="text-center py-16">
                             <div className="bg-warm-cream/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <Sparkles className="w-12 h-12 text-mint-whisper" />

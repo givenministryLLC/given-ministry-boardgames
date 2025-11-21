@@ -5,7 +5,7 @@ export async function POST() {
     try {
         const client = createStorefrontApiClient({
             storeDomain: `https://${process.env.SHOPIFY_STORE_DOMAIN}`,
-            apiVersion: '2024-10',
+            apiVersion: '2025-10',
             publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!,
         });
 
